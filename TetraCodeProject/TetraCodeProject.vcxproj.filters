@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{8e5c9de1-0714-406e-b9c4-7f44e779c992}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include">
+      <UniqueIdentifier>{0bee8084-9a5c-4be2-bfbf-a4b1e4d93425}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Code">
+      <UniqueIdentifier>{d4e9e2e4-b291-4453-af57-b9d16c6e1003}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Common">
+      <UniqueIdentifier>{4b03f7af-ed2c-4e4c-b7ee-322e611e295d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Image">
+      <UniqueIdentifier>{ac762d3c-2740-4891-887c-abb40661cd6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Visual">
+      <UniqueIdentifier>{887bf42e-b0d5-4da1-9ed3-4de918047149}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Code">
+      <UniqueIdentifier>{965a870e-87e1-4a24-90e4-9f15d0d2ecec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Image">
+      <UniqueIdentifier>{bdf85f3a-b8a2-4151-a14c-292012d9dd91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Visual">
+      <UniqueIdentifier>{659da140-d614-422f-944f-580c469e83dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Scrambler">
+      <UniqueIdentifier>{746ee538-b586-4c45-b807-f84648391e2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Scrambler">
+      <UniqueIdentifier>{3fc2c9ce-b766-485c-afbf-899aee357e4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Iterator">
+      <UniqueIdentifier>{3e93fa6a-8032-46cb-8123-d289dd71e3d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Main">
+      <UniqueIdentifier>{7476b56d-dc79-4997-a23a-42c5a3e088e9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Include\Code\CodeBits.h">
+      <Filter>Include\Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Code\Decoder.h">
+      <Filter>Include\Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Code\Encoder.h">
+      <Filter>Include\Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Code\TetraTree.h">
+      <Filter>Include\Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Common\Types.h">
+      <Filter>Include\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Image\Image.h">
+      <Filter>Include\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Visual\Color.h">
+      <Filter>Include\Visual</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Visual\HsvPalette.h">
+      <Filter>Include\Visual</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Visual\Palette.h">
+      <Filter>Include\Visual</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Visual\Pixel.h">
+      <Filter>Include\Visual</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Source\Code\CodeBits.cpp">
+      <Filter>Source\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Code\Decoder.cpp">
+      <Filter>Source\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Code\Encoder.cpp">
+      <Filter>Source\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Code\TetraTree.cpp">
+      <Filter>Source\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Image\Image.cpp">
+      <Filter>Source\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Visual\Color.cpp">
+      <Filter>Source\Visual</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Visual\HsvPalette.cpp">
+      <Filter>Source\Visual</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Main\Source.cpp">
+      <Filter>Source\Main</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

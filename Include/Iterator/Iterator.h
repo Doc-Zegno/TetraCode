@@ -1,5 +1,7 @@
 #pragma once
 
+#include "IteratorExceptions.h"
+
 
 namespace TetraCode {
     namespace Iterator {

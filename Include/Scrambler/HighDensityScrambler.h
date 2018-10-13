@@ -20,6 +20,7 @@ namespace TetraCode {
                 byte_t _bufferedByte;
                 byte_t _currentByte;
                 bool _hasBuffered;
+                bool _isValid;
 
             public:
                 EncodingIterator(ByteIteratorPtr&& iterator);
@@ -33,6 +34,7 @@ namespace TetraCode {
             private:
                 ByteIteratorPtr _iterator;
                 byte_t _currentByte;
+                bool _isValid;
 
             public:
                 DecodingIterator(ByteIteratorPtr&& iterator);

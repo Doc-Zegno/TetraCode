@@ -1,6 +1,8 @@
 #include "HighDensityScrambler.h"
 #include "CodeBits.h"
 
+using TetraCode::Iterator::InvalidIteratorException;
+
 
 namespace TetraCode {
     namespace Scrambler {
@@ -26,22 +28,28 @@ namespace TetraCode {
             // Force iterator to use ESCAPE_BITS as the first output byte
             _hasBuffered = true;
             _bufferedByte = ESCAPE_BITS;
+            _isValid = false;
         }
 
 
         byte_t HighDensityScrambler::EncodingIterator::current()
         {
+            if (!_isValid) {
+                throw InvalidIteratorException("HDScrambler::EncodingIterator::current()");
+            }
             return _currentByte;
         }
 
 
         bool HighDensityScrambler::EncodingIterator::moveNext()
         {
+            _isValid = true;
             if (_hasBuffered) {
                 _hasBuffered = false;
                 _currentByte = _bufferedByte;
             } else {
                 if (!_iterator->moveNext()) {
+                    _isValid = false;
                     return false;
                 }
 
@@ -68,11 +76,15 @@ namespace TetraCode {
         {
             // Ignore the first escape byte
             _iterator->moveNext();
+            _isValid = false;
         }
 
 
         byte_t HighDensityScrambler::DecodingIterator::current()
         {
+            if (!_isValid) {
+                throw InvalidIteratorException("HDScrambler::DecodingIterator::current()");
+            }
             return _currentByte;
         }
 
@@ -80,9 +92,11 @@ namespace TetraCode {
         bool HighDensityScrambler::DecodingIterator::moveNext()
         {
             if (!_iterator->moveNext()) {
+                _isValid = false;
                 return false;
             }
 
+            _isValid = true;
             auto current = _iterator->current();
             if (current == ESCAPE_BITS) {
                 if (!_iterator->moveNext()) {

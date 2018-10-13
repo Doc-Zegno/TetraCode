@@ -126,6 +126,7 @@
     <ClInclude Include="..\Include\Common\Types.h" />
     <ClInclude Include="..\Include\Image\Image.h" />
     <ClInclude Include="..\Include\Iterator\BasicIterator.h" />
+    <ClInclude Include="..\Include\Iterator\IteratorExceptions.h" />
     <ClInclude Include="..\Include\Iterator\Iterator.h" />
     <ClInclude Include="..\Include\Scrambler\HighDensityScrambler.h" />
     <ClInclude Include="..\Include\Scrambler\Scrambler.h" />
@@ -140,6 +141,7 @@
     <ClCompile Include="..\Source\Code\Encoder.cpp" />
     <ClCompile Include="..\Source\Code\TetraTree.cpp" />
     <ClCompile Include="..\Source\Image\Image.cpp" />
+    <ClCompile Include="..\Source\Iterator\IteratorExceptions.cpp" />
     <ClCompile Include="..\Source\Main\Source.cpp" />
     <ClCompile Include="..\Source\Scrambler\HighDensityScrambler.cpp" />
     <ClCompile Include="..\Source\Visual\Color.cpp" />

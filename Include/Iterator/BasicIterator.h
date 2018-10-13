@@ -15,6 +15,7 @@ namespace TetraCode {
         private:
             T* _current;
             T* _last;
+            bool _isValid;
 
         public:
             BasicIterator(T* start, T* end);
@@ -34,7 +35,7 @@ namespace TetraCode {
 
         template<typename T>
         inline BasicIterator<T>::BasicIterator(T* start, T* end)
-            : _current(start - 1), _last(end - 1)
+            : _current(start - 1), _last(end - 1), _isValid(false)
         {
         }
 
@@ -42,6 +43,9 @@ namespace TetraCode {
         template<typename T>
         inline T BasicIterator<T>::current()
         {
+            if (!_isValid) {
+                throw InvalidIteratorException("BasicIterator::current()");
+            }
             return *_current;
         }
 
@@ -49,8 +53,10 @@ namespace TetraCode {
         template<typename T>
         inline bool BasicIterator<T>::moveNext()
         {
+            _isValid = true;  // Make valid after first call
             _current++;
             if (_current > _last) {
+                _isValid = false;
                 _current = _last;
                 return false;
             } else {

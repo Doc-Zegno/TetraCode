@@ -87,6 +87,9 @@
     <ClInclude Include="..\Include\Iterator\BasicIterator.h">
       <Filter>Include\Iterator</Filter>
     </ClInclude>
+    <ClInclude Include="..\Include\Iterator\IteratorExceptions.h">
+      <Filter>Include\Iterator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\Code\CodeBits.cpp">
@@ -115,6 +118,9 @@
     </ClCompile>
     <ClCompile Include="..\Source\Scrambler\HighDensityScrambler.cpp">
       <Filter>Source\Scrambler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Iterator\IteratorExceptions.cpp">
+      <Filter>Source\Iterator</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -25,12 +25,19 @@ namespace UnitTest
             auto iterator = scrambler.encodingIterator(
                 BasicIterator<byte_t>::create(std::begin(bytes), std::end(bytes))
             );
+            auto test = [&iterator]() { return iterator->current(); };
+
+            // Exception should be thrown if current() is called before moveNext()
+            Assert::ExpectException<InvalidIteratorException>(test);
 
             for (auto i = 0; i < 9; i++) {
                 Assert::IsTrue(iterator->moveNext());
                 Assert::AreEqual(expected[i], iterator->current());
             }
+
+            // Exception should be thrown if current() is called after last element is visited
             Assert::IsFalse(iterator->moveNext());
+            Assert::ExpectException<InvalidIteratorException>(test);
         }
 
 
@@ -43,12 +50,19 @@ namespace UnitTest
             auto iterator = scrambler.decodingIterator(
                 BasicIterator<byte_t>::create(std::begin(bytes), std::end(bytes))
             );
+            auto test = [&iterator]() { return iterator->current(); };
+
+            // Exception should be thrown if current() is called before moveNext()
+            Assert::ExpectException<InvalidIteratorException>(test);
 
             for (auto i = 0; i < 5; i++) {
                 Assert::IsTrue(iterator->moveNext());
                 Assert::AreEqual(expected[i], iterator->current());
             }
+            
+            // Exception should be thrown if current() is called after last element is visited
             Assert::IsFalse(iterator->moveNext());
+            Assert::ExpectException<InvalidIteratorException>(test);
         }
 
 

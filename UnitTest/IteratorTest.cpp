@@ -36,5 +36,24 @@ namespace UnitTest
             Assert::IsFalse(iterator.moveNext());
         }
 
+
+        TEST_METHOD(BasicIteratorExceptionTest)
+        {
+            int values[5] = { 1, 2, 3, 4, 5 };
+            auto iterator = BasicIterator<int>(std::begin(values), std::end(values));
+            auto test = [&iterator]() { return iterator.current(); };
+
+            // Exception should be thrown if current() is called before moveNext()
+            Assert::ExpectException<InvalidIteratorException>(test);
+
+            for (auto v : values) {
+                Assert::IsTrue(iterator.moveNext());
+            }
+
+            // Exception should be thrown if current() is called after last element is visited
+            Assert::IsFalse(iterator.moveNext());
+            Assert::ExpectException<InvalidIteratorException>(test);
+        }
+
     };
 }

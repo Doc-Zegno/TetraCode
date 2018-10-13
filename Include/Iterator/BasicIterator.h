@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #include "Iterator.h"
 
 
@@ -11,14 +13,22 @@ namespace TetraCode {
         template<typename T>
         class BasicIterator : public Iterator<T> {
         private:
-            T * _current;
+            T* _current;
             T* _last;
 
         public:
             BasicIterator(T* start, T* end);
 
-            virtual T& current() const override;
+            virtual T current() override;
             virtual bool moveNext() override;
+
+            /// <summary>
+            /// Create iterator's instance wrapped by `unique_ptr`
+            /// </summary>
+            /// <param name="start">Pointer to the start of underlying array</param>
+            /// <param name="end">Pointer to the end of underlying array</param>
+            /// <returns>Iterator's instance</returns>
+            static std::unique_ptr<Iterator<T>> create(T* start, T* end);
         };
 
 
@@ -30,7 +40,7 @@ namespace TetraCode {
 
 
         template<typename T>
-        inline T& BasicIterator<T>::current() const
+        inline T BasicIterator<T>::current()
         {
             return *_current;
         }
@@ -46,6 +56,13 @@ namespace TetraCode {
             } else {
                 return true;
             }
+        }
+
+
+        template<typename T>
+        inline std::unique_ptr<Iterator<T>> BasicIterator<T>::create(T* start, T* end)
+        {
+            return std::unique_ptr<Iterator<T>>(new BasicIterator(start, end));
         }
     }
 }

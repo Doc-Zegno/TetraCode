@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TetraCodeProject", "TetraCodeProject.vcxproj", "{A4FDB6C0-BC7C-4513-88A1-51ECD4AEA76E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTest", "..\UnitTest\UnitTest.vcxproj", "{A38F0AAE-4838-4B14-B1E8-3AD620A70C00}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{A4FDB6C0-BC7C-4513-88A1-51ECD4AEA76E}.Release|x64.Build.0 = Release|x64
 		{A4FDB6C0-BC7C-4513-88A1-51ECD4AEA76E}.Release|x86.ActiveCfg = Release|Win32
 		{A4FDB6C0-BC7C-4513-88A1-51ECD4AEA76E}.Release|x86.Build.0 = Release|Win32
+		{A38F0AAE-4838-4B14-B1E8-3AD620A70C00}.Debug|x64.ActiveCfg = Debug|x64
+		{A38F0AAE-4838-4B14-B1E8-3AD620A70C00}.Debug|x64.Build.0 = Debug|x64
+		{A38F0AAE-4838-4B14-B1E8-3AD620A70C00}.Debug|x86.ActiveCfg = Debug|Win32
+		{A38F0AAE-4838-4B14-B1E8-3AD620A70C00}.Debug|x86.Build.0 = Debug|Win32
+		{A38F0AAE-4838-4B14-B1E8-3AD620A70C00}.Release|x64.ActiveCfg = Release|x64
+		{A38F0AAE-4838-4B14-B1E8-3AD620A70C00}.Release|x64.Build.0 = Release|x64
+		{A38F0AAE-4838-4B14-B1E8-3AD620A70C00}.Release|x86.ActiveCfg = Release|Win32
+		{A38F0AAE-4838-4B14-B1E8-3AD620A70C00}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

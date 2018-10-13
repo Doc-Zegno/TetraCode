@@ -113,5 +113,8 @@
     <ClCompile Include="..\Source\Main\Source.cpp">
       <Filter>Source\Main</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\Scrambler\HighDensityScrambler.cpp">
+      <Filter>Source\Scrambler</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

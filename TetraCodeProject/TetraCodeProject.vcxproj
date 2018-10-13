@@ -141,6 +141,7 @@
     <ClCompile Include="..\Source\Code\TetraTree.cpp" />
     <ClCompile Include="..\Source\Image\Image.cpp" />
     <ClCompile Include="..\Source\Main\Source.cpp" />
+    <ClCompile Include="..\Source\Scrambler\HighDensityScrambler.cpp" />
     <ClCompile Include="..\Source\Visual\Color.cpp" />
     <ClCompile Include="..\Source\Visual\HsvPalette.cpp" />
   </ItemGroup>

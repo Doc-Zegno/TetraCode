@@ -14,7 +14,7 @@ namespace TetraCode {
             /// Get element this iterator is pointing to
             /// </summary>
             /// <returns>Current element</returns>
-            virtual T& current() const = 0;
+            virtual T current() = 0;
 
             /// <summary>
             /// Move this iterator to the next element in underlying container.

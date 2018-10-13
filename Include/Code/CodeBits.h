@@ -27,6 +27,7 @@ namespace TetraCode {
         
         byte_t toByte() const;
         void getActives(bool (&isActives)[4]) const;
+        int numActives() const;
         int brightnessLevel() const;
         int colorNumber() const;
     };

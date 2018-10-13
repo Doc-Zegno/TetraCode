@@ -23,6 +23,20 @@ namespace TetraCode {
                 virtual bool moveNext() override;
             };
 
+            
+            class DecodingIterator : public ByteIterator {
+            private:
+                ByteIteratorPtr _iterator;
+                byte_t _currentByte;
+
+            public:
+                DecodingIterator(ByteIteratorPtr&& iterator);
+
+                virtual byte_t current() override;
+                virtual bool moveNext() override;
+            };
+
+
         public:
             HighDensityScrambler() {};
 

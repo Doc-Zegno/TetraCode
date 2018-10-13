@@ -9,12 +9,12 @@ using namespace TetraCode::Iterator;
 
 namespace UnitTest
 {		
-	TEST_CLASS(IteratorTest)
-	{
-	public:
-		
-		TEST_METHOD(BasicIteratorFunctionalityTest)
-		{
+    TEST_CLASS(IteratorTest)
+    {
+    public:
+        
+        TEST_METHOD(BasicIteratorFunctionalityTest)
+        {
             int values[] = { 1, 2, 3, 4, 5 };
             auto iterator = BasicIterator<int>(std::begin(values), std::end(values));
 
@@ -26,7 +26,7 @@ namespace UnitTest
             }
 
             Assert::IsFalse(iterator.moveNext());
-		}
+        }
 
 
         TEST_METHOD(BasicIteratorEmptyArrayTest)
@@ -36,5 +36,5 @@ namespace UnitTest
             Assert::IsFalse(iterator.moveNext());
         }
 
-	};
+    };
 }

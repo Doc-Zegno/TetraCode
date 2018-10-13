@@ -35,6 +35,13 @@ namespace TetraCode {
     }
 
 
+    int CodeBits::numActives() const
+    {
+        return _converter.bits.isActive1 + _converter.bits.isActive2
+            + _converter.bits.isActive3 + _converter.bits.isActive4;
+    }
+
+
     int CodeBits::brightnessLevel() const
     {
         return _converter.bits.brightnessLevel;

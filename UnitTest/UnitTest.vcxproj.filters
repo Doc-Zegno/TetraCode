@@ -29,7 +29,7 @@
     <ClCompile Include="IteratorTest.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="ScramblerTest.cpp">
+    <ClCompile Include="HDScramblerTest.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>

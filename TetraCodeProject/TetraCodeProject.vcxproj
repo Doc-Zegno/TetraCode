@@ -125,6 +125,10 @@
     <ClInclude Include="..\Include\Code\TetraTree.h" />
     <ClInclude Include="..\Include\Common\Types.h" />
     <ClInclude Include="..\Include\Image\Image.h" />
+    <ClInclude Include="..\Include\Iterator\BasicIterator.h" />
+    <ClInclude Include="..\Include\Iterator\Iterator.h" />
+    <ClInclude Include="..\Include\Scrambler\HighDensityScrambler.h" />
+    <ClInclude Include="..\Include\Scrambler\Scrambler.h" />
     <ClInclude Include="..\Include\Visual\Color.h" />
     <ClInclude Include="..\Include\Visual\HsvPalette.h" />
     <ClInclude Include="..\Include\Visual\Palette.h" />

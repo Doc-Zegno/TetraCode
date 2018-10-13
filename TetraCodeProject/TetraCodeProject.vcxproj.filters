@@ -40,6 +40,9 @@
     <Filter Include="Source\Main">
       <UniqueIdentifier>{7476b56d-dc79-4997-a23a-42c5a3e088e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Iterator">
+      <UniqueIdentifier>{468c5213-c631-4031-b9ae-b4772324bd21}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Include\Code\CodeBits.h">
@@ -71,6 +74,18 @@
     </ClInclude>
     <ClInclude Include="..\Include\Visual\Pixel.h">
       <Filter>Include\Visual</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Iterator\Iterator.h">
+      <Filter>Include\Iterator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Scrambler\HighDensityScrambler.h">
+      <Filter>Include\Scrambler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Scrambler\Scrambler.h">
+      <Filter>Include\Scrambler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Iterator\BasicIterator.h">
+      <Filter>Include\Iterator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

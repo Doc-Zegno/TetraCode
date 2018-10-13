@@ -8,15 +8,15 @@
 
 
 namespace TetraCode {
-	class Decoder {
-	private:
-		const Palette* _palette;
+    class Decoder {
+    private:
+        const Palette* _palette;
 
-		void buildDecodingTree(TetraTree* tree, const Pixel* image, coord_t imageSide, coord_t pivotSide) const;
+        void buildDecodingTree(TetraTree* tree, const Pixel* image, coord_t imageSide, coord_t pivotSide) const;
 
-	public:
-		Decoder(const Palette* palette);
+    public:
+        Decoder(const Palette* palette);
 
-		std::pair<std::unique_ptr<byte_t[]>, size_t> image2sequence(const Pixel* image, coord_t side, coord_t pivotSide) const;
-	};
+        std::pair<std::unique_ptr<byte_t[]>, size_t> image2sequence(const Pixel* image, coord_t side, coord_t pivotSide) const;
+    };
 }

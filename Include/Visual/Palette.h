@@ -8,10 +8,10 @@
 
 
 namespace TetraCode {
-	class Palette {
-	public:
-		virtual Pixel color2pixel(Color color) const = 0;
-		virtual Color pixel2color(Pixel pixel) const = 0;
-		virtual ~Palette() {}
-	};
+    class Palette {
+    public:
+        virtual Pixel color2pixel(Color color) const = 0;
+        virtual Color pixel2color(Pixel pixel) const = 0;
+        virtual ~Palette() {}
+    };
 }

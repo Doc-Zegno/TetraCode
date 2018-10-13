@@ -4,19 +4,19 @@
 
 
 namespace TetraCode {
-	class HsvPalette : public Palette
-	{
-	private:
-		Pixel _pixels[2][2][16];
+    class HsvPalette : public Palette
+    {
+    private:
+        Pixel _pixels[2][2][16];
 
-		Color pixel2colorRobust(Pixel pixel) const;
-		Color pixel2colorFast(Pixel pixel) const;
+        Color pixel2colorRobust(Pixel pixel) const;
+        Color pixel2colorFast(Pixel pixel) const;
 
-	public:
-		HsvPalette(const Pixel (&basePixels)[2][2]);
+    public:
+        HsvPalette(const Pixel (&basePixels)[2][2]);
 
-		virtual Pixel color2pixel(Color color) const override;
-		virtual Color pixel2color(Pixel pixel) const override;
-	};
+        virtual Pixel color2pixel(Color color) const override;
+        virtual Color pixel2color(Pixel pixel) const override;
+    };
 }
 

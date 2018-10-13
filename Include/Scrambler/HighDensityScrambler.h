@@ -2,9 +2,9 @@
 
 
 namespace TetraCode {
-	namespace Scrambler {
-		class HighDensityScrambler {
+    namespace Scrambler {
+        class HighDensityScrambler {
 
-		};
-	}
+        };
+    }
 }

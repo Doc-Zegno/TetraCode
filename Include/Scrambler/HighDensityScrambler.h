@@ -7,6 +7,11 @@
 
 namespace TetraCode {
     namespace Scrambler {
+        /// <summary>
+        /// Increases the *density* of input sequence in such a way
+        /// that output bytes code instances of <see cref="TetraTree"/>
+        /// with at least 2 active children 
+        /// </summary>
         class HighDensityScrambler : public Scrambler {
         private:
             class EncodingIterator : public ByteIterator {

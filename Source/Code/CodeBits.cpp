@@ -1,7 +1,7 @@
 #include "CodeBits.h"
 
 
-namespace TetraCode {
+namespace Handmada::TetraCode::Code {
     CodeBits::CodeBits(byte_t raw)
     {
         _converter.raw = raw;

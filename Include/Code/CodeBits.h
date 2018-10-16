@@ -3,7 +3,7 @@
 #include "Types.h"
 
 
-namespace TetraCode {
+namespace Handmada::TetraCode::Code {
     /// <summary>
     /// Encapsulates flags that control the process of <see cref="TetraTree"/>'s expansion
     /// </summary>

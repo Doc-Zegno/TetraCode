@@ -9,7 +9,7 @@
 #include "Color.h"
 
 
-namespace TetraCode {
+namespace Handmada::TetraCode::Code {
     class TetraTree {
     private:
         std::vector<std::unique_ptr<TetraTree>> _children;
@@ -20,12 +20,12 @@ namespace TetraCode {
         coord_t _xPivot;
         coord_t _yPivot;
         int _oddity;
-        Color _color;
+        Visual::Color _color;
 
     public:
         TetraTree(coord_t xMin, coord_t yMin, coord_t side, coord_t xPivot, coord_t yPivot, int oddity);
 
-        void setColor(const Color& color);
+        void setColor(const Visual::Color& color);
         const std::vector<std::unique_ptr<TetraTree>>& children() const;
         void spawnChildren();
         void removeChildren();
@@ -39,6 +39,6 @@ namespace TetraCode {
         coord_t xPivot() const;
         coord_t yPivot() const;
         int oddity() const;
-        Color color() const;
+        Visual::Color color() const;
     };
 }

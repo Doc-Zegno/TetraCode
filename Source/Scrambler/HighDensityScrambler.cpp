@@ -18,7 +18,7 @@ namespace Handmada::TetraCode::Scrambler {
 
 
     // E n c o d i n g    I t e r a t o r
-    const byte_t ESCAPE_BITS = 0b10101111;
+    constexpr byte_t ESCAPE_BITS = Code::CodeBits::escapeBits();
 
 
     HighDensityScrambler::EncodingIterator::EncodingIterator(ByteIteratorPtr&& iterator)

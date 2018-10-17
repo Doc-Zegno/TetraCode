@@ -5,7 +5,10 @@
 #include <string>
 
 
-namespace TetraCode {
+namespace Handmada::TetraCode::Image {
+    using Visual::Pixel;
+
+
     void ExportBufferAsImage(const Pixel* buffer, int width, int height, const char* fileName)
     {
         CImage image;

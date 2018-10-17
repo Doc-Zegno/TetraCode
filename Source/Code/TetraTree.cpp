@@ -3,7 +3,10 @@
 #include <algorithm>
 
 
-namespace TetraCode {
+namespace Handmada::TetraCode::Code {
+    using Visual::Color;
+
+
     TetraTree::TetraTree(coord_t xMin, coord_t yMin, coord_t side, coord_t xPivot, coord_t yPivot, int oddity)
         : _xMin(xMin), _yMin(yMin), _side(side), _xPivot(xPivot), _yPivot(yPivot), _oddity(oddity)
     {

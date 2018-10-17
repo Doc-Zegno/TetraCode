@@ -30,5 +30,11 @@ namespace Handmada::TetraCode::Code {
         int numActives() const;
         int brightnessLevel() const;
         int colorNumber() const;
+
+        /// <summary>
+        /// Get a byte that should be used as an escape one
+        /// </summary>
+        /// <returns></returns>
+        static constexpr byte_t escapeBits() { return byte_t(0b10101111); }
     };
 }

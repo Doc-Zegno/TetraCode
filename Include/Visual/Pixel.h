@@ -3,7 +3,7 @@
 #include "Types.h"
 
 
-namespace TetraCode {
+namespace Handmada::TetraCode::Visual {
     struct Pixel {
         byte_t r;
         byte_t g;

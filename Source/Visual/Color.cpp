@@ -1,7 +1,7 @@
 #include "Color.h"
 
 
-namespace TetraCode {
+namespace Handmada::TetraCode::Visual {
     Color::Color(bool isActive, int huePair, int brightnessLevel, int number)
         : _isActive(isActive), _huePair(huePair), _brightnessLevel(brightnessLevel), _number(number)
     {}

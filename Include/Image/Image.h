@@ -7,7 +7,7 @@
 #include "Pixel.h"
 
 
-namespace TetraCode {
-    void ExportBufferAsImage(const Pixel* buffer, int width, int height, const char* fileName);
-    std::pair<std::unique_ptr<Pixel[]>, int> ImportImageFromFile(const char* path, bool isVerbose);
+namespace Handmada::TetraCode::Image {
+    void ExportBufferAsImage(const Visual::Pixel* buffer, int width, int height, const char* fileName);
+    std::pair<std::unique_ptr<Visual::Pixel[]>, int> ImportImageFromFile(const char* path, bool isVerbose);
 }

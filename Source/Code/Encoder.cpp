@@ -4,7 +4,12 @@
 #include <algorithm>
 
 
-namespace TetraCode {
+namespace Handmada::TetraCode::Code {
+    using Visual::Color;
+    using Visual::Palette;
+    using Visual::Pixel;
+
+
     Encoder::Encoder(coord_t maxSide, coord_t minSide, coord_t pivotSide, const Palette* palette)
         : _maxSide(maxSide), _minSide(minSide), _pivotSide(pivotSide), _palette(palette)
     {

@@ -4,7 +4,7 @@
 #include <algorithm>
 
 
-namespace TetraCode {
+namespace Handmada::TetraCode::Visual {
     HsvPalette::HsvPalette(const Pixel (&basePixels)[2][2])
     {
         for (auto i = 0; i < 2; i++) {

@@ -8,7 +8,7 @@
 #include "Decoder.h"
 #include "Image.h"
 
-using namespace TetraCode;
+using namespace Handmada::TetraCode;
 
 
 std::pair<std::unique_ptr<byte_t[]>, int> scrambleWithDummy(const byte_t* sequence, int length)
@@ -72,7 +72,7 @@ std::pair<std::unique_ptr<byte_t[]>, int> unscrambleFromDummy(const byte_t* sequ
 }
 
 
-void encode(const char* filePath, coord_t maxSide, coord_t minSide, coord_t pivotSide, const Palette& palette)
+void encode(const char* filePath, coord_t maxSide, coord_t minSide, coord_t pivotSide, const Visual::Palette& palette)
 {
     const size_t BUFFER_SIZE = 4096;
     char buffer[BUFFER_SIZE] = { 0 };
@@ -81,9 +81,9 @@ void encode(const char* filePath, coord_t maxSide, coord_t minSide, coord_t pivo
 
     auto scrambled = scrambleWithDummy(reinterpret_cast<byte_t*>(buffer), length);
 
-    auto encoder = Encoder(maxSide, minSide, pivotSide, &palette);
+    auto encoder = Code::Encoder(maxSide, minSide, pivotSide, &palette);
     auto image = encoder.sequence2image(scrambled.first.get(), scrambled.second);
-    ExportBufferAsImage(image.first.get(), image.second, image.second, filePath);
+    Image::ExportBufferAsImage(image.first.get(), image.second, image.second, filePath);
 
     std::cout << "original length = " << length << std::endl;
     std::cout << "new length = " << scrambled.second << std::endl;
@@ -92,10 +92,10 @@ void encode(const char* filePath, coord_t maxSide, coord_t minSide, coord_t pivo
 }
 
 
-void decode(const char* filePath, coord_t maxSide, coord_t minSide, coord_t pivotSide, const Palette& palette)
+void decode(const char* filePath, coord_t maxSide, coord_t minSide, coord_t pivotSide, const Visual::Palette& palette)
 {
-    auto image = ImportImageFromFile(filePath, true);
-    auto decoder = Decoder(&palette);
+    auto image = Image::ImportImageFromFile(filePath, true);
+    auto decoder = Code::Decoder(&palette);
     auto sequence = decoder.image2sequence(image.first.get(), image.second, pivotSide);
     auto unscrambled = unscrambleFromDummy(sequence.first.get(), sequence.second);
     std::cout << "Text [" << unscrambled.second << " characters total]:\n\t";
@@ -105,6 +105,9 @@ void decode(const char* filePath, coord_t maxSide, coord_t minSide, coord_t pivo
 
 int main(int argc, char* argv[])
 {
+    using Visual::HsvPalette;
+    using Visual::Pixel;
+
     try {
         const coord_t MAX_SIDE = 2048;
         const coord_t MIN_SIDE = 256;

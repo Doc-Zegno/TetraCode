@@ -5,7 +5,12 @@
 #include "TetraTree.h"
 
 
-namespace TetraCode {
+namespace Handmada::TetraCode::Code {
+    using Visual::Color;
+    using Visual::Palette;
+    using Visual::Pixel;
+
+
     Decoder::Decoder(const Palette* palette) : _palette(palette)
     {
     }

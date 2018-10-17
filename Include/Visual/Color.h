@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace TetraCode {
+namespace Handmada::TetraCode::Visual {
     class Color {
     private:
         bool _isActive;

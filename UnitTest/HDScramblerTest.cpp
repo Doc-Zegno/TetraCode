@@ -30,9 +30,9 @@ namespace UnitTest
             // Exception should be thrown if current() is called before moveNext()
             Assert::ExpectException<InvalidIteratorException>(test);
 
-            for (auto i = 0; i < 9; i++) {
+            for (auto e : expected) {
                 Assert::IsTrue(iterator->moveNext());
-                Assert::AreEqual(expected[i], iterator->current());
+                Assert::AreEqual(e, iterator->current());
             }
 
             // Exception should be thrown if current() is called after last element is visited
@@ -55,9 +55,9 @@ namespace UnitTest
             // Exception should be thrown if current() is called before moveNext()
             Assert::ExpectException<InvalidIteratorException>(test);
 
-            for (auto i = 0; i < 5; i++) {
+            for (auto e : expected) {
                 Assert::IsTrue(iterator->moveNext());
-                Assert::AreEqual(expected[i], iterator->current());
+                Assert::AreEqual(e, iterator->current());
             }
             
             // Exception should be thrown if current() is called after last element is visited

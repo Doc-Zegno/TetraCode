@@ -52,4 +52,34 @@ namespace Handmada::TetraCode::Code {
     {
         return _converter.bits.colorNumber;
     }
+
+
+    std::vector<byte_t> CodeBits::packBytes(const byte_t* bytes, int length)
+    {
+        auto packed = std::vector<byte_t>();
+        for (auto i = 0; i < length; i++) {
+            auto next = bytes[i];
+            auto low = (next & 0x0F) << 4;
+            auto high = next & 0xF0;
+            packed.push_back(low | 0x0F);
+            packed.push_back(high | 0x0F);
+        }
+        return std::move(packed);
+    }
+
+
+    std::vector<byte_t> CodeBits::unpackBytes(const byte_t* bytes, int length)
+    {
+        if ((length & 0x01) != 0) {
+            throw std::invalid_argument("CodeBits::unpackBytes(): length should be even");
+        }
+
+        auto original = std::vector<byte_t>();
+        for (auto i = 0; i < length; i += 2) {
+            auto low = (bytes[i] & 0xF0) >> 4;
+            auto high = bytes[i + 1] & 0xF0;
+            original.push_back(high | low);
+        }
+        return std::move(original);
+    }
 }

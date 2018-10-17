@@ -44,7 +44,7 @@ namespace Handmada::TetraCode::Scrambler {
 
 
     public:
-        HighDensityScrambler() {};
+        HighDensityScrambler() = default;
 
         virtual ByteIteratorPtr encodingIterator(ByteIteratorPtr&& iterator) const override;
         virtual ByteIteratorPtr decodingIterator(ByteIteratorPtr&& iterator) const override;

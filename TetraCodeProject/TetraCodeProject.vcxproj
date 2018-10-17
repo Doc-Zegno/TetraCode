@@ -128,11 +128,13 @@
     <ClInclude Include="..\Include\Code\Encoder.h" />
     <ClInclude Include="..\Include\Code\TetraTree.h" />
     <ClInclude Include="..\Include\Common\Types.h" />
+    <ClInclude Include="..\Include\Common\Version.h" />
     <ClInclude Include="..\Include\Image\Image.h" />
     <ClInclude Include="..\Include\Iterator\BasicIterator.h" />
     <ClInclude Include="..\Include\Iterator\IteratorExceptions.h" />
     <ClInclude Include="..\Include\Iterator\Iterator.h" />
     <ClInclude Include="..\Include\Scrambler\HighDensityScrambler.h" />
+    <ClInclude Include="..\Include\Scrambler\PreambleScrambler.h" />
     <ClInclude Include="..\Include\Scrambler\Scrambler.h" />
     <ClInclude Include="..\Include\Visual\Color.h" />
     <ClInclude Include="..\Include\Visual\HsvPalette.h" />
@@ -148,6 +150,7 @@
     <ClCompile Include="..\Source\Iterator\IteratorExceptions.cpp" />
     <ClCompile Include="..\Source\Main\Source.cpp" />
     <ClCompile Include="..\Source\Scrambler\HighDensityScrambler.cpp" />
+    <ClCompile Include="..\Source\Scrambler\PreambleScrambler.cpp" />
     <ClCompile Include="..\Source\Visual\Color.cpp" />
     <ClCompile Include="..\Source\Visual\HsvPalette.cpp" />
   </ItemGroup>

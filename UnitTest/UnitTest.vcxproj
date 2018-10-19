@@ -100,7 +100,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>..\TetraCodeProject\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>IteratorExceptions.obj;CodeBits.obj;HighDensityScrambler.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>IteratorExceptions.obj;CodeBits.obj;HighDensityScrambler.obj;PreambleScrambler.obj;Version.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -116,7 +116,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>..\TetraCodeProject\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>IteratorExceptions.obj;CodeBits.obj;HighDensityScrambler.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>IteratorExceptions.obj;CodeBits.obj;HighDensityScrambler.obj;PreambleScrambler.obj;Version.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -136,7 +136,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>..\TetraCodeProject\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>IteratorExceptions.obj;CodeBits.obj;HighDensityScrambler.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>IteratorExceptions.obj;CodeBits.obj;HighDensityScrambler.obj;PreambleScrambler.obj;Version.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -156,7 +156,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>..\TetraCodeProject\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>IteratorExceptions.obj;CodeBits.obj;HighDensityScrambler.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>IteratorExceptions.obj;CodeBits.obj;HighDensityScrambler.obj;PreambleScrambler.obj;Version.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -166,6 +166,7 @@
   <ItemGroup>
     <ClCompile Include="CodeBitsTest.cpp" />
     <ClCompile Include="HDScramblerTest.cpp" />
+    <ClCompile Include="PreambleScramblerTest.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

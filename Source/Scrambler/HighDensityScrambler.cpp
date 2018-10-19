@@ -5,13 +5,13 @@ using Handmada::TetraCode::Iterator::InvalidIteratorException;
 
 
 namespace Handmada::TetraCode::Scrambler {
-    ByteIteratorPtr HighDensityScrambler::encodingIterator(ByteIteratorPtr&& iterator) const
+    ByteIteratorPtr HighDensityScrambler::encodingIterator(ByteIteratorPtr&& iterator)
     {
         return ByteIteratorPtr(new HighDensityScrambler::EncodingIterator(std::move(iterator)));
     }
 
 
-    ByteIteratorPtr HighDensityScrambler::decodingIterator(ByteIteratorPtr&& iterator) const
+    ByteIteratorPtr HighDensityScrambler::decodingIterator(ByteIteratorPtr&& iterator)
     {
         return ByteIteratorPtr(new HighDensityScrambler::DecodingIterator(std::move(iterator)));
     }

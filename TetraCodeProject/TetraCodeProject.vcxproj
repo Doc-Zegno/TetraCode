@@ -146,6 +146,7 @@
     <ClCompile Include="..\Source\Code\Decoder.cpp" />
     <ClCompile Include="..\Source\Code\Encoder.cpp" />
     <ClCompile Include="..\Source\Code\TetraTree.cpp" />
+    <ClCompile Include="..\Source\Common\Version.cpp" />
     <ClCompile Include="..\Source\Image\Image.cpp" />
     <ClCompile Include="..\Source\Iterator\IteratorExceptions.cpp" />
     <ClCompile Include="..\Source\Main\Source.cpp" />

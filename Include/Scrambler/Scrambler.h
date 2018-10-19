@@ -24,7 +24,7 @@ namespace Handmada::TetraCode::Scrambler {
         /// </summary>
         /// <param name="iterator">Iterator over **clean** input sequence</param>
         /// <returns>Instance of **encoding** iterator</returns>
-        virtual ByteIteratorPtr encodingIterator(ByteIteratorPtr&& iterator) const = 0;
+        virtual ByteIteratorPtr encodingIterator(ByteIteratorPtr&& iterator) = 0;
 
         /// <summary>
         /// Build iterator to **undo** transformations during **decoding** pass
@@ -32,7 +32,7 @@ namespace Handmada::TetraCode::Scrambler {
         /// </summary>
         /// <param name="iterator">Iterator over **scrambled** input sequence</param>
         /// <returns>Instance of **decoding** iterator</returns>
-        virtual ByteIteratorPtr decodingIterator(ByteIteratorPtr&& iterator) const = 0;
+        virtual ByteIteratorPtr decodingIterator(ByteIteratorPtr&& iterator) = 0;
 
         virtual ~Scrambler() {}
     };

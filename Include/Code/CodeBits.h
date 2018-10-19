@@ -40,6 +40,29 @@ namespace Handmada::TetraCode::Code {
         static constexpr byte_t escapeBits() { return byte_t(0b10101111); }
 
         /// <summary>
+        /// Maximum value that can be packed by <see cref="packSmallInt(int)"/> method
+        /// </summary>
+        /// <returns>Maximum permissible value for packing</returns>
+        static constexpr int maxSmallInt() { return 15; }
+
+        /// <summary>
+        /// Transform small integer (currently < 16)
+        /// into a byte that corresponds to <see cref="TetraTree"/> instance
+        /// with 4 active children
+        /// </summary>
+        /// <param name="value">Integer to be packed</param>
+        /// <returns>Packed value</returns>
+        static byte_t packSmallInt(int value);
+
+        /// <summary>
+        /// Get the original value from packed one
+        /// </summary>
+        /// <param name="packed">Byte with a packed value</param>
+        /// <returns>Original value</returns>
+        static int unpackSmallInt(byte_t packed);
+
+        // TODO: remove this
+        /// <summary>
         /// Transform input byte sequence into one with bytes
         /// that correspond to <see cref="TetraTree"/> instances
         /// with 4 active children
@@ -49,6 +72,7 @@ namespace Handmada::TetraCode::Code {
         /// <returns>Packed byte sequence</returns>
         static std::vector<byte_t> packBytes(const byte_t* bytes, int length);
 
+        // TODO: remove this
         /// <summary>
         /// Transform packed byte sequence into original one
         /// <para>**Note**: exception will be thrown if length is not appropriately rounded</para>

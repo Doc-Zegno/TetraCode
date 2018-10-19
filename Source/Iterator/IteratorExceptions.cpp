@@ -2,6 +2,7 @@
 
 
 namespace Handmada::TetraCode::Iterator {
+    // I n v a l i d    i t e r a t o r
     InvalidIteratorException::InvalidIteratorException(const char* functionName)
         : std::runtime_error(std::string(functionName) + ": iterator is invalid")
     {
@@ -14,8 +15,16 @@ namespace Handmada::TetraCode::Iterator {
     }
 
 
-    const char* InvalidIteratorException::what() const
+
+    // C o r r u p t e d    i n p u t
+    CorruptedInputSequenceException::CorruptedInputSequenceException(const char* functionName)
+        : std::runtime_error(std::string(functionName) + ": corrupted input sequence")
     {
-        return std::runtime_error::what();
+    }
+
+
+    CorruptedInputSequenceException::CorruptedInputSequenceException(const std::string& functionName)
+        : std::runtime_error(functionName + ": corrupted input sequence")
+    {
     }
 }

@@ -54,6 +54,21 @@ namespace Handmada::TetraCode::Code {
     }
 
 
+    byte_t CodeBits::packSmallInt(int value)
+    {
+        if (value >= 16) {
+            throw std::invalid_argument("CodeBits::packSmallInt(): input value is too big");
+        }
+        return byte_t((value << 4) | 0x0F);
+    }
+
+
+    int CodeBits::unpackSmallInt(byte_t packed)
+    {
+        return packed >> 4;
+    }
+
+
     std::vector<byte_t> CodeBits::packBytes(const byte_t* bytes, int length)
     {
         auto packed = std::vector<byte_t>();

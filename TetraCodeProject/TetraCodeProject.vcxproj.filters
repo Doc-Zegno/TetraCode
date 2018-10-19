@@ -43,6 +43,9 @@
     <Filter Include="Source\Iterator">
       <UniqueIdentifier>{468c5213-c631-4031-b9ae-b4772324bd21}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Common">
+      <UniqueIdentifier>{1ef12b2e-be49-4d90-bccd-2012ab600e9d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Include\Code\CodeBits.h">
@@ -130,6 +133,9 @@
     </ClCompile>
     <ClCompile Include="..\Source\Scrambler\PreambleScrambler.cpp">
       <Filter>Source\Scrambler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Common\Version.cpp">
+      <Filter>Source\Common</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

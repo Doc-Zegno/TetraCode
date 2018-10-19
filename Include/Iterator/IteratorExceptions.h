@@ -11,9 +11,23 @@ namespace Handmada::TetraCode::Iterator {
     /// </summary>
     class InvalidIteratorException : public std::runtime_error {
     public:
+        using std::runtime_error::what;
+
         InvalidIteratorException(const char* functionName);
         InvalidIteratorException(const std::string& functionName);
+    };
 
-        virtual const char* what() const override;
+
+
+    /// <summary>
+    /// Signalizes that <see cref="Iterator"/> instance
+    /// has failed to parse input sequence as it was corrupted
+    /// </summary>
+    class CorruptedInputSequenceException : public std::runtime_error {
+    public:
+        using std::runtime_error::what;
+
+        CorruptedInputSequenceException(const char* functionName);
+        CorruptedInputSequenceException(const std::string& functionName);
     };
 }

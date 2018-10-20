@@ -46,6 +46,12 @@
     <Filter Include="Source\Common">
       <UniqueIdentifier>{1ef12b2e-be49-4d90-bccd-2012ab600e9d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Include\Exception">
+      <UniqueIdentifier>{3a0207ae-2da0-46db-9ef1-21d2b2e7e174}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Exception">
+      <UniqueIdentifier>{cd20e89d-8926-4dd5-b329-86cb750b13be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Include\Code\CodeBits.h">
@@ -99,6 +105,12 @@
     <ClInclude Include="..\Include\Common\Version.h">
       <Filter>Include\Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\Include\Exception\TraceableException.h">
+      <Filter>Include\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Exception\BasicTraceableException.h">
+      <Filter>Include\Exception</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\Code\CodeBits.cpp">
@@ -136,6 +148,9 @@
     </ClCompile>
     <ClCompile Include="..\Source\Common\Version.cpp">
       <Filter>Source\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Exception\BasicTraceableException.cpp">
+      <Filter>Source\Exception</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

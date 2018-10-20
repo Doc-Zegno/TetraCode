@@ -76,7 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\Include\Visual;..\Include\Scrambler;..\Include\Iterator;..\Include\Image;..\Include\Common;..\Include\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Include\Visual;..\Include\Scrambler;..\Include\Iterator;..\Include\Image;..\Include\Common;..\Include\Code;..\Include\Exception;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
@@ -86,7 +86,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\Include\Visual;..\Include\Scrambler;..\Include\Iterator;..\Include\Image;..\Include\Common;..\Include\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Include\Visual;..\Include\Scrambler;..\Include\Iterator;..\Include\Image;..\Include\Common;..\Include\Code;..\Include\Exception;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
@@ -98,7 +98,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\Include\Visual;..\Include\Scrambler;..\Include\Iterator;..\Include\Image;..\Include\Common;..\Include\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Include\Visual;..\Include\Scrambler;..\Include\Iterator;..\Include\Image;..\Include\Common;..\Include\Code;..\Include\Exception;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
@@ -114,7 +114,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\Include\Visual;..\Include\Scrambler;..\Include\Iterator;..\Include\Image;..\Include\Common;..\Include\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Include\Visual;..\Include\Scrambler;..\Include\Iterator;..\Include\Image;..\Include\Common;..\Include\Code;..\Include\Exception;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
@@ -129,6 +129,8 @@
     <ClInclude Include="..\Include\Code\TetraTree.h" />
     <ClInclude Include="..\Include\Common\Types.h" />
     <ClInclude Include="..\Include\Common\Version.h" />
+    <ClInclude Include="..\Include\Exception\BasicTraceableException.h" />
+    <ClInclude Include="..\Include\Exception\TraceableException.h" />
     <ClInclude Include="..\Include\Image\Image.h" />
     <ClInclude Include="..\Include\Iterator\BasicIterator.h" />
     <ClInclude Include="..\Include\Iterator\IteratorExceptions.h" />
@@ -147,6 +149,7 @@
     <ClCompile Include="..\Source\Code\Encoder.cpp" />
     <ClCompile Include="..\Source\Code\TetraTree.cpp" />
     <ClCompile Include="..\Source\Common\Version.cpp" />
+    <ClCompile Include="..\Source\Exception\BasicTraceableException.cpp" />
     <ClCompile Include="..\Source\Image\Image.cpp" />
     <ClCompile Include="..\Source\Iterator\IteratorExceptions.cpp" />
     <ClCompile Include="..\Source\Main\Source.cpp" />

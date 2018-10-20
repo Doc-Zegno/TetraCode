@@ -1,10 +1,12 @@
 #include "HighDensityScrambler.h"
 #include "CodeBits.h"
 
-using Handmada::TetraCode::Iterator::InvalidIteratorException;
-
 
 namespace Handmada::TetraCode::Scrambler {
+    using Iterator::InvalidIteratorException;
+    using Iterator::CorruptedInputSequenceException;
+
+
     ByteIteratorPtr HighDensityScrambler::encodingIterator(ByteIteratorPtr&& iterator)
     {
         return ByteIteratorPtr(new HighDensityScrambler::EncodingIterator(std::move(iterator)));
@@ -99,7 +101,7 @@ namespace Handmada::TetraCode::Scrambler {
         auto current = _iterator->current();
         if (current == ESCAPE_BITS) {
             if (!_iterator->moveNext()) {
-                throw std::runtime_error("HDScrambler::DecodingIterator::moveNext(): corrupted input sequence");
+                throw CorruptedInputSequenceException("HDScrambler::DecodingIterator::moveNext()");
             }
             current = ~_iterator->current();
         }

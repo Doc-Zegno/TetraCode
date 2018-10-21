@@ -1,10 +1,13 @@
 #include "HighDensityScrambler.h"
+#include "IteratorExceptionsMacros.h"
 #include "CodeBits.h"
 
 
 namespace Handmada::TetraCode::Scrambler {
+    using Exception::TraceableException;
     using Iterator::InvalidIteratorException;
     using Iterator::CorruptedInputSequenceException;
+    using Iterator::TraceableExceptionPtr;
 
 
     ByteIteratorPtr HighDensityScrambler::encodingIterator(ByteIteratorPtr&& iterator)
@@ -36,7 +39,7 @@ namespace Handmada::TetraCode::Scrambler {
     byte_t HighDensityScrambler::EncodingIterator::current()
     {
         if (!_isValid) {
-            throw InvalidIteratorException("HDScrambler::EncodingIterator::current()");
+            throw InvalidIteratorException(TraceableExceptionPtr());
         }
         return _currentByte;
     }
@@ -75,16 +78,21 @@ namespace Handmada::TetraCode::Scrambler {
     HighDensityScrambler::DecodingIterator::DecodingIterator(ByteIteratorPtr&& iterator)
         : _iterator(std::move(iterator))
     {
-        // Ignore the first escape byte
-        _iterator->moveNext();
-        _isValid = false;
+        try {
+            // Ignore the first escape byte
+            _iterator->moveNext();
+            _iterator->current();  // Trigger exception if failed
+            _isValid = false;
+        } catch (TraceableException& e) {
+            throw CorruptedInputSequenceException(e.move());
+        } 
     }
 
 
     byte_t HighDensityScrambler::DecodingIterator::current()
     {
         if (!_isValid) {
-            throw InvalidIteratorException("HDScrambler::DecodingIterator::current()");
+            throw InvalidIteratorException(TraceableExceptionPtr());
         }
         return _currentByte;
     }
@@ -100,10 +108,12 @@ namespace Handmada::TetraCode::Scrambler {
         _isValid = true;
         auto current = _iterator->current();
         if (current == ESCAPE_BITS) {
-            if (!_iterator->moveNext()) {
-                throw CorruptedInputSequenceException("HDScrambler::DecodingIterator::moveNext()");
+            try {
+                _iterator->moveNext();
+                current = ~_iterator->current();
+            } catch (TraceableException& e) {
+                throw CorruptedInputSequenceException(e.move());
             }
-            current = ~_iterator->current();
         }
 
         _currentByte = current;

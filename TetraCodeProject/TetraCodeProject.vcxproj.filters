@@ -111,6 +111,12 @@
     <ClInclude Include="..\Include\Exception\BasicTraceableException.h">
       <Filter>Include\Exception</Filter>
     </ClInclude>
+    <ClInclude Include="..\Include\Iterator\IteratorExceptionsMacros.h">
+      <Filter>Include\Iterator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Exception\ExceptionCause.h">
+      <Filter>Include\Exception</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\Code\CodeBits.cpp">
@@ -150,6 +156,9 @@
       <Filter>Source\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\Exception\BasicTraceableException.cpp">
+      <Filter>Source\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Exception\ExceptionCause.cpp">
       <Filter>Source\Exception</Filter>
     </ClCompile>
   </ItemGroup>

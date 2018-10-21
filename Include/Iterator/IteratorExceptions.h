@@ -1,20 +1,27 @@
 #pragma once
 
-#include <stdexcept>
-#include <string>
+#include "BasicTraceableException.h"
 
 
 namespace Handmada::TetraCode::Iterator {
+    using TraceableExceptionPtr = std::unique_ptr<Exception::TraceableException>;
+
+
     /// <summary>
     /// Signalizes that instance of <see cref="Iterator"/>
     /// is being used in condition when it must not
     /// </summary>
-    class InvalidIteratorException : public std::runtime_error {
+    class InvalidIteratorException : public Exception::BasicTraceableException {
     public:
-        using std::runtime_error::what;
+        InvalidIteratorException(
+            const std::string& fileName,
+            const std::string& functionName,
+            int line,
+            TraceableExceptionPtr&& cause
+        );
 
-        InvalidIteratorException(const char* functionName);
-        InvalidIteratorException(const std::string& functionName);
+        virtual TraceableExceptionPtr move() override;
+        virtual TraceableExceptionPtr clone() const override;
     };
 
 
@@ -23,11 +30,16 @@ namespace Handmada::TetraCode::Iterator {
     /// Signalizes that <see cref="Iterator"/> instance
     /// has failed to parse input sequence as it was corrupted
     /// </summary>
-    class CorruptedInputSequenceException : public std::runtime_error {
+    class CorruptedInputSequenceException : public Exception::BasicTraceableException {
     public:
-        using std::runtime_error::what;
+        CorruptedInputSequenceException(
+            const std::string& fileName,
+            const std::string& functionName,
+            int line,
+            TraceableExceptionPtr&& cause
+        );
 
-        CorruptedInputSequenceException(const char* functionName);
-        CorruptedInputSequenceException(const std::string& functionName);
+        virtual TraceableExceptionPtr move() override;
+        virtual TraceableExceptionPtr clone() const override;
     };
 }

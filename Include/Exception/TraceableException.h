@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include <exception>
+#include <stdexcept>
 
 
 namespace Handmada::TetraCode::Exception {
@@ -10,8 +10,10 @@ namespace Handmada::TetraCode::Exception {
     /// about the place where they were thrown and the exceptions
     /// that caused them
     /// </summary>
-    class TraceableException : public std::exception {
+    class TraceableException : public std::runtime_error {
     public:
+        using std::runtime_error::runtime_error;
+
         /// <summary>
         /// Get exception that caused this one
         /// </summary>
@@ -45,17 +47,15 @@ namespace Handmada::TetraCode::Exception {
         virtual std::string buildTraceString() const = 0;
 
         /// <summary>
-        /// Get a short description of this exception.
-        /// You shouldn't assume that this method will return
-        /// any info about this exception's cause chain
-        /// since it's here for back compability purposes only
-        /// and effectively is a useless shit.
-        /// For tracing use <see cref="buildTraceString()"/>
-        /// or <see cref="cause()"/> methods instead
+        /// Move this exception to heap memory and wrap with `unique_ptr`
         /// </summary>
-        /// <returns>This exception's description</returns>
-        virtual const char* what() const override = 0;
+        /// <returns>`unique_ptr` to this exception</returns>
+        virtual std::unique_ptr<TraceableException> move() = 0;
 
-        virtual ~TraceableException() { }
+        /// <summary>
+        /// Copy this exception to heap memory and wrap with `unique_ptr`
+        /// </summary>
+        /// <returns>`unique_ptr` to copy of this exception</returns>
+        virtual std::unique_ptr<TraceableException> clone() const = 0;
     };
 }

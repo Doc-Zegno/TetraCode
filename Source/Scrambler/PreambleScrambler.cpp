@@ -1,8 +1,11 @@
 #include "PreambleScrambler.h"
+#include "IteratorExceptionsMacros.h"
 #include "CodeBits.h"
 
 
 namespace Handmada::TetraCode::Scrambler {
+    using Exception::TraceableException;
+    using Iterator::TraceableExceptionPtr;
     using Iterator::InvalidIteratorException;
     using Iterator::CorruptedInputSequenceException;
 
@@ -69,7 +72,7 @@ namespace Handmada::TetraCode::Scrambler {
 
     byte_t PreambleScrambler::EncodingIterator::current() {
         if (!_isValid) {
-            throw InvalidIteratorException("Preamble::EncodingIterator::current()");
+            throw InvalidIteratorException(TraceableExceptionPtr());
         }
         return _current;
     }
@@ -113,15 +116,15 @@ namespace Handmada::TetraCode::Scrambler {
             }
 
             _guestVersion = Version(packed.fields.major, packed.fields.minor, packed.fields.micro);
-        } catch (std::exception&) {
-            throw CorruptedInputSequenceException("Preamble::DecodingIterator::ctor()");
+        } catch (TraceableException& e) {
+            throw CorruptedInputSequenceException(e.move());
         }
     }
 
 
     byte_t PreambleScrambler::DecodingIterator::current() {
         if (!_isValid) {
-            throw InvalidIteratorException("Preamble::DecodingIterator::current()");
+            throw InvalidIteratorException(TraceableExceptionPtr());
         }
         return _current;
     }

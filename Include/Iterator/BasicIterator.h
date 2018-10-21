@@ -43,7 +43,7 @@ namespace Handmada::TetraCode::Iterator {
     inline T BasicIterator<T>::current()
     {
         if (!_isValid) {
-            throw InvalidIteratorException("BasicIterator::current()");
+            throw InvalidIteratorException(__FILE__, __func__, __LINE__, TraceableExceptionPtr());
         }
         return *_current;
     }

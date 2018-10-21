@@ -6,30 +6,14 @@
 namespace Handmada::TetraCode::Exception {
     BasicTraceableException::BasicTraceableException(
         const std::string& description,
-        const std::string& fileName, 
-        const std::string& functionName, 
-        int line
-    ) : BasicTraceableException(
-            description, 
-            fileName, 
-            functionName, 
-            line,
-            std::unique_ptr<TraceableException>()
-        )
-    {
-    }
-
-
-    BasicTraceableException::BasicTraceableException(
-        const std::string& description,
         const std::string& fileName,
         const std::string& functionName,
         int line,
         std::unique_ptr<TraceableException>&& cause
-    ) : _description(description), 
+    ) : TraceableException(description),
         _fileName(fileName), 
         _functionName(functionName), 
-        _line(line), 
+        _line(line),
         _cause(std::move(cause))
     {
     }
@@ -77,17 +61,17 @@ namespace Handmada::TetraCode::Exception {
         const TraceableException& e
     ) const
     {
-        sout << '\t' << head << ": ";
+        sout << "\n\t" << head << ": ";
         sout << stripFileName(e.fileName().c_str()) << ':' << e.line();
         sout << " at " << e.functionName();
-        sout << "(): " << e.what() << '\n';
+        sout << "(): " << e.what();
     }
 
 
     std::string BasicTraceableException::buildTraceString() const
     {
         auto sout = std::ostringstream();
-        sout << "TraceableException instance was thrown:\n";
+        sout << "TraceableException instance was thrown:";
         appendTraceDescription(sout, "top-level", *this);
         for (const TraceableException* cause = _cause.get(); cause; cause = cause->cause()) {
             appendTraceDescription(sout, "caused by", *cause);
@@ -96,8 +80,16 @@ namespace Handmada::TetraCode::Exception {
     }
 
 
-    const char* BasicTraceableException::what() const
+    std::unique_ptr<TraceableException> BasicTraceableException::move()
     {
-        return _description.c_str();
+        auto e = new BasicTraceableException(std::move(*this));
+        return std::unique_ptr<TraceableException>(e);
+    }
+
+
+    std::unique_ptr<TraceableException> BasicTraceableException::clone() const
+    {
+        auto e = new BasicTraceableException(*this);
+        return std::unique_ptr<TraceableException>(e);
     }
 }

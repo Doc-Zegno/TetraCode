@@ -130,11 +130,13 @@
     <ClInclude Include="..\Include\Common\Types.h" />
     <ClInclude Include="..\Include\Common\Version.h" />
     <ClInclude Include="..\Include\Exception\BasicTraceableException.h" />
+    <ClInclude Include="..\Include\Exception\ExceptionCause.h" />
     <ClInclude Include="..\Include\Exception\TraceableException.h" />
     <ClInclude Include="..\Include\Image\Image.h" />
     <ClInclude Include="..\Include\Iterator\BasicIterator.h" />
     <ClInclude Include="..\Include\Iterator\IteratorExceptions.h" />
     <ClInclude Include="..\Include\Iterator\Iterator.h" />
+    <ClInclude Include="..\Include\Iterator\IteratorExceptionsMacros.h" />
     <ClInclude Include="..\Include\Scrambler\HighDensityScrambler.h" />
     <ClInclude Include="..\Include\Scrambler\PreambleScrambler.h" />
     <ClInclude Include="..\Include\Scrambler\Scrambler.h" />
@@ -150,6 +152,7 @@
     <ClCompile Include="..\Source\Code\TetraTree.cpp" />
     <ClCompile Include="..\Source\Common\Version.cpp" />
     <ClCompile Include="..\Source\Exception\BasicTraceableException.cpp" />
+    <ClCompile Include="..\Source\Exception\ExceptionCause.cpp" />
     <ClCompile Include="..\Source\Image\Image.cpp" />
     <ClCompile Include="..\Source\Iterator\IteratorExceptions.cpp" />
     <ClCompile Include="..\Source\Main\Source.cpp" />

@@ -76,7 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\Include\Visual;..\Include\Scrambler;..\Include\Iterator;..\Include\Image;..\Include\Common;..\Include\Code;..\Include\Exception;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Include\Matrix;..\Include\Visual;..\Include\Scrambler;..\Include\Iterator;..\Include\Image;..\Include\Common;..\Include\Code;..\Include\Exception;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
@@ -86,7 +86,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\Include\Visual;..\Include\Scrambler;..\Include\Iterator;..\Include\Image;..\Include\Common;..\Include\Code;..\Include\Exception;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Include\Matrix;..\Include\Visual;..\Include\Scrambler;..\Include\Iterator;..\Include\Image;..\Include\Common;..\Include\Code;..\Include\Exception;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
@@ -98,7 +98,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\Include\Visual;..\Include\Scrambler;..\Include\Iterator;..\Include\Image;..\Include\Common;..\Include\Code;..\Include\Exception;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Include\Matrix;..\Include\Visual;..\Include\Scrambler;..\Include\Iterator;..\Include\Image;..\Include\Common;..\Include\Code;..\Include\Exception;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
@@ -114,7 +114,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\Include\Visual;..\Include\Scrambler;..\Include\Iterator;..\Include\Image;..\Include\Common;..\Include\Code;..\Include\Exception;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Include\Matrix;..\Include\Visual;..\Include\Scrambler;..\Include\Iterator;..\Include\Image;..\Include\Common;..\Include\Code;..\Include\Exception;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
@@ -137,6 +137,10 @@
     <ClInclude Include="..\Include\Iterator\IteratorExceptions.h" />
     <ClInclude Include="..\Include\Iterator\Iterator.h" />
     <ClInclude Include="..\Include\Iterator\IteratorExceptionsMacros.h" />
+    <ClInclude Include="..\Include\Matrix\BasicView.h" />
+    <ClInclude Include="..\Include\Matrix\ColorToPixelConverter.h" />
+    <ClInclude Include="..\Include\Matrix\Converter.h" />
+    <ClInclude Include="..\Include\Matrix\MatrixView.h" />
     <ClInclude Include="..\Include\Scrambler\HighDensityScrambler.h" />
     <ClInclude Include="..\Include\Scrambler\PreambleScrambler.h" />
     <ClInclude Include="..\Include\Scrambler\Scrambler.h" />
@@ -156,6 +160,7 @@
     <ClCompile Include="..\Source\Image\Image.cpp" />
     <ClCompile Include="..\Source\Iterator\IteratorExceptions.cpp" />
     <ClCompile Include="..\Source\Main\Source.cpp" />
+    <ClCompile Include="..\Source\Matrix\ColorToPixelConverter.cpp" />
     <ClCompile Include="..\Source\Scrambler\HighDensityScrambler.cpp" />
     <ClCompile Include="..\Source\Scrambler\PreambleScrambler.cpp" />
     <ClCompile Include="..\Source\Visual\Color.cpp" />

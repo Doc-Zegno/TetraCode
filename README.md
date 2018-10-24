@@ -9,6 +9,7 @@ Core and infrastructure for TetraCode utility
 - [x] Core: TetraTree, byte sequence Encoder/Decoder
 - [ ] String-to-Byte (and vice versa) Interpreter with UTF-8 support
 - [x] Iterator and Scrambler interfaces
+- [x] MatrixView and Converter interfaces
 - [ ] Cross-platform image library integration
 - [ ] CMake support
 - [ ] Remove input text size limitations

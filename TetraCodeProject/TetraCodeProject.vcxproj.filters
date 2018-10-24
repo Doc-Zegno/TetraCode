@@ -52,6 +52,12 @@
     <Filter Include="Source\Exception">
       <UniqueIdentifier>{cd20e89d-8926-4dd5-b329-86cb750b13be}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Include\Matrix">
+      <UniqueIdentifier>{46ba41e5-6669-4d35-aa74-d3849d86f5fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Matrix">
+      <UniqueIdentifier>{1c5415c9-2c3f-4ff1-a7eb-95145c5ef578}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Include\Code\CodeBits.h">
@@ -117,6 +123,18 @@
     <ClInclude Include="..\Include\Exception\ExceptionCause.h">
       <Filter>Include\Exception</Filter>
     </ClInclude>
+    <ClInclude Include="..\Include\Matrix\MatrixView.h">
+      <Filter>Include\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Matrix\BasicView.h">
+      <Filter>Include\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Matrix\Converter.h">
+      <Filter>Include\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Matrix\ColorToPixelConverter.h">
+      <Filter>Include\Matrix</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\Code\CodeBits.cpp">
@@ -160,6 +178,9 @@
     </ClCompile>
     <ClCompile Include="..\Source\Exception\ExceptionCause.cpp">
       <Filter>Source\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Matrix\ColorToPixelConverter.cpp">
+      <Filter>Source\Matrix</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

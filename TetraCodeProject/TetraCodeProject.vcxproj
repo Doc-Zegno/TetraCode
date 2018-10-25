@@ -128,6 +128,7 @@
     <ClInclude Include="..\Include\Code\Encoder.h" />
     <ClInclude Include="..\Include\Code\TetraTree.h" />
     <ClInclude Include="..\Include\Common\Types.h" />
+    <ClInclude Include="..\Include\Common\UtilFunctions.h" />
     <ClInclude Include="..\Include\Common\Version.h" />
     <ClInclude Include="..\Include\Exception\BasicTraceableException.h" />
     <ClInclude Include="..\Include\Exception\ExceptionCause.h" />
@@ -141,6 +142,8 @@
     <ClInclude Include="..\Include\Matrix\ColorToPixelConverter.h" />
     <ClInclude Include="..\Include\Matrix\Converter.h" />
     <ClInclude Include="..\Include\Matrix\MatrixView.h" />
+    <ClInclude Include="..\Include\Matrix\MatrixViewExceptions.h" />
+    <ClInclude Include="..\Include\Matrix\MatrixViewExceptionsMacros.h" />
     <ClInclude Include="..\Include\Scrambler\HighDensityScrambler.h" />
     <ClInclude Include="..\Include\Scrambler\PreambleScrambler.h" />
     <ClInclude Include="..\Include\Scrambler\Scrambler.h" />
@@ -161,6 +164,7 @@
     <ClCompile Include="..\Source\Iterator\IteratorExceptions.cpp" />
     <ClCompile Include="..\Source\Main\Source.cpp" />
     <ClCompile Include="..\Source\Matrix\ColorToPixelConverter.cpp" />
+    <ClCompile Include="..\Source\Matrix\MatrixViewExceptions.cpp" />
     <ClCompile Include="..\Source\Scrambler\HighDensityScrambler.cpp" />
     <ClCompile Include="..\Source\Scrambler\PreambleScrambler.cpp" />
     <ClCompile Include="..\Source\Visual\Color.cpp" />

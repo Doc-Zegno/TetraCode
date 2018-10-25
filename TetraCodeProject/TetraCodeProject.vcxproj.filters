@@ -135,6 +135,15 @@
     <ClInclude Include="..\Include\Matrix\ColorToPixelConverter.h">
       <Filter>Include\Matrix</Filter>
     </ClInclude>
+    <ClInclude Include="..\Include\Matrix\MatrixViewExceptions.h">
+      <Filter>Include\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Matrix\MatrixViewExceptionsMacros.h">
+      <Filter>Include\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Common\UtilFunctions.h">
+      <Filter>Include\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\Code\CodeBits.cpp">
@@ -180,6 +189,9 @@
       <Filter>Source\Exception</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\Matrix\ColorToPixelConverter.cpp">
+      <Filter>Source\Matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Matrix\MatrixViewExceptions.cpp">
       <Filter>Source\Matrix</Filter>
     </ClCompile>
   </ItemGroup>

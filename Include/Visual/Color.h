@@ -17,5 +17,8 @@ namespace Handmada::TetraCode::Visual {
         int huePair() const;
         int brightnessLevel() const;
         int number() const;
+
+        bool operator==(const Color& color) const;
+        bool operator!=(const Color& color) const;
     };
 }

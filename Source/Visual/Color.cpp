@@ -29,6 +29,21 @@ namespace Handmada::TetraCode::Visual {
     {
         return _number;
     }
+
+
+    bool Color::operator==(const Color& color) const
+    {
+        return _isActive == color._isActive 
+            && _huePair == color._huePair 
+            && _brightnessLevel == color._brightnessLevel 
+            && _number == color._number;
+    }
+
+
+    bool Color::operator!=(const Color& color) const
+    {
+        return !operator==(color);
+    }
 }
 
 

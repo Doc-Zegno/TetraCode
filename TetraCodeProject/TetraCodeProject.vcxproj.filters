@@ -144,6 +144,9 @@
     <ClInclude Include="..\Include\Common\UtilFunctions.h">
       <Filter>Include\Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\Include\Matrix\IntegerScalingConverter.h">
+      <Filter>Include\Matrix</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\Code\CodeBits.cpp">
@@ -192,6 +195,9 @@
       <Filter>Source\Matrix</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\Matrix\MatrixViewExceptions.cpp">
+      <Filter>Source\Matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Matrix\IntegerScalingConverter.cpp">
       <Filter>Source\Matrix</Filter>
     </ClCompile>
   </ItemGroup>

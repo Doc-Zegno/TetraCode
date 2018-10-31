@@ -7,34 +7,50 @@
 
 namespace Handmada::TetraCode::Visual {
     /// <summary>
-    /// Represents a pixel from an image 
+    /// Immutable representation of a pixel from an image 
     /// </summary>
-    struct Pixel {
+    class Pixel {
+    private:
+        byte_t _channels[3];
+
+    public:
+        Pixel() = default;
+        Pixel(const std::string& hexCode);
+        Pixel(byte_t r, byte_t g, byte_t b);
+
         /// <summary>
         /// Intensity of red channel within [0; 255]
         /// </summary>
-        byte_t r;
+        /// <returns>Red channel's value</returns>
+        byte_t r() const;
 
         /// <summary>
         /// Intensity of green channel within [0; 255]
         /// </summary>
-        byte_t g;
+        /// <returns>Green channel's value</returns>
+        byte_t g() const;
 
         /// <summary>
         /// Intensity of blue channel within [0; 255]
         /// </summary>
-        byte_t b;
+        /// <returns>Blue channel's value</returns>
+        byte_t b() const;
 
-        Pixel() = default;
-        Pixel(byte_t r, byte_t g, byte_t b) : r(r), g(g), b(b) { }
+        /// <summary>
+        /// Get intensity of specified channel
+        /// </summary>
+        /// <param name="channel">Number of channel within [0; 3)</param>
+        /// <returns>Channel's value</returns>
+        byte_t operator[](int channel) const;
 
-        bool operator==(const Pixel& p) const { return r == p.r && g == p.g && b == p.b; }
-        bool operator!=(const Pixel& p) const { return r != p.r || g != p.g || b != p.b; }
-        std::string toString() const
-        {
-            char buffer[10] = { 0 };
-            snprintf(buffer, 9, "#%02hhx%02hhx%02hhx", r, g, b);
-            return std::string(buffer);
-        }
+        /// <summary>
+        /// Convert this pixel to its hex code representation
+        /// with format of "#rrggbb"
+        /// </summary>
+        /// <returns>Hex code representation</returns>
+        std::string toString() const;
+
+        bool operator==(const Pixel& p) const;
+        bool operator!=(const Pixel& p) const;
     };
 }

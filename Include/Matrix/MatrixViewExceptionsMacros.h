@@ -8,3 +8,7 @@
 // Automatically insert debug info into exception's constructor
 #define ViewSizeMismatchException(cause, expected, actual) \
     ViewSizeMismatchException(__FILE__, __func__, __LINE__, cause, expected, actual)
+
+// Automatically insert debug info into exception's constructor
+#define ViewBadRatioException(cause, width, height, ratio) \
+    ViewBadRatioException(__FILE__, __func__, __LINE__, cause, width, height, ratio)

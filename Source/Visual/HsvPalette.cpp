@@ -10,16 +10,17 @@ namespace Handmada::TetraCode::Visual {
         for (auto i = 0; i < 2; i++) {
             for (auto j = 0; j < 2; j++) {
                 auto& base = basePixels[i][j];
-                auto dR = (255U - base.r) / 16U;
-                auto dG = (255U - base.g) / 16U;
-                auto dB = (255U - base.b) / 16U;
+                auto dR = (255U - base.r()) / 16U;
+                auto dG = (255U - base.g()) / 16U;
+                auto dB = (255U - base.b()) / 16U;
 
                 _pixels[i][j][0] = base;
                 for (auto level = 1; level < 16; level++) {
                     auto& pixel = _pixels[i][j][level];
-                    pixel.r = base.r + dR * level;
-                    pixel.g = base.g + dG * level;
-                    pixel.b = base.b + dB * level;
+                    auto r = base.r() + dR * level;
+                    auto g = base.g() + dG * level;
+                    auto b = base.b() + dB * level;
+                    pixel = Pixel(r, g, b);
                 }
             }
         }
@@ -50,9 +51,9 @@ namespace Handmada::TetraCode::Visual {
             for (auto j = 0; j < 2; j++) {
                 for (auto k = 0; k < 16; k++) {
                     auto match = _pixels[i][j][k];
-                    auto dR = match.r - pixel.r;
-                    auto dG = match.g - pixel.g;
-                    auto dB = match.b - pixel.b;
+                    auto dR = match.r() - pixel.r();
+                    auto dG = match.g() - pixel.g();
+                    auto dB = match.b() - pixel.b();
                     auto distance = dR * dR + dG * dG + dB * dB;
 
                     if (distance < bestDistance) {
@@ -80,9 +81,9 @@ namespace Handmada::TetraCode::Visual {
         for (auto i = 0; i < 2; i++) {
             for (auto j = 0; j < 2; j++) {
                 auto match = _pixels[i][j][0];
-                auto dR = match.r - pixel.r;
-                auto dG = match.g - pixel.g;
-                auto dB = match.b - pixel.b;
+                auto dR = match.r() - pixel.r();
+                auto dG = match.g() - pixel.g();
+                auto dB = match.b() - pixel.b();
                 auto distance = dR * dR + dG * dG + dB * dB;
 
                 if (distance < bestDistance) {
@@ -94,12 +95,12 @@ namespace Handmada::TetraCode::Visual {
             }
         }
 
-        auto dR = (255U - bestMatch.r) / 16U;
-        auto dG = (255U - bestMatch.g) / 16U;
-        auto dB = (255U - bestMatch.b) / 16U;
-        auto levelR = std::lround((float(pixel.r - bestMatch.r)) / dR);
-        auto levelG = std::lround((float(pixel.g - bestMatch.g)) / dG);
-        auto levelB = std::lround((float(pixel.b - bestMatch.b)) / dB);
+        auto dR = (255U - bestMatch.r()) / 16U;
+        auto dG = (255U - bestMatch.g()) / 16U;
+        auto dB = (255U - bestMatch.b()) / 16U;
+        auto levelR = std::lround((float(pixel.r() - bestMatch.r())) / dR);
+        auto levelG = std::lround((float(pixel.g() - bestMatch.g())) / dG);
+        auto levelB = std::lround((float(pixel.b() - bestMatch.b())) / dB);
         auto level = std::max(levelR, std::max(levelG, levelB));
 
         return Color(level < 8, bestHuePair, level, bestColorNumber);

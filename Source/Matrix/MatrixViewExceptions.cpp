@@ -68,4 +68,42 @@ namespace Handmada::TetraCode::Matrix {
         auto e = new ViewSizeMismatchException(*this);
         return TraceableExceptionPtr(e);
     }
+
+
+
+    // B a d    r a t i o
+    ViewBadRatioException::ViewBadRatioException(
+        const std::string& fileName, 
+        const std::string& functionName, 
+        int line, 
+        TraceableExceptionPtr&& cause, 
+        coord_t width, 
+        coord_t height, 
+        int ratio
+    ) : Exception::BasicTraceableException(
+            std::string("matrix of shape ") 
+                + std::to_string(width) + "x" 
+                + std::to_string(height)
+                + " can't be scaled with ratio " + std::to_string(ratio),
+            fileName,
+            functionName,
+            line,
+            std::move(cause)
+        )
+    {
+    }
+
+
+    TraceableExceptionPtr ViewBadRatioException::move()
+    {
+        auto e = new ViewBadRatioException(std::move(*this));
+        return TraceableExceptionPtr(e);
+    }
+
+
+    TraceableExceptionPtr ViewBadRatioException::clone() const
+    {
+        auto e = new ViewBadRatioException(*this);
+        return TraceableExceptionPtr(e);
+    }
 }

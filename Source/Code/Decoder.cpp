@@ -84,9 +84,9 @@ namespace Handmada::TetraCode::Code {
             for (auto x = xMin; x < xMax; x++) {
                 for (auto y = yMin; y < yMax; y++) {
                     auto pixel = image[y * imageSide + x];
-                    r += pixel.r;
-                    g += pixel.g;
-                    b += pixel.b;
+                    r += pixel.r();
+                    g += pixel.g();
+                    b += pixel.b();
                     numSamples++;
                 }
             }

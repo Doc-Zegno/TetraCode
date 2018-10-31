@@ -131,6 +131,7 @@
     <ClInclude Include="..\Include\Common\UtilFunctions.h" />
     <ClInclude Include="..\Include\Common\Version.h" />
     <ClInclude Include="..\Include\Exception\BasicTraceableException.h" />
+    <ClInclude Include="..\Include\Exception\BasicTraceableExceptionMacro.h" />
     <ClInclude Include="..\Include\Exception\ExceptionCause.h" />
     <ClInclude Include="..\Include\Exception\TraceableException.h" />
     <ClInclude Include="..\Include\Image\Image.h" />
@@ -171,6 +172,7 @@
     <ClCompile Include="..\Source\Scrambler\PreambleScrambler.cpp" />
     <ClCompile Include="..\Source\Visual\Color.cpp" />
     <ClCompile Include="..\Source\Visual\HsvPalette.cpp" />
+    <ClCompile Include="..\Source\Visual\Pixel.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

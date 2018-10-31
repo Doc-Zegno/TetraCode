@@ -27,9 +27,9 @@ namespace Handmada::TetraCode::Image {
                 auto pixel = buffer[i * width + j];
                 auto index = imageDisplacement + j * 3;
 
-                imageBuffer[index] = pixel.b;
-                imageBuffer[index + 1] = pixel.g;
-                imageBuffer[index + 2] = pixel.r;
+                imageBuffer[index] = pixel.b();
+                imageBuffer[index + 1] = pixel.g();
+                imageBuffer[index + 2] = pixel.r();
             }
             imageDisplacement += pitch;
         }
@@ -62,10 +62,7 @@ namespace Handmada::TetraCode::Image {
             for (auto j = 0; j < side; j++) {
                 auto index = imageDisplacement + j * 3;
                 auto& pixel = pixels[i * side + j];
-
-                pixel.b = imageBuffer[index];
-                pixel.g = imageBuffer[index + 1];
-                pixel.r = imageBuffer[index + 2];
+                pixel = Pixel(imageBuffer[index + 2], imageBuffer[index + 1], imageBuffer[index]);
             }
             imageDisplacement += pitch;
         }

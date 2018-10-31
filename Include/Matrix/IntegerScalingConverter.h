@@ -13,6 +13,38 @@ namespace Handmada::TetraCode::Matrix {
     /// </summary>
     class IntegerScalingConverter : public Converter<Visual::Pixel, Visual::Pixel> {
     private:
+        class DirectView : public MatrixView<Visual::Pixel> {
+        private:
+            PixelViewPtr _view;
+            int _ratio;
+            coord_t _width;
+            coord_t _height;
+
+        public:
+            DirectView(PixelViewPtr&& view, int ratio);
+
+            virtual coord_t width() const override;
+            virtual coord_t height() const override;
+            virtual Visual::Pixel get(coord_t x, coord_t y) const override;
+        };
+
+
+        class InverseView : public MatrixView<Visual::Pixel> {
+        private:
+            PixelViewPtr _view;
+            int _ratio;
+            coord_t _width;
+            coord_t _height;
+
+        public:
+            InverseView(PixelViewPtr&& view, int ratio);
+
+            virtual coord_t width() const override;
+            virtual coord_t height() const override;
+            virtual Visual::Pixel get(coord_t x, coord_t y) const override;
+        };
+
+
         int _ratio;
 
     public:

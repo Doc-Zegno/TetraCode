@@ -100,7 +100,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>..\TetraCodeProject\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Color.obj;HsvPalette.obj;ColorToPixelConverter.obj;MatrixViewExceptions.obj;ExceptionCause.obj;BasicTraceableException.obj;IteratorExceptions.obj;CodeBits.obj;HighDensityScrambler.obj;PreambleScrambler.obj;Version.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Pixel.obj;Color.obj;HsvPalette.obj;IntegerScalingConverter.obj;ColorToPixelConverter.obj;MatrixViewExceptions.obj;ExceptionCause.obj;BasicTraceableException.obj;IteratorExceptions.obj;CodeBits.obj;HighDensityScrambler.obj;PreambleScrambler.obj;Version.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -116,7 +116,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>..\TetraCodeProject\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Color.obj;HsvPalette.obj;ColorToPixelConverter.obj;MatrixViewExceptions.obj;ExceptionCause.obj;BasicTraceableException.obj;IteratorExceptions.obj;CodeBits.obj;HighDensityScrambler.obj;PreambleScrambler.obj;Version.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Pixel.obj;Color.obj;HsvPalette.obj;IntegerScalingConverter.obj;ColorToPixelConverter.obj;MatrixViewExceptions.obj;ExceptionCause.obj;BasicTraceableException.obj;IteratorExceptions.obj;CodeBits.obj;HighDensityScrambler.obj;PreambleScrambler.obj;Version.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -136,7 +136,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>..\TetraCodeProject\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Color.obj;HsvPalette.obj;ColorToPixelConverter.obj;MatrixViewExceptions.obj;ExceptionCause.obj;BasicTraceableException.obj;IteratorExceptions.obj;CodeBits.obj;HighDensityScrambler.obj;PreambleScrambler.obj;Version.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Pixel.obj;Color.obj;HsvPalette.obj;IntegerScalingConverter.obj;ColorToPixelConverter.obj;MatrixViewExceptions.obj;ExceptionCause.obj;BasicTraceableException.obj;IteratorExceptions.obj;CodeBits.obj;HighDensityScrambler.obj;PreambleScrambler.obj;Version.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -156,7 +156,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>..\TetraCodeProject\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Color.obj;HsvPalette.obj;ColorToPixelConverter.obj;MatrixViewExceptions.obj;ExceptionCause.obj;BasicTraceableException.obj;IteratorExceptions.obj;CodeBits.obj;HighDensityScrambler.obj;PreambleScrambler.obj;Version.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Pixel.obj;Color.obj;HsvPalette.obj;IntegerScalingConverter.obj;ColorToPixelConverter.obj;MatrixViewExceptions.obj;ExceptionCause.obj;BasicTraceableException.obj;IteratorExceptions.obj;CodeBits.obj;HighDensityScrambler.obj;PreambleScrambler.obj;Version.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -167,7 +167,9 @@
     <ClCompile Include="CodeBitsTest.cpp" />
     <ClCompile Include="ColorToPixelConverterTest.cpp" />
     <ClCompile Include="HDScramblerTest.cpp" />
+    <ClCompile Include="IntegerScalingConverterTest.cpp" />
     <ClCompile Include="MatrixViewTest.cpp" />
+    <ClCompile Include="PixelTest.cpp" />
     <ClCompile Include="PreambleScramblerTest.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

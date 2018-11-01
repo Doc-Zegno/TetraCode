@@ -1,7 +1,7 @@
 #include "IteratorExceptions.h"
 
 
-namespace Handmada::TetraCode::Iterator {
+namespace Handmada::TetraCode::Sequence {
     // I n v a l i d    i t e r a t o r
     InvalidIteratorException::InvalidIteratorException(
         const std::string& fileName, 

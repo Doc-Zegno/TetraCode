@@ -3,11 +3,8 @@
 #include "CodeBits.h"
 
 
-namespace Handmada::TetraCode::Scrambler {
+namespace Handmada::TetraCode::Sequence {
     using Exception::TraceableException;
-    using Iterator::TraceableExceptionPtr;
-    using Iterator::InvalidIteratorException;
-    using Iterator::CorruptedInputSequenceException;
 
 
     PreambleScrambler::PreambleScrambler(const Version& hostVersion)

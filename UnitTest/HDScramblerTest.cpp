@@ -8,8 +8,7 @@
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace Handmada::TetraCode;
 using namespace Handmada::TetraCode::Code;
-using namespace Handmada::TetraCode::Iterator;
-using namespace Handmada::TetraCode::Scrambler;
+using namespace Handmada::TetraCode::Sequence;
 
 
 namespace UnitTest

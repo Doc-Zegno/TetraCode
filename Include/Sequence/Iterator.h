@@ -3,7 +3,7 @@
 #include "IteratorExceptions.h"
 
 
-namespace Handmada::TetraCode::Iterator {
+namespace Handmada::TetraCode::Sequence {
     /// <summary>
     /// Generic iterator interface.
     /// Iterator should be used to hide underlying container

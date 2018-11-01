@@ -6,7 +6,7 @@
 #include "Scrambler.h"
 
 
-namespace Handmada::TetraCode::Scrambler {
+namespace Handmada::TetraCode::Sequence {
     /// <summary>
     /// Increases the *density* of input sequence in such a way
     /// that output bytes code instances of <see cref="TetraTree"/>

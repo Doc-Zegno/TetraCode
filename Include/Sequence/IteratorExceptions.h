@@ -3,7 +3,7 @@
 #include "BasicTraceableException.h"
 
 
-namespace Handmada::TetraCode::Iterator {
+namespace Handmada::TetraCode::Sequence {
     using TraceableExceptionPtr = std::unique_ptr<Exception::TraceableException>;
 
 

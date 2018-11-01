@@ -6,7 +6,7 @@
 #include "Scrambler.h"
 
 
-namespace Handmada::TetraCode::Scrambler {
+namespace Handmada::TetraCode::Sequence {
     /// <summary>
     /// Concatenates byte representation of TetraCode preamble
     /// (contains encoding system version)

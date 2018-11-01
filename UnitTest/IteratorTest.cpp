@@ -4,7 +4,7 @@
 #include "BasicIterator.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
-using namespace Handmada::TetraCode::Iterator;
+using namespace Handmada::TetraCode::Sequence;
 
 
 namespace UnitTest

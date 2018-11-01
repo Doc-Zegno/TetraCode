@@ -6,8 +6,8 @@
 #include "Iterator.h"
 
 
-namespace Handmada::TetraCode::Scrambler {
-    using ByteIterator = Iterator::Iterator<byte_t>;
+namespace Handmada::TetraCode::Sequence {
+    using ByteIterator = Iterator<byte_t>;
     using ByteIteratorPtr = std::unique_ptr<ByteIterator>;
 
 

@@ -5,7 +5,7 @@
 #include "Iterator.h"
 
 
-namespace Handmada::TetraCode::Iterator {
+namespace Handmada::TetraCode::Sequence {
     /// <summary>
     /// Basic implementation of <see cref="Iterator"/> over raw array
     /// </summary>

@@ -42,4 +42,48 @@ namespace Handmada::TetraCode::Iterator {
         virtual TraceableExceptionPtr move() override;
         virtual TraceableExceptionPtr clone() const override;
     };
+
+
+
+    /// <summary>
+    /// Signalizes that <see cref="Iterator"/> instance
+    /// tried to make a byte padding larger than
+    /// underlying coding system allows
+    /// </summary>
+    class TooLargePaddingException : public Exception::BasicTraceableException {
+    public:
+        TooLargePaddingException(
+            const std::string& fileName,
+            const std::string& functionName,
+            int line,
+            TraceableExceptionPtr&& cause,
+            int maximum,
+            int actual
+        );
+
+        virtual TraceableExceptionPtr move() override;
+        virtual TraceableExceptionPtr clone() const override;
+    };
+
+
+
+    /// <summary>
+    /// Signalizes that <see cref="Iterator"/> instance
+    /// failed to remove padding bytes from input sequence
+    /// since they were corrupted
+    /// </summary>
+    class CorruptedPaddingException : public Exception::BasicTraceableException {
+    public:
+        CorruptedPaddingException(
+            const std::string& fileName,
+            const std::string& functionName,
+            int line,
+            TraceableExceptionPtr&& cause,
+            int expected,
+            int actual
+        );
+
+        virtual TraceableExceptionPtr move() override;
+        virtual TraceableExceptionPtr clone() const override;
+    };
 }

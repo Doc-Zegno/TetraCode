@@ -17,6 +17,7 @@ namespace Handmada::TetraCode {
 	}
 
 
+
 	/// <summary>
 	/// Check whether given value falls within range [0; end)
 	/// </summary>

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <stack>
 
 #include "Scrambler.h"
 
@@ -16,13 +17,12 @@ namespace Handmada::TetraCode::Scrambler {
         class EncodingIterator : public ByteIterator {
         private:
             ByteIteratorPtr _iterator;
-            byte_t _bufferedByte;
+            std::stack<byte_t, std::vector<byte_t>> _buffer;
             byte_t _currentByte;
-            bool _hasBuffered;
             bool _isValid;
 
         public:
-            EncodingIterator(ByteIteratorPtr&& iterator);
+            EncodingIterator(ByteIteratorPtr&& iterator, int padding);
 
             virtual byte_t current() override;
             virtual bool moveNext() override;
@@ -43,8 +43,11 @@ namespace Handmada::TetraCode::Scrambler {
         };
 
 
+        int _padding;
+
     public:
-        HighDensityScrambler() = default;
+        /// <param name="padding">Number of padding bytes to be inserted</param>
+        HighDensityScrambler(int padding);
 
         virtual ByteIteratorPtr encodingIterator(ByteIteratorPtr&& iterator) override;
         virtual ByteIteratorPtr decodingIterator(ByteIteratorPtr&& iterator) override;

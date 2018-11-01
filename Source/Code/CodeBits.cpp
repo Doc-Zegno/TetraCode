@@ -1,5 +1,7 @@
 #include "CodeBits.h"
 
+#include "CodeBitsExceptionsMacro.h"
+
 
 namespace Handmada::TetraCode::Code {
     CodeBits::CodeBits(byte_t raw)
@@ -56,8 +58,8 @@ namespace Handmada::TetraCode::Code {
 
     byte_t CodeBits::packSmallInt(int value)
     {
-        if (value >= 16) {
-            throw std::invalid_argument("CodeBits::packSmallInt(): input value is too big");
+        if (value > maxSmallInt()) {
+            throw BigValuePackingException(TraceableExceptionPtr(), maxSmallInt(), value);
         }
         return byte_t((value << 4) | 0x0F);
     }
@@ -65,11 +67,15 @@ namespace Handmada::TetraCode::Code {
 
     int CodeBits::unpackSmallInt(byte_t packed)
     {
+        if ((packed & 0x0F) != 0x0F) {
+            throw CorruptedPackedByteException(TraceableExceptionPtr(), packed);
+        }
         return packed >> 4;
     }
 
 
-    std::vector<byte_t> CodeBits::packBytes(const byte_t* bytes, int length)
+    // TODO: remove this
+    /*std::vector<byte_t> CodeBits::packBytes(const byte_t* bytes, int length)
     {
         auto packed = std::vector<byte_t>();
         for (auto i = 0; i < length; i++) {
@@ -96,5 +102,5 @@ namespace Handmada::TetraCode::Code {
             original.push_back(high | low);
         }
         return std::move(original);
-    }
+    }*/
 }

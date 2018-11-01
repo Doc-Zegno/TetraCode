@@ -63,4 +63,79 @@ namespace Handmada::TetraCode::Iterator {
         auto e = new CorruptedInputSequenceException(*this);
         return TraceableExceptionPtr(e);
     }
+
+
+
+    // T o o    l a r g e    p a d d i n g
+    TooLargePaddingException::TooLargePaddingException(
+        const std::string& fileName, 
+        const std::string& functionName, 
+        int line, 
+        TraceableExceptionPtr&& cause, 
+        int maximum, 
+        int actual
+    ) : Exception::BasicTraceableException(
+            std::string("requested padding (")
+                + std::to_string(actual)
+                + ") is too large (maximum is "
+                + std::to_string(maximum)
+                + ")",
+            fileName,
+            functionName,
+            line,
+            std::move(cause)
+        )
+    {
+    }
+
+
+    TraceableExceptionPtr TooLargePaddingException::move()
+    {
+        auto e = new TooLargePaddingException(std::move(*this));
+        return TraceableExceptionPtr(e);
+    }
+
+
+    TraceableExceptionPtr TooLargePaddingException::clone() const
+    {
+        auto e = new TooLargePaddingException(*this);
+        return TraceableExceptionPtr(e);
+    }
+
+
+
+    // C o r r u p t e d    p a d d i n g
+    CorruptedPaddingException::CorruptedPaddingException(
+        const std::string& fileName, 
+        const std::string& functionName, 
+        int line, 
+        TraceableExceptionPtr&& cause, 
+        int expected, 
+        int actual
+    ) : Exception::BasicTraceableException(
+            std::string("corrupted padding byte: expected packed value ")
+                + std::to_string(expected)
+                + " but got "
+                + std::to_string(actual),
+            fileName,
+            functionName,
+            line,
+            std::move(cause)
+        )
+    {
+    }
+
+
+    TraceableExceptionPtr CorruptedPaddingException::move()
+    {
+        auto e = new CorruptedPaddingException(std::move(*this));
+        return TraceableExceptionPtr(e);
+    }
+
+
+    TraceableExceptionPtr CorruptedPaddingException::clone() const
+    {
+        auto e = new CorruptedPaddingException(*this);
+        return TraceableExceptionPtr(e);
+    }
 }

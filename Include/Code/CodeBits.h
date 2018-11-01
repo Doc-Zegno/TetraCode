@@ -2,6 +2,7 @@
 
 #include <vector>
 
+#include "CodeBitsExceptions.h"
 #include "Types.h"
 
 
@@ -70,7 +71,7 @@ namespace Handmada::TetraCode::Code {
         /// <param name="bytes">Original byte sequence</param>
         /// <param name="length">Length of original sequence</param>
         /// <returns>Packed byte sequence</returns>
-        static std::vector<byte_t> packBytes(const byte_t* bytes, int length);
+        //static std::vector<byte_t> packBytes(const byte_t* bytes, int length);
 
         // TODO: remove this
         /// <summary>
@@ -80,6 +81,6 @@ namespace Handmada::TetraCode::Code {
         /// <param name="bytes">Packed byte sequence</param>
         /// <param name="length">Length of packed sequence</param>
         /// <returns>Original byte sequence</returns>
-        static std::vector<byte_t> unpackBytes(const byte_t* bytes, int length);
+        //static std::vector<byte_t> unpackBytes(const byte_t* bytes, int length);
     };
 }

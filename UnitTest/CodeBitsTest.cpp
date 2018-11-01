@@ -32,16 +32,24 @@ namespace UnitTest
         }
 
 
+        TEST_METHOD(UnpackSmallIntFaultTest)
+        {
+            auto packed = byte_t(0x5D);  // Note: all of least 4 bits must be set
+            auto test = [packed]() { return CodeBits::unpackSmallInt(packed); };
+            Assert::ExpectException<CorruptedPackedByteException>(test);
+        }
+
+
         TEST_METHOD(PackSmallIntBigInputTest)
         {
             auto value = CodeBits::maxSmallInt() + 1;
             auto test = [value]() { return CodeBits::packSmallInt(value); };
-            Assert::ExpectException<std::invalid_argument>(test);
+            Assert::ExpectException<BigValuePackingException>(test);
         }
 
 
         // TODO: remove
-        TEST_METHOD(PackBytesTest)
+        /*TEST_METHOD(PackBytesTest)
         {
             byte_t bytes[] = { 1, 2, 3, 4, 5 };
             byte_t expected[] = { 0x1F, 0x0F, 0x2F, 0x0F, 0x3F, 0x0F, 0x4F, 0x0F, 0x5F, 0x0F };
@@ -74,7 +82,7 @@ namespace UnitTest
             byte_t bytes[] = { 0x1F, 0x0F, 0x2F, 0x0F, 0x3F, 0x0F, 0x4F, 0x0F, 0x5F };
             auto test = [bytes]() { return CodeBits::unpackBytes(bytes, sizeof(bytes)); };
             Assert::ExpectException<std::invalid_argument>(test);
-        }
+        }*/
 
     };
 }

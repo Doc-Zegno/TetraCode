@@ -7,31 +7,50 @@ namespace Handmada::TetraCode::Scrambler {
     using Exception::TraceableException;
     using Iterator::InvalidIteratorException;
     using Iterator::CorruptedInputSequenceException;
+    using Iterator::TooLargePaddingException;
+    using Iterator::CorruptedPaddingException;
     using Iterator::TraceableExceptionPtr;
+
+
+    HighDensityScrambler::HighDensityScrambler(int padding)
+        : _padding(padding)
+    {
+    }
 
 
     ByteIteratorPtr HighDensityScrambler::encodingIterator(ByteIteratorPtr&& iterator)
     {
-        return ByteIteratorPtr(new HighDensityScrambler::EncodingIterator(std::move(iterator)));
+        return ByteIteratorPtr(
+            new HighDensityScrambler::EncodingIterator(std::move(iterator), _padding)
+        );
     }
 
 
     ByteIteratorPtr HighDensityScrambler::decodingIterator(ByteIteratorPtr&& iterator)
     {
-        return ByteIteratorPtr(new HighDensityScrambler::DecodingIterator(std::move(iterator)));
+        return ByteIteratorPtr(
+            new HighDensityScrambler::DecodingIterator(std::move(iterator))
+        );
     }
+
 
 
     // E n c o d i n g    I t e r a t o r
     constexpr byte_t ESCAPE_BITS = Code::CodeBits::escapeBits();
 
 
-    HighDensityScrambler::EncodingIterator::EncodingIterator(ByteIteratorPtr&& iterator)
+    HighDensityScrambler::EncodingIterator::EncodingIterator(ByteIteratorPtr&& iterator, int padding)
         : _iterator(std::move(iterator))
     {
-        // Force iterator to use ESCAPE_BITS as the first output byte
-        _hasBuffered = true;
-        _bufferedByte = ESCAPE_BITS;
+        auto maximumPadding = Code::CodeBits::maxSmallInt();
+        if (padding > maximumPadding) {
+            throw TooLargePaddingException(TraceableExceptionPtr(), maximumPadding, padding);
+        }
+
+        // Force iterator to use padding bits at first steps
+        for (auto i = 0; i <= padding; i++) {
+            _buffer.push(Code::CodeBits::packSmallInt(i));
+        }
         _isValid = false;
     }
 
@@ -48,9 +67,9 @@ namespace Handmada::TetraCode::Scrambler {
     bool HighDensityScrambler::EncodingIterator::moveNext()
     {
         _isValid = true;
-        if (_hasBuffered) {
-            _hasBuffered = false;
-            _currentByte = _bufferedByte;
+        if (!_buffer.empty()) {
+            _currentByte = _buffer.top();
+            _buffer.pop();
         } else {
             if (!_iterator->moveNext()) {
                 _isValid = false;
@@ -62,8 +81,7 @@ namespace Handmada::TetraCode::Scrambler {
 
             // Escape "low density" and special bytes
             if (numActives < 2 || current == ESCAPE_BITS) {
-                _hasBuffered = true;
-                _bufferedByte = ~current;
+                _buffer.push(~current);
                 _currentByte = ESCAPE_BITS;
             } else {
                 _currentByte = current;
@@ -74,14 +92,27 @@ namespace Handmada::TetraCode::Scrambler {
     }
 
 
+
     // D e c o d i n g    i t e r a t o r
     HighDensityScrambler::DecodingIterator::DecodingIterator(ByteIteratorPtr&& iterator)
         : _iterator(std::move(iterator))
     {
         try {
-            // Ignore the first escape byte
             _iterator->moveNext();
-            _iterator->current();  // Trigger exception if failed
+            auto current = _iterator->current();
+            auto numLeft = Code::CodeBits::unpackSmallInt(current);
+
+            // Read padding bytes
+            for (; numLeft > 0; numLeft--) {
+                _iterator->moveNext();
+                current = _iterator->current();
+                auto actual = Code::CodeBits::unpackSmallInt(current);
+                auto expected = numLeft - 1;
+                if (actual != expected) {
+                    throw CorruptedPaddingException(TraceableExceptionPtr(), expected, actual);
+                }
+            }
+
             _isValid = false;
         } catch (TraceableException& e) {
             throw CorruptedInputSequenceException(e.move());

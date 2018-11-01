@@ -124,9 +124,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\Include\Code\CodeBits.h" />
+    <ClInclude Include="..\Include\Code\CodeBitsExceptions.h" />
+    <ClInclude Include="..\Include\Code\CodeBitsExceptionsMacro.h" />
     <ClInclude Include="..\Include\Code\Decoder.h" />
     <ClInclude Include="..\Include\Code\Encoder.h" />
     <ClInclude Include="..\Include\Code\TetraTree.h" />
+    <ClInclude Include="..\Include\Common\Format.h" />
     <ClInclude Include="..\Include\Common\Types.h" />
     <ClInclude Include="..\Include\Common\UtilFunctions.h" />
     <ClInclude Include="..\Include\Common\Version.h" />
@@ -156,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\Code\CodeBits.cpp" />
+    <ClCompile Include="..\Source\Code\CodeBitsExceptions.cpp" />
     <ClCompile Include="..\Source\Code\Decoder.cpp" />
     <ClCompile Include="..\Source\Code\Encoder.cpp" />
     <ClCompile Include="..\Source\Code\TetraTree.cpp" />

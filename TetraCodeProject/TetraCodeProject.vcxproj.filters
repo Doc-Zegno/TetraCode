@@ -150,6 +150,15 @@
     <ClInclude Include="..\Include\Exception\BasicTraceableExceptionMacro.h">
       <Filter>Include\Exception</Filter>
     </ClInclude>
+    <ClInclude Include="..\Include\Common\Format.h">
+      <Filter>Include\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Code\CodeBitsExceptions.h">
+      <Filter>Include\Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Code\CodeBitsExceptionsMacro.h">
+      <Filter>Include\Code</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\Code\CodeBits.cpp">
@@ -205,6 +214,9 @@
     </ClCompile>
     <ClCompile Include="..\Source\Visual\Pixel.cpp">
       <Filter>Source\Visual</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Code\CodeBitsExceptions.cpp">
+      <Filter>Source\Code</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

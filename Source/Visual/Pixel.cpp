@@ -5,7 +5,7 @@
 
 #include "UtilFunctions.h"
 #include "BasicTraceableException.h"
-#include "BasicTraceableExceptionMacro.h"
+#include "BasicTraceableExceptionMacros.h"
 
 
 namespace Handmada::TetraCode::Visual {

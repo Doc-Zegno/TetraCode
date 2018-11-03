@@ -120,16 +120,10 @@
     <ClInclude Include="..\Include\Matrix\IntegerScalingConverter.h">
       <Filter>Include\Matrix</Filter>
     </ClInclude>
-    <ClInclude Include="..\Include\Exception\BasicTraceableExceptionMacro.h">
-      <Filter>Include\Exception</Filter>
-    </ClInclude>
     <ClInclude Include="..\Include\Common\Format.h">
       <Filter>Include\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\Include\Code\CodeBitsExceptions.h">
-      <Filter>Include\Code</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Include\Code\CodeBitsExceptionsMacro.h">
       <Filter>Include\Code</Filter>
     </ClInclude>
     <ClInclude Include="..\Include\Sequence\BasicIterator.h">
@@ -152,6 +146,15 @@
     </ClInclude>
     <ClInclude Include="..\Include\Sequence\Scrambler.h">
       <Filter>Include\Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Sequence\ParityCheckScrambler.h">
+      <Filter>Include\Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Code\CodeBitsExceptionsMacros.h">
+      <Filter>Include\Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Exception\BasicTraceableExceptionMacros.h">
+      <Filter>Include\Exception</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -210,6 +213,9 @@
       <Filter>Source\Sequence</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\Sequence\PreambleScrambler.cpp">
+      <Filter>Source\Sequence</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Sequence\ParityCheckScrambler.cpp">
       <Filter>Source\Sequence</Filter>
     </ClCompile>
   </ItemGroup>

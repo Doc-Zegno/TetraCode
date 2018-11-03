@@ -12,7 +12,7 @@ namespace Handmada::TetraCode::Code {
         TraceableExceptionPtr&& cause, 
         byte_t byte
     ) : Exception::BasicTraceableException(
-            Format::str("unable to unpack byte 0x{:x}", byte),
+            Format::str("unable to unpack byte 0x{:x}", int(byte)),
             fileName,
             functionName,
             line,

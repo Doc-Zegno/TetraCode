@@ -86,4 +86,44 @@ namespace Handmada::TetraCode::Sequence {
         virtual TraceableExceptionPtr move() override;
         virtual TraceableExceptionPtr clone() const override;
     };
+
+
+
+    /// <summary>
+    /// Signalizes that <see cref="Iterator"/> instance
+    /// has calculated checksum different from the one provided by input sequence
+    /// </summary>
+    class WrongChecksumException : public Exception::BasicTraceableException {
+    public:
+        WrongChecksumException(
+            const std::string& fileName,
+            const std::string& functionName,
+            int line,
+            TraceableExceptionPtr&& cause
+        );
+
+        virtual TraceableExceptionPtr move() override;
+        virtual TraceableExceptionPtr clone() const override;
+    };
+
+
+    /// <summary>
+    /// Signalizes that <see cref="Iterator"/> instance
+    /// has been told to use group size for checksums
+    /// that is too large
+    /// </summary>
+    class TooLargeGroupSizeException : public Exception::BasicTraceableException {
+    public:
+        TooLargeGroupSizeException(
+            const std::string& fileName,
+            const std::string& functionName,
+            int line,
+            TraceableExceptionPtr&& cause,
+            int maximum,
+            int actual
+        );
+
+        virtual TraceableExceptionPtr move() override;
+        virtual TraceableExceptionPtr clone() const override;
+    };
 }

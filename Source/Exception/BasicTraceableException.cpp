@@ -46,7 +46,7 @@ namespace Handmada::TetraCode::Exception {
     const char* BasicTraceableException::stripFileName(const char* fileName) const
     {
         auto lastName = fileName;
-        for (auto p = fileName; p; p++) {
+        for (auto p = fileName; *p; p++) {
             if (*p == '/' || *p == '\\') {
                 lastName = p + 1;
             }

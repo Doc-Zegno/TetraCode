@@ -125,7 +125,7 @@
   <ItemGroup>
     <ClInclude Include="..\Include\Code\CodeBits.h" />
     <ClInclude Include="..\Include\Code\CodeBitsExceptions.h" />
-    <ClInclude Include="..\Include\Code\CodeBitsExceptionsMacro.h" />
+    <ClInclude Include="..\Include\Code\CodeBitsExceptionsMacros.h" />
     <ClInclude Include="..\Include\Code\Decoder.h" />
     <ClInclude Include="..\Include\Code\Encoder.h" />
     <ClInclude Include="..\Include\Code\TetraTree.h" />
@@ -134,7 +134,7 @@
     <ClInclude Include="..\Include\Common\UtilFunctions.h" />
     <ClInclude Include="..\Include\Common\Version.h" />
     <ClInclude Include="..\Include\Exception\BasicTraceableException.h" />
-    <ClInclude Include="..\Include\Exception\BasicTraceableExceptionMacro.h" />
+    <ClInclude Include="..\Include\Exception\BasicTraceableExceptionMacros.h" />
     <ClInclude Include="..\Include\Exception\ExceptionCause.h" />
     <ClInclude Include="..\Include\Exception\TraceableException.h" />
     <ClInclude Include="..\Include\Image\Image.h" />
@@ -150,6 +150,7 @@
     <ClInclude Include="..\Include\Sequence\Iterator.h" />
     <ClInclude Include="..\Include\Sequence\IteratorExceptions.h" />
     <ClInclude Include="..\Include\Sequence\IteratorExceptionsMacros.h" />
+    <ClInclude Include="..\Include\Sequence\ParityCheckScrambler.h" />
     <ClInclude Include="..\Include\Sequence\PreambleScrambler.h" />
     <ClInclude Include="..\Include\Sequence\Scrambler.h" />
     <ClInclude Include="..\Include\Visual\Color.h" />
@@ -173,6 +174,7 @@
     <ClCompile Include="..\Source\Matrix\MatrixViewExceptions.cpp" />
     <ClCompile Include="..\Source\Sequence\HighDensityScrambler.cpp" />
     <ClCompile Include="..\Source\Sequence\IteratorExceptions.cpp" />
+    <ClCompile Include="..\Source\Sequence\ParityCheckScrambler.cpp" />
     <ClCompile Include="..\Source\Sequence\PreambleScrambler.cpp" />
     <ClCompile Include="..\Source\Visual\Color.cpp" />
     <ClCompile Include="..\Source\Visual\HsvPalette.cpp" />

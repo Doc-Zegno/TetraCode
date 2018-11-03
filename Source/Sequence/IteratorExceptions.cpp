@@ -1,5 +1,7 @@
 #include "IteratorExceptions.h"
 
+#include "Format.h"
+
 
 namespace Handmada::TetraCode::Sequence {
     // I n v a l i d    i t e r a t o r
@@ -136,6 +138,72 @@ namespace Handmada::TetraCode::Sequence {
     TraceableExceptionPtr CorruptedPaddingException::clone() const
     {
         auto e = new CorruptedPaddingException(*this);
+        return TraceableExceptionPtr(e);
+    }
+
+
+
+    // W r o n g    c h e c k s u m
+    WrongChecksumException::WrongChecksumException(
+        const std::string& fileName, 
+        const std::string& functionName, 
+        int line, 
+        TraceableExceptionPtr&& cause
+    ) : Exception::BasicTraceableException(
+            "wrong checksum",
+            fileName,
+            functionName,
+            line,
+            std::move(cause)
+        )
+    {
+    }
+
+
+    TraceableExceptionPtr WrongChecksumException::move()
+    {
+        auto e = new WrongChecksumException(std::move(*this));
+        return TraceableExceptionPtr(e);
+    }
+
+
+    TraceableExceptionPtr WrongChecksumException::clone() const
+    {
+        auto e = new WrongChecksumException(*this);
+        return TraceableExceptionPtr(e);
+    }
+
+
+
+    // T o o    l a r g e    g r o u p    s i z e
+    TooLargeGroupSizeException::TooLargeGroupSizeException(
+        const std::string& fileName, 
+        const std::string& functionName, 
+        int line, 
+        TraceableExceptionPtr&& cause, 
+        int maximum, 
+        int actual
+    ) : Exception::BasicTraceableException(
+            Format::str("requested group size ({}) is too big (maximum is {})", actual, maximum),
+            fileName,
+            functionName,
+            line,
+            std::move(cause)
+        )
+    {
+    }
+
+
+    TraceableExceptionPtr TooLargeGroupSizeException::move()
+    {
+        auto e = new TooLargeGroupSizeException(std::move(*this));
+        return TraceableExceptionPtr(e);
+    }
+
+
+    TraceableExceptionPtr TooLargeGroupSizeException::clone() const
+    {
+        auto e = new TooLargeGroupSizeException(*this);
         return TraceableExceptionPtr(e);
     }
 }

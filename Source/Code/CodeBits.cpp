@@ -1,6 +1,6 @@
 #include "CodeBits.h"
 
-#include "CodeBitsExceptionsMacro.h"
+#include "CodeBitsExceptionsMacros.h"
 
 
 namespace Handmada::TetraCode::Code {

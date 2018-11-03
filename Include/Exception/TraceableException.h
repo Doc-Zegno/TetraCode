@@ -57,5 +57,7 @@ namespace Handmada::TetraCode::Exception {
         /// </summary>
         /// <returns>`unique_ptr` to copy of this exception</returns>
         virtual std::unique_ptr<TraceableException> clone() const = 0;
+
+        virtual ~TraceableException() { }
     };
 }

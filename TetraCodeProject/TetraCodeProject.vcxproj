@@ -128,6 +128,8 @@
     <ClInclude Include="..\Include\Code\CodeBitsExceptionsMacros.h" />
     <ClInclude Include="..\Include\Code\Decoder.h" />
     <ClInclude Include="..\Include\Code\Encoder.h" />
+    <ClInclude Include="..\Include\Code\EncoderExceptions.h" />
+    <ClInclude Include="..\Include\Code\EncoderExceptionsMacros.h" />
     <ClInclude Include="..\Include\Code\TetraTree.h" />
     <ClInclude Include="..\Include\Common\Format.h" />
     <ClInclude Include="..\Include\Common\Types.h" />
@@ -163,6 +165,7 @@
     <ClCompile Include="..\Source\Code\CodeBitsExceptions.cpp" />
     <ClCompile Include="..\Source\Code\Decoder.cpp" />
     <ClCompile Include="..\Source\Code\Encoder.cpp" />
+    <ClCompile Include="..\Source\Code\EncoderExceptions.cpp" />
     <ClCompile Include="..\Source\Code\TetraTree.cpp" />
     <ClCompile Include="..\Source\Common\Version.cpp" />
     <ClCompile Include="..\Source\Exception\BasicTraceableException.cpp" />

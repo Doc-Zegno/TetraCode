@@ -3,77 +3,84 @@
 #include <vector>
 #include <algorithm>
 
+#include "BasicView.h"
+#include "EncoderExceptionsMacros.h"
+
 
 namespace Handmada::TetraCode::Code {
     using Visual::Color;
     using Visual::Palette;
     using Visual::Pixel;
+    using Sequence::Iterator;
+    using Matrix::MatrixView;
+    using Matrix::BasicView;
 
 
-    Encoder::Encoder(coord_t maxSide, coord_t minSide, coord_t pivotSide, const Palette* palette)
-        : _maxSide(maxSide), _minSide(minSide), _pivotSide(pivotSide), _palette(palette)
-    {
-    }
-
-
-    std::pair<std::unique_ptr<Pixel[]>, int> Encoder::sequence2image(const byte_t* sequence, size_t length) const
-    {
-        TetraTree root(0U, 0U, _maxSide, 0U, 0U, 0);
-
-        std::vector<TetraTree*> stack = { &root };
-        auto numNodes = length;
-        for (auto i = 0U; i < numNodes; i++) {
-            auto tree = stack[i];
-            tree->spawnChildren();
-            tree->calculateChildrenColors(CodeBits(sequence[i]));
-
-            for (auto& child : tree->children()) {
-                if (child->color().isActive()) {
-                    stack.push_back(child.get());
-                }
-            }
-        }
-
-        auto optimalSide = std::max(_minSide, (1 << root.calculateHeight()) * _pivotSide * 2);
-        auto compression = _maxSide / optimalSide;
-
-        Pixel* image = new Pixel[optimalSide * optimalSide];
-        fillImage(root, image, optimalSide, compression);
-
-        return std::make_pair(std::unique_ptr<Pixel[]>(image), optimalSide);
-    }
-
-    void Encoder::fillImage(const TetraTree& tree, Pixel* image, coord_t optimalSide, coord_t compression) const
+    static void fillFrame(const TetraTree& tree, Color* image, coord_t optimalSide, coord_t compression)
     {
         auto side = tree.side() / compression;
         auto xMin = tree.xMin() / compression;
         auto yMin = tree.yMin() / compression;
         auto xMax = xMin + side;
         auto yMax = yMin + side;
-        auto pixel = _palette->color2pixel(tree.color());
+        auto color = tree.color();
 
         if (!tree.children().empty()) {
             for (auto& child : tree.children()) {
-                fillImage(*child, image, optimalSide, compression);
+                fillFrame(*child, image, optimalSide, compression);
             }
 
             if (tree.xPivot() == 1U) {
-                xMin = xMax - _pivotSide;
+                xMin = xMax - 1;
             } else {
-                xMax = xMin + _pivotSide;
+                xMax = xMin + 1;
             }
 
             if (tree.yPivot() == 1U) {
-                yMin = yMax - _pivotSide;
+                yMin = yMax - 1;
             } else {
-                yMax = yMin + _pivotSide;
+                yMax = yMin + 1;
             }
         }
 
         for (auto x = xMin; x < xMax; x++) {
             for (auto y = yMin; y < yMax; y++) {
-                image[y * optimalSide + x] = pixel;
+                image[y * optimalSide + x] = color;
             }
         }
+    }
+
+
+    std::unique_ptr<MatrixView<Color>> sequence2image(
+        std::unique_ptr<Iterator<byte_t>>&& sequence,
+        coord_t maxSide
+    )
+    {
+        TetraTree root(0U, 0U, maxSide, 0U, 0U, 0);
+
+        std::vector<TetraTree*> stack = { &root };
+        for (auto index = 0; sequence->moveNext(); index++) {
+            auto tree = stack[index];
+            tree->spawnChildren();
+            tree->calculateChildrenColors(CodeBits(sequence->current()));
+
+            for (auto& child : tree->children()) {
+                if (child->color().isActive()) {
+                    stack.push_back(child.get());
+                }
+            }
+            index++;
+        }
+
+        auto optimalSide = coord_t((1 << root.calculateHeight()) * 2);
+        if (optimalSide > maxSide) {
+            throw TooLongSequenceException(TraceableExceptionPtr(), optimalSide, maxSide);
+        }
+
+        auto compression = maxSide / optimalSide;
+
+        auto frame = std::vector<Color>(optimalSide * optimalSide, Color());
+        fillFrame(root, frame.data(), optimalSide, compression);
+        return BasicView<Color>::create(std::move(frame), optimalSide, optimalSide);
     }
 }

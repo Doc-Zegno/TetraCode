@@ -25,13 +25,41 @@ namespace Handmada::TetraCode::Code {
         } _converter;
 
     public:
+        /// <param name="raw">Raw byte to extract code bits from</param>
         CodeBits(byte_t raw);
+
+        /// <param name="isActives">Which children of <see cref="TetraTree"/>'s node should be active?</param>
+        /// <param name="colorNumber">Number of color within color pair to encode</param>
+        /// <param name="brightnessLevel">Color's variation to encode</param>
         CodeBits(const bool(&isActives)[4], int colorNumber, int brightnessLevel);
         
+        /// <summary>
+        /// Convert coding bits to raw byte
+        /// </summary>
+        /// <returns>Raw coding byte</returns>
         byte_t toByte() const;
+
+        /// <summary>
+        /// Fill a provided array with boolean flags set for active children of <see cref="TetraTree"/>'s node
+        /// </summary>
         void getActives(bool (&isActives)[4]) const;
+
+        /// <summary>
+        /// Get number of active children of <see cref="TetraTree"/>'s node
+        /// </summary>
+        /// <returns>Number of active children</returns>
         int numActives() const;
+
+        /// <summary>
+        /// Get variation of encoded color
+        /// </summary>
+        /// <returns>Encoded color's variation</returns>
         int brightnessLevel() const;
+
+        /// <summary>
+        /// Get number of encoded color within color pair
+        /// </summary>
+        /// <returns>Encoded color's number</returns>
         int colorNumber() const;
 
         /// <summary>
@@ -61,26 +89,5 @@ namespace Handmada::TetraCode::Code {
         /// <param name="packed">Byte with a packed value</param>
         /// <returns>Original value</returns>
         static int unpackSmallInt(byte_t packed);
-
-        // TODO: remove this
-        /// <summary>
-        /// Transform input byte sequence into one with bytes
-        /// that correspond to <see cref="TetraTree"/> instances
-        /// with 4 active children
-        /// </summary>
-        /// <param name="bytes">Original byte sequence</param>
-        /// <param name="length">Length of original sequence</param>
-        /// <returns>Packed byte sequence</returns>
-        //static std::vector<byte_t> packBytes(const byte_t* bytes, int length);
-
-        // TODO: remove this
-        /// <summary>
-        /// Transform packed byte sequence into original one
-        /// <para>**Note**: exception will be thrown if length is not appropriately rounded</para>
-        /// </summary>
-        /// <param name="bytes">Packed byte sequence</param>
-        /// <param name="length">Length of packed sequence</param>
-        /// <returns>Original byte sequence</returns>
-        //static std::vector<byte_t> unpackBytes(const byte_t* bytes, int length);
     };
 }

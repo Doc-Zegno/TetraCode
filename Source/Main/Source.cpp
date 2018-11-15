@@ -72,7 +72,7 @@ std::pair<std::unique_ptr<byte_t[]>, int> unscrambleFromDummy(const byte_t* sequ
 }
 
 
-void encode(const char* filePath, coord_t maxSide, coord_t minSide, coord_t pivotSide, const Visual::Palette& palette)
+/*void encode(const char* filePath, coord_t maxSide, coord_t minSide, coord_t pivotSide, const Visual::Palette& palette)
 {
     const size_t BUFFER_SIZE = 4096;
     char buffer[BUFFER_SIZE] = { 0 };
@@ -89,10 +89,10 @@ void encode(const char* filePath, coord_t maxSide, coord_t minSide, coord_t pivo
     std::cout << "new length = " << scrambled.second << std::endl;
     std::cout << "optimal side = " << image.second << std::endl;
     std::cout << "done\n";
-}
+}*/
 
 
-void decode(const char* filePath, coord_t maxSide, coord_t minSide, coord_t pivotSide, const Visual::Palette& palette)
+/*void decode(const char* filePath, coord_t maxSide, coord_t minSide, coord_t pivotSide, const Visual::Palette& palette)
 {
     auto image = Image::ImportImageFromFile(filePath, true);
     auto decoder = Code::Decoder(&palette);
@@ -100,7 +100,7 @@ void decode(const char* filePath, coord_t maxSide, coord_t minSide, coord_t pivo
     auto unscrambled = unscrambleFromDummy(sequence.first.get(), sequence.second);
     std::cout << "Text [" << unscrambled.second << " characters total]:\n\t";
     std::cout.write(reinterpret_cast<const char*>(unscrambled.first.get()), unscrambled.second);
-}
+}*/
 
 
 int main(int argc, char* argv[])
@@ -133,11 +133,11 @@ int main(int argc, char* argv[])
         };
         auto palette = HsvPalette(basePixels);
 
-        if (isEncoding) {
+        /*if (isEncoding) {
             encode(argv[1], MAX_SIDE, MIN_SIDE, PIVOT_SIDE, palette);
         } else {
             decode(argv[1], MAX_SIDE, MIN_SIDE, PIVOT_SIDE, palette);
-        }
+        }*/
     } catch (std::exception& e) {
         std::cerr << "Aborted with exception: " << e.what() << std::endl;
     }

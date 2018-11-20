@@ -186,6 +186,12 @@
     <ClInclude Include="..\Include\IO\OutputStringStream.h">
       <Filter>Include\IO</Filter>
     </ClInclude>
+    <ClInclude Include="..\Include\IO\InputFileStream.h">
+      <Filter>Include\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\IO\OutputFileStream.h">
+      <Filter>Include\IO</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\Code\CodeBits.cpp">
@@ -261,6 +267,12 @@
       <Filter>Source\Sequence</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\IO\OutputStringStream.cpp">
+      <Filter>Source\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\IO\InputFileStream.cpp">
+      <Filter>Source\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\IO\OutputFileStream.cpp">
       <Filter>Source\IO</Filter>
     </ClCompile>
   </ItemGroup>

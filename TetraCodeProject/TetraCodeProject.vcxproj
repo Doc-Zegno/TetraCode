@@ -140,8 +140,10 @@
     <ClInclude Include="..\Include\Exception\ExceptionCause.h" />
     <ClInclude Include="..\Include\Exception\TraceableException.h" />
     <ClInclude Include="..\Include\Image\Image.h" />
+    <ClInclude Include="..\Include\IO\InputFileStream.h" />
     <ClInclude Include="..\Include\IO\InputStream.h" />
     <ClInclude Include="..\Include\IO\InputStringStream.h" />
+    <ClInclude Include="..\Include\IO\OutputFileStream.h" />
     <ClInclude Include="..\Include\IO\OutputStream.h" />
     <ClInclude Include="..\Include\IO\OutputStringStream.h" />
     <ClInclude Include="..\Include\Matrix\BasicView.h" />
@@ -177,7 +179,9 @@
     <ClCompile Include="..\Source\Exception\BasicTraceableException.cpp" />
     <ClCompile Include="..\Source\Exception\ExceptionCause.cpp" />
     <ClCompile Include="..\Source\Image\Image.cpp" />
+    <ClCompile Include="..\Source\IO\InputFileStream.cpp" />
     <ClCompile Include="..\Source\IO\InputStringStream.cpp" />
+    <ClCompile Include="..\Source\IO\OutputFileStream.cpp" />
     <ClCompile Include="..\Source\IO\OutputStringStream.cpp" />
     <ClCompile Include="..\Source\Main\Source.cpp" />
     <ClCompile Include="..\Source\Matrix\ColorToPixelConverter.cpp" />

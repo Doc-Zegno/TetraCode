@@ -52,6 +52,12 @@
     <Filter Include="Source\Sequence">
       <UniqueIdentifier>{bdee20c5-42ff-4cb6-af17-ac68b490252e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Include\IO">
+      <UniqueIdentifier>{82904939-4d35-4b81-ba08-bbc039591a9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\IO">
+      <UniqueIdentifier>{2ffc89d9-702c-43f9-b955-56cb3ef0ea8f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Include\Code\CodeBits.h">
@@ -162,6 +168,24 @@
     <ClInclude Include="..\Include\Code\EncoderExceptionsMacros.h">
       <Filter>Include\Code</Filter>
     </ClInclude>
+    <ClInclude Include="..\Include\Sequence\Reader.h">
+      <Filter>Include\Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\IO\InputStream.h">
+      <Filter>Include\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\IO\InputStringStream.h">
+      <Filter>Include\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Sequence\Writer.h">
+      <Filter>Include\Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\IO\OutputStream.h">
+      <Filter>Include\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\IO\OutputStringStream.h">
+      <Filter>Include\IO</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\Code\CodeBits.cpp">
@@ -226,6 +250,18 @@
     </ClCompile>
     <ClCompile Include="..\Source\Code\EncoderExceptions.cpp">
       <Filter>Source\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Sequence\Reader.cpp">
+      <Filter>Source\Sequence</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\IO\InputStringStream.cpp">
+      <Filter>Source\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Sequence\Writer.cpp">
+      <Filter>Source\Sequence</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\IO\OutputStringStream.cpp">
+      <Filter>Source\IO</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -9,8 +9,6 @@
 
 namespace Handmada::TetraCode::Code {
     using Visual::Color;
-    using Visual::Palette;
-    using Visual::Pixel;
     using Sequence::Iterator;
     using Matrix::MatrixView;
     using Matrix::BasicView;
@@ -52,24 +50,23 @@ namespace Handmada::TetraCode::Code {
 
 
     std::unique_ptr<MatrixView<Color>> sequence2image(
-        std::unique_ptr<Iterator<byte_t>>&& sequence,
+        Iterator<byte_t>& sequence,
         coord_t maxSide
     )
     {
         TetraTree root(0U, 0U, maxSide, 0U, 0U, 0);
 
         std::vector<TetraTree*> stack = { &root };
-        for (auto index = 0; sequence->moveNext(); index++) {
+        for (auto index = 0; sequence.moveNext(); index++) {
             auto tree = stack[index];
             tree->spawnChildren();
-            tree->calculateChildrenColors(CodeBits(sequence->current()));
+            tree->calculateChildrenColors(CodeBits(sequence.current()));
 
             for (auto& child : tree->children()) {
                 if (child->color().isActive()) {
                     stack.push_back(child.get());
                 }
             }
-            index++;
         }
 
         auto optimalSide = coord_t((1 << root.calculateHeight()) * 2);

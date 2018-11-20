@@ -15,9 +15,9 @@ namespace Handmada::TetraCode::Code {
     /// </summary>
     /// <param name="sequence">Input byte sequence to be encoded</param>
     /// <param name="maxSide">Maximum side of an output image</param>
-    /// <returns>Image encoding</returns>
+    /// <returns>View of image encoding</returns>
     std::unique_ptr<Matrix::MatrixView<Visual::Color>> sequence2image(
-        std::unique_ptr<Sequence::Iterator<byte_t>>&& sequence,
+        Sequence::Iterator<byte_t>& sequence,
         coord_t maxSide
     );
 }

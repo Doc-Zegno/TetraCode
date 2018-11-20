@@ -3,25 +3,18 @@
 #include <memory>
 
 #include "Types.h"
-#include "Palette.h"
-#include "TetraTree.h"
+#include "Color.h"
+#include "Iterator.h"
+#include "MatrixView.h"
 
 
 namespace Handmada::TetraCode::Code {
-    class Decoder {
-    private:
-        const Visual::Palette* _palette;
-
-        void buildDecodingTree(TetraTree* tree,
-                               const Visual::Pixel* image,
-                               coord_t imageSide,
-                               coord_t pivotSide) const;
-
-    public:
-        Decoder(const Visual::Palette* palette);
-
-        std::pair<std::unique_ptr<byte_t[]>, size_t> image2sequence(const Visual::Pixel* image, 
-                                                                    coord_t side, 
-                                                                    coord_t pivotSide) const;
-    };
+    /// <summary>
+    /// Decode image into original byte sequence
+    /// </summary>
+    /// <param name="view">View of input image</param>
+    /// <returns>Iterator of original byte sequence</returns>
+    std::unique_ptr<Sequence::Iterator<byte_t>> image2sequence(
+        const Matrix::MatrixView<Visual::Color>& view
+    );
 }

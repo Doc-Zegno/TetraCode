@@ -162,6 +162,7 @@
     <ClInclude Include="..\Include\Sequence\PreambleScrambler.h" />
     <ClInclude Include="..\Include\Sequence\Reader.h" />
     <ClInclude Include="..\Include\Sequence\Scrambler.h" />
+    <ClInclude Include="..\Include\Sequence\ScramblingPipeline.h" />
     <ClInclude Include="..\Include\Sequence\Writer.h" />
     <ClInclude Include="..\Include\Visual\Color.h" />
     <ClInclude Include="..\Include\Visual\HsvPalette.h" />
@@ -192,6 +193,7 @@
     <ClCompile Include="..\Source\Sequence\ParityCheckScrambler.cpp" />
     <ClCompile Include="..\Source\Sequence\PreambleScrambler.cpp" />
     <ClCompile Include="..\Source\Sequence\Reader.cpp" />
+    <ClCompile Include="..\Source\Sequence\ScramblingPipeline.cpp" />
     <ClCompile Include="..\Source\Sequence\Writer.cpp" />
     <ClCompile Include="..\Source\Visual\Color.cpp" />
     <ClCompile Include="..\Source\Visual\HsvPalette.cpp" />

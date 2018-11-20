@@ -51,7 +51,8 @@ namespace Handmada::TetraCode::Code {
 
     std::unique_ptr<MatrixView<Color>> sequence2image(
         Iterator<byte_t>& sequence,
-        coord_t maxSide
+        coord_t maxSide,
+        coord_t minSide
     )
     {
         TetraTree root(0U, 0U, maxSide, 0U, 0U, 0);
@@ -69,7 +70,8 @@ namespace Handmada::TetraCode::Code {
             }
         }
 
-        auto optimalSide = coord_t((1 << root.calculateHeight()) * 2);
+        auto calculatedSide = coord_t((1 << root.calculateHeight()) * 2);
+        auto optimalSide = std::max(calculatedSide, minSide);
         if (optimalSide > maxSide) {
             throw TooLongSequenceException(TraceableExceptionPtr(), optimalSide, maxSide);
         }

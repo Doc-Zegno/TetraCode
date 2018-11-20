@@ -51,5 +51,12 @@ namespace Handmada::TetraCode::Sequence {
 
         virtual ByteIteratorPtr encodingIterator(ByteIteratorPtr&& iterator) override;
         virtual ByteIteratorPtr decodingIterator(ByteIteratorPtr&& iterator) override;
+
+        /// <summary>
+        /// Create scrambler's instance wrapped with `unique_ptr`
+        /// </summary>
+        /// <param name="padding">Number of padding bytes to be inserted</param>
+        /// <returns>`unique_ptr` to scrambler's instance</returns>
+        static std::unique_ptr<Scrambler> create(int padding);
     };
 }

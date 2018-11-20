@@ -148,9 +148,11 @@ namespace Handmada::TetraCode::Sequence {
         const std::string& fileName, 
         const std::string& functionName, 
         int line, 
-        TraceableExceptionPtr&& cause
+        TraceableExceptionPtr&& cause,
+        byte_t expected,
+        byte_t actual
     ) : Exception::BasicTraceableException(
-            "wrong checksum",
+            Format::str("wrong checksum (expected 0x{:x}, got 0x{:x})", int(expected), int(actual)),
             fileName,
             functionName,
             line,

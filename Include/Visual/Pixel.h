@@ -15,6 +15,7 @@ namespace Handmada::TetraCode::Visual {
 
     public:
         Pixel() = default;
+        Pixel(const char* hexCode);
         Pixel(const std::string& hexCode);
         Pixel(byte_t r, byte_t g, byte_t b);
 

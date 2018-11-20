@@ -1,5 +1,7 @@
 #include "Image.h"
 
+#include "atlimage.h"
+
 #include <cstdint>
 #include <iostream>
 #include <string>
@@ -7,10 +9,14 @@
 
 namespace Handmada::TetraCode::Image {
     using Visual::Pixel;
+    using Matrix::MatrixView;
 
 
-    void ExportBufferAsImage(const Pixel* buffer, int width, int height, const char* fileName)
+    void exportImage(const MatrixView<Pixel>& view, const std::string& fileName)
     {
+        auto width = view.width();
+        auto height = view.height();
+
         CImage image;
         image.Create(width, height, 24);
         auto imageBuffer = (byte_t*) image.GetBits();
@@ -22,10 +28,10 @@ namespace Handmada::TetraCode::Image {
         }
 
         auto imageDisplacement = 0;
-        for (auto i = 0; i < height; i++) {
-            for (auto j = 0; j < width; j++) {
-                auto pixel = buffer[i * width + j];
-                auto index = imageDisplacement + j * 3;
+        for (auto y = coord_t(0); y < height; y++) {
+            for (auto x = coord_t(0); x < width; x++) {
+                auto pixel = view.get(x, y);
+                auto index = imageDisplacement + x * 3;
 
                 imageBuffer[index] = pixel.b();
                 imageBuffer[index + 1] = pixel.g();
@@ -34,7 +40,7 @@ namespace Handmada::TetraCode::Image {
             imageDisplacement += pitch;
         }
 
-        image.Save(fileName);
+        image.Save(fileName.c_str());
         image.Destroy();
     }
 

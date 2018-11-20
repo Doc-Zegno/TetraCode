@@ -29,6 +29,12 @@ namespace Handmada::TetraCode::Sequence {
     }
 
 
+    std::unique_ptr<Scrambler> HighDensityScrambler::create(int padding)
+    {
+        return std::unique_ptr<Scrambler>(new HighDensityScrambler(padding));
+    }
+
+
 
     // E n c o d i n g    I t e r a t o r
     constexpr byte_t ESCAPE_BITS = Code::CodeBits::escapeBits();

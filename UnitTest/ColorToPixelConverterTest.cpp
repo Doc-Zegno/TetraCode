@@ -28,18 +28,18 @@ namespace UnitTest
                 { { 255, 0, 0 }, { 0, 0, 255 } },
                 { { 0, 255, 0 }, { 255, 255, 0 } }
             };
-            auto palette = std::unique_ptr<Palette>(new HsvPalette(basePixels));
+            auto palette = HsvPalette(basePixels);
             auto values = std::vector<Color>();
 
             for (auto i = coord_t(0); i < HEIGHT; i++) {
                 for (auto j = coord_t(0); j < WIDTH; j++) {
                     auto color = Color(true, i % 2, j % 2, (i + j) % 2);
-                    pixels[i][j] = palette->color2pixel(color);
+                    pixels[i][j] = palette.color2pixel(color);
                     values.push_back(color);
                 }
             }
 
-            auto converter = ColorToPixelConverter(std::move(palette));
+            auto converter = ColorToPixelConverter(palette);
             auto view = converter.directView(BasicView<Color>::create(std::move(values), WIDTH, HEIGHT));
 
             Assert::AreEqual(view->height(), HEIGHT);
@@ -64,19 +64,19 @@ namespace UnitTest
                 { { 255, 0, 0 }, { 0, 0, 255 } },
                 { { 0, 255, 0 }, { 255, 255, 0 } }
             };
-            auto palette = std::unique_ptr<Palette>(new HsvPalette(basePixels));
+            auto palette = HsvPalette(basePixels);
             auto values = std::vector<Pixel>();
 
             for (auto i = coord_t(0); i < HEIGHT; i++) {
                 for (auto j = coord_t(0); j < WIDTH; j++) {
                     auto color = Color(true, i % 2, j % 2, (i + j) % 2);
-                    auto pixel = palette->color2pixel(color);
+                    auto pixel = palette.color2pixel(color);
                     colors[i][j] = color;
                     values.push_back(pixel);
                 }
             }
 
-            auto converter = ColorToPixelConverter(std::move(palette));
+            auto converter = ColorToPixelConverter(palette);
             auto view = converter.inverseView(BasicView<Pixel>::create(std::move(values), WIDTH, HEIGHT));
 
             Assert::AreEqual(view->height(), HEIGHT);

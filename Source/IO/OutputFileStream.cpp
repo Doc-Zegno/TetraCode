@@ -13,8 +13,7 @@ namespace Handmada::TetraCode::IO {
     {
         if (!_fout) {
             throw Exception::BasicTraceableException(
-                Format::str("unable to open file \"{}\"", fileName),
-                std::unique_ptr<Exception::TraceableException>()
+                Format::str("unable to open file \"{}\"", fileName)
             );
         }
     }

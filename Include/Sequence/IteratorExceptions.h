@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Types.h"
 #include "BasicTraceableException.h"
 
 
@@ -99,7 +100,9 @@ namespace Handmada::TetraCode::Sequence {
             const std::string& fileName,
             const std::string& functionName,
             int line,
-            TraceableExceptionPtr&& cause
+            TraceableExceptionPtr&& cause,
+            byte_t expected,
+            byte_t actual
         );
 
         virtual TraceableExceptionPtr move() override;

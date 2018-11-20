@@ -13,8 +13,7 @@ namespace Handmada::TetraCode::IO {
     {
         if (!_fin) {
             throw Exception::BasicTraceableException(
-                Format::str("unable to open file \"{}\"", fileName),
-                std::unique_ptr<Exception::TraceableException>()
+                Format::str("unable to open file \"{}\"", fileName)
             );
         }
     }
@@ -23,6 +22,6 @@ namespace Handmada::TetraCode::IO {
     int InputFileStream::read(byte_t* destination, int maximumLen)
     {
         _fin.read(reinterpret_cast<char*>(destination), maximumLen);
-        return _fin.gcount();
+        return int(_fin.gcount());
     }
 }

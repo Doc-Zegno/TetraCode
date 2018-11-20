@@ -19,8 +19,8 @@
     CorruptedPaddingException(__FILE__, __func__, __LINE__, cause, expected, actual)
 
 // Automatically insert debug info into exception's constructor
-#define WrongChecksumException(cause) \
-    WrongChecksumException(__FILE__, __func__, __LINE__, cause)
+#define WrongChecksumException(cause, expected, actual) \
+    WrongChecksumException(__FILE__, __func__, __LINE__, cause, expected, actual)
 
 // Automatically insert debug info into exception's constructor
 #define TooLargeGroupSizeException(cause, maximum, actual) \

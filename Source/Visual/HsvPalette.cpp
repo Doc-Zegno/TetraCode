@@ -45,7 +45,7 @@ namespace Handmada::TetraCode::Visual {
         auto bestHuePair = 0;
         auto bestColorNumber = 0;
         auto bestLevel = 0;
-        auto bestDistance = 3 * (255U * 255U);
+        auto bestDistance = 3 * (255 * 255);
 
         for (auto i = 0; i < 2; i++) {
             for (auto j = 0; j < 2; j++) {
@@ -75,7 +75,7 @@ namespace Handmada::TetraCode::Visual {
     {
         auto bestHuePair = 0;
         auto bestColorNumber = 0;
-        auto bestDistance = 3 * (255U * 255U);
+        auto bestDistance = 3 * (255 * 255);
         Pixel bestMatch;
 
         for (auto i = 0; i < 2; i++) {

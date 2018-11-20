@@ -28,6 +28,12 @@ namespace Handmada::TetraCode::Sequence {
     }
 
 
+    std::unique_ptr<Scrambler> ParityCheckScrambler::create(int groupSize)
+    {
+        return std::unique_ptr<Scrambler>(new ParityCheckScrambler(groupSize));
+    }
+
+
 
     // E n c o d i n g    i t e r a t o r
     ParityCheckScrambler::EncodingIterator::EncodingIterator(
@@ -137,7 +143,7 @@ namespace Handmada::TetraCode::Sequence {
                 }
 
                 if (checksum != actual) {
-                    throw WrongChecksumException(TraceableExceptionPtr());
+                    throw WrongChecksumException(TraceableExceptionPtr(), checksum, actual);
                 }
             }
         }

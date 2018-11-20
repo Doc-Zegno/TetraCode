@@ -35,6 +35,12 @@ namespace Handmada::TetraCode::Sequence {
     }
 
 
+    std::unique_ptr<Scrambler> PreambleScrambler::create(const Version& hostVersion)
+    {
+        return std::unique_ptr<Scrambler>(new PreambleScrambler(hostVersion));
+    }
+
+
 
     // H e l p e r
     union PreamblePacked {

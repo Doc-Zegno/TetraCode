@@ -41,7 +41,7 @@ namespace UnitTest
                 TraceableExceptionPtr(new CorruptedInputSequenceException(createCause())),
                 TraceableExceptionPtr(new TooLargePaddingException(createCause(), 15, 16)),
                 TraceableExceptionPtr(new CorruptedPaddingException(createCause(), 4, 5)),
-                TraceableExceptionPtr(new WrongChecksumException(createCause())),
+                TraceableExceptionPtr(new WrongChecksumException(createCause(), 0x01, 0x02)),
                 TraceableExceptionPtr(new TooLargeGroupSizeException(createCause(), 255, 256)),
 
                 TraceableExceptionPtr(new ViewOutOfRangeException(createCause())),

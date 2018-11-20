@@ -1,13 +1,15 @@
 #pragma once
 
 #include <memory>
-
-#include "atlimage.h"
+#include <string>
 
 #include "Pixel.h"
+#include "MatrixView.h"
 
 
 namespace Handmada::TetraCode::Image {
-    void ExportBufferAsImage(const Visual::Pixel* buffer, int width, int height, const char* fileName);
+    void exportImage(const Matrix::MatrixView<Visual::Pixel>& image, const std::string& fileName);
+
+    // Deprecated
     std::pair<std::unique_ptr<Visual::Pixel[]>, int> ImportImageFromFile(const char* path, bool isVerbose);
 }

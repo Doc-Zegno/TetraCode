@@ -60,5 +60,12 @@ namespace Handmada::TetraCode::Sequence {
 
         virtual ByteIteratorPtr encodingIterator(ByteIteratorPtr&& iterator) override;
         virtual ByteIteratorPtr decodingIterator(ByteIteratorPtr&& iterator) override;
+
+        /// <summary>
+        /// Create instance of this scrambler wrapped with `unique_ptr`
+        /// </summary>
+        /// <param name="groupSize">Number of bytes per one checksum</param>
+        /// <returns>`unique_ptr` to scrambler's instance</returns>
+        static std::unique_ptr<Scrambler> create(int groupSize);
     };
 }

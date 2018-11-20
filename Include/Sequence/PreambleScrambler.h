@@ -52,11 +52,23 @@ namespace Handmada::TetraCode::Sequence {
         Version _guestVersion;
 
     public:
+        /// <param name="hostVersion">Version of host encoding system</param>
         PreambleScrambler(const Version& hostVersion);
 
         virtual ByteIteratorPtr encodingIterator(ByteIteratorPtr&& iterator) override;
         virtual ByteIteratorPtr decodingIterator(ByteIteratorPtr&& iterator) override;
 
+        /// <summary>
+        /// Get guest version for the last decoded sequence
+        /// </summary>
+        /// <returns>Last guest version</returns>
         const Version& guestVersion() const;
+
+        /// <summary>
+        /// Create scrambler's instance wrapped with `unique_ptr`
+        /// </summary>
+        /// <param name="hostVersion">Version of host encoding system</param>
+        /// <returns>`unique_ptr` to scrambler's instance</returns>
+        static std::unique_ptr<Scrambler> create(const Version& hostVersion);
     };
 }

@@ -7,21 +7,21 @@
 
 
 namespace Handmada::TetraCode::Matrix {
-	ColorToPixelConverter::ColorToPixelConverter(std::unique_ptr<Visual::Palette>&& palette) 
-        : _palette(std::move(palette))
+	ColorToPixelConverter::ColorToPixelConverter(const Visual::Palette& palette) 
+        : _palette(palette)
 	{
 	}
 
 
 	PixelViewPtr ColorToPixelConverter::directView(ColorViewPtr&& original) const
 	{
-        return PixelViewPtr(new DirectView(std::move(original), *_palette));
+        return PixelViewPtr(new DirectView(std::move(original), _palette));
 	}
 
 
 	ColorViewPtr ColorToPixelConverter::inverseView(PixelViewPtr&& converted) const
 	{
-        return ColorViewPtr(new InverseView(std::move(converted), *_palette));
+        return ColorViewPtr(new InverseView(std::move(converted), _palette));
 	}
 
 

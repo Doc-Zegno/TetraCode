@@ -50,10 +50,10 @@ namespace Handmada::TetraCode::Matrix {
         };
 
 
-		std::unique_ptr<Visual::Palette> _palette;
+		const Visual::Palette& _palette;
 
 	public:
-		ColorToPixelConverter(std::unique_ptr<Visual::Palette>&& palette);
+		ColorToPixelConverter(const Visual::Palette& palette);
 
 		virtual PixelViewPtr directView(ColorViewPtr&& original) const override;
 		virtual ColorViewPtr inverseView(PixelViewPtr&& converted) const override;

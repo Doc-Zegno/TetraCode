@@ -12,12 +12,16 @@ namespace Handmada::TetraCode::Visual {
     using TraceableExceptionPtr = std::unique_ptr<Exception::TraceableException>;
 
 
+    Pixel::Pixel(const char* hexCode) : Pixel(std::string(hexCode))
+    {
+    }
+
+
     Pixel::Pixel(const std::string& hexCode)
     {
         if (hexCode.size() != 7 || hexCode[0] != '#') {
             throw Exception::BasicTraceableException(
-                std::string("invalid hex string: ") + hexCode,
-                TraceableExceptionPtr()
+                std::string("invalid hex string: ") + hexCode
             );
         }
 
@@ -38,8 +42,7 @@ namespace Handmada::TetraCode::Visual {
                     "B"
                 };
                 throw Exception::BasicTraceableException(
-                    std::string("invalid hex for ") + channelStrs[i] + " channel: " + hexCode,
-                    TraceableExceptionPtr()
+                    std::string("invalid hex for ") + channelStrs[i] + " channel: " + hexCode
                 );
             }
         }
@@ -77,8 +80,7 @@ namespace Handmada::TetraCode::Visual {
         if (!isInRange(channel, 3)) {
             auto indexStr = std::to_string(channel);
             throw Exception::BasicTraceableException(
-                std::string("index out of range: ") + indexStr,
-                TraceableExceptionPtr()
+                std::string("index out of range: ") + indexStr
             );
         }
 

@@ -2,9 +2,12 @@
 
 #include "atlimage.h"
 
-#include <cstdint>
-#include <iostream>
-#include <string>
+#include <vector>
+
+#include "Format.h"
+#include "BasicView.h"
+#include "BasicTraceableException.h"
+#include "BasicTraceableExceptionMacros.h"
 
 
 namespace Handmada::TetraCode::Image {
@@ -45,16 +48,18 @@ namespace Handmada::TetraCode::Image {
     }
 
 
-    std::pair<std::unique_ptr<Pixel[]>, int> ImportImageFromFile(const char* path, bool isVerbose)
+    std::unique_ptr<MatrixView<Pixel>> importImage(const std::string& fileName)
     {
         CImage image;
-        auto result = image.Load(path);
+        auto result = image.Load(fileName.c_str());
         if (result != S_OK) {
-            throw std::runtime_error(std::string("Unable to load image \"") + path + "\"\n");
+            throw Exception::BasicTraceableException(
+                Format::str("unable to load image from file \"{}\"", fileName)
+            );
         }
 
         auto side = image.GetHeight();
-        auto pixels = new Pixel[side * side];
+        auto pixels = std::vector<Pixel>(side * side, Pixel());
 
         auto imageBuffer = (byte_t*) image.GetBits();
         auto pitch = image.GetPitch();
@@ -73,10 +78,9 @@ namespace Handmada::TetraCode::Image {
             imageDisplacement += pitch;
         }
 
-        if (isVerbose) {
-            std::cout << "Successfully loaded image: \"" << path << "\"\n";
-        }
         image.Destroy();
-        return std::make_pair(std::unique_ptr<Pixel[]>(pixels), side);
+        return std::unique_ptr<MatrixView<Pixel>>(
+            new Matrix::BasicView<Pixel>(std::move(pixels), side, side)
+        );
     }
 }

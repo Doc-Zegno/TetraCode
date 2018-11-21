@@ -21,9 +21,12 @@
 #include "IntegerScalingConverter.h"
 
 #include "Encoder.h"
+#include "Decoder.h"
 
 #include "Reader.h"
+#include "Writer.h"
 #include "InputFileStream.h"
+#include "OutputFileStream.h"
 
 #include "Image.h"
 
@@ -87,11 +90,16 @@ static void encode(
 )
 {
     // Get byte sequence
+    std::cout << "Reading byte stream from input file...\n";
     auto stream = IO::InputFileStream(fromFileName);
-    auto sequence = scrambler.encodingIterator(Sequence::readSequence(stream));
+    auto sequence = Sequence::readSequence(stream);
+
+    // Encode sequence
+    std::cout << "Encoding...\n";
+    sequence = scrambler.encodingIterator(std::move(sequence));
+    auto view = Code::sequence2image(*sequence, maxSide, minSide);
 
     // Convert to image
-    auto view = Code::sequence2image(*sequence, maxSide, minSide);
     auto paletteConverter = Matrix::ColorToPixelConverter(palette);
     auto scaleConverter = Matrix::IntegerScalingConverter(scaleFactor);
     auto image = scaleConverter.directView(
@@ -99,7 +107,52 @@ static void encode(
     );
 
     // Save image
+    std::cout << "Saving image to file...\n";
     Image::exportImage(*image, toFileName);
+}
+
+
+static void decode(
+    const std::string& fromFileName,
+    const std::string& toFileName,
+    Sequence::Scrambler& scrambler,
+    Sequence::PreambleScrambler& preambleScrambler,
+    const Version& hostVersion,
+    coord_t scaleFactor,
+    const Visual::HsvPalette& palette
+)
+{
+    // Get image from file
+    std::cout << "Loading image from file...\n";
+    auto image = Image::importImage(fromFileName);
+
+    // Convert pixel image to color view
+    auto paletteConverter = Matrix::ColorToPixelConverter(palette);
+    auto scaleConverter = Matrix::IntegerScalingConverter(scaleFactor);
+    auto view = paletteConverter.inverseView(
+        scaleConverter.inverseView(std::move(image))
+    );
+
+    // Decode view to sequence
+    std::cout << "Decoding...\n";
+    auto sequence = Code::image2sequence(*view);
+    sequence = scrambler.decodingIterator(std::move(sequence));
+
+    // Check guest version
+    auto guestVersion = preambleScrambler.guestVersion();
+    if (hostVersion == guestVersion) {
+        std::cout << "OK, guest version (" << guestVersion.toString()
+            << ") is compatible with the host one\n";
+    } else {
+        std::cout << "<!> Warning: guest version (" << guestVersion.toString()
+            << ") is not compatible with the host one\n";
+        std::cout << "<!> Warning: decoded sequence can be different from the original one\n";
+    }
+
+    // Store into file
+    std::cout << "Saving byte stream to file...\n";
+    auto stream = IO::OutputFileStream(toFileName);
+    Sequence::writeSequence(*sequence, stream);
 }
 
 
@@ -134,12 +187,13 @@ int main(int argc, char* argv[])
         scramblers.push_back(Sequence::HighDensityScrambler::create(PADDING));
         auto pipeline = Sequence::ScramblingPipeline(scramblers);
 
-
         // Dispatch
         if (isEncoding) {
             encode(fromFileName, toFileName, pipeline, MAX_SIDE, MIN_SIDE, SCALE_FACTOR, palette);
         } else {
-            throw Exception::BasicTraceableException("not implemented");
+            auto& preambleScrambler = dynamic_cast<Sequence::PreambleScrambler&>(*scramblers[0]);
+            decode(fromFileName, toFileName, pipeline, preambleScrambler, 
+                hostVersion, SCALE_FACTOR, palette);
         }
 
         // OK

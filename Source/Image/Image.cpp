@@ -1,13 +1,25 @@
 #include "Image.h"
 
-#include <cstdint>
-#include <iostream>
-#include <string>
+#include "atlimage.h"
+
+#include <vector>
+
+#include "Format.h"
+#include "BasicView.h"
+#include "BasicTraceableException.h"
+#include "BasicTraceableExceptionMacros.h"
 
 
-namespace TetraCode {
-    void ExportBufferAsImage(const Pixel* buffer, int width, int height, const char* fileName)
+namespace Handmada::TetraCode::Image {
+    using Visual::Pixel;
+    using Matrix::MatrixView;
+
+
+    void exportImage(const MatrixView<Pixel>& view, const std::string& fileName)
     {
+        auto width = view.width();
+        auto height = view.height();
+
         CImage image;
         image.Create(width, height, 24);
         auto imageBuffer = (byte_t*) image.GetBits();
@@ -19,33 +31,35 @@ namespace TetraCode {
         }
 
         auto imageDisplacement = 0;
-        for (auto i = 0; i < height; i++) {
-            for (auto j = 0; j < width; j++) {
-                auto pixel = buffer[i * width + j];
-                auto index = imageDisplacement + j * 3;
+        for (auto y = coord_t(0); y < height; y++) {
+            for (auto x = coord_t(0); x < width; x++) {
+                auto pixel = view.get(x, y);
+                auto index = imageDisplacement + x * 3;
 
-                imageBuffer[index] = pixel.b;
-                imageBuffer[index + 1] = pixel.g;
-                imageBuffer[index + 2] = pixel.r;
+                imageBuffer[index] = pixel.b();
+                imageBuffer[index + 1] = pixel.g();
+                imageBuffer[index + 2] = pixel.r();
             }
             imageDisplacement += pitch;
         }
 
-        image.Save(fileName);
+        image.Save(fileName.c_str());
         image.Destroy();
     }
 
 
-    std::pair<std::unique_ptr<Pixel[]>, int> ImportImageFromFile(const char* path, bool isVerbose)
+    std::unique_ptr<MatrixView<Pixel>> importImage(const std::string& fileName)
     {
         CImage image;
-        auto result = image.Load(path);
+        auto result = image.Load(fileName.c_str());
         if (result != S_OK) {
-            throw std::runtime_error(std::string("Unable to load image \"") + path + "\"\n");
+            throw Exception::BasicTraceableException(
+                Format::str("unable to load image from file \"{}\"", fileName)
+            );
         }
 
         auto side = image.GetHeight();
-        auto pixels = new Pixel[side * side];
+        auto pixels = std::vector<Pixel>(side * side, Pixel());
 
         auto imageBuffer = (byte_t*) image.GetBits();
         auto pitch = image.GetPitch();
@@ -59,18 +73,14 @@ namespace TetraCode {
             for (auto j = 0; j < side; j++) {
                 auto index = imageDisplacement + j * 3;
                 auto& pixel = pixels[i * side + j];
-
-                pixel.b = imageBuffer[index];
-                pixel.g = imageBuffer[index + 1];
-                pixel.r = imageBuffer[index + 2];
+                pixel = Pixel(imageBuffer[index + 2], imageBuffer[index + 1], imageBuffer[index]);
             }
             imageDisplacement += pitch;
         }
 
-        if (isVerbose) {
-            std::cout << "Successfully loaded image: \"" << path << "\"\n";
-        }
         image.Destroy();
-        return std::make_pair(std::unique_ptr<Pixel[]>(pixels), side);
+        return std::unique_ptr<MatrixView<Pixel>>(
+            new Matrix::BasicView<Pixel>(std::move(pixels), side, side)
+        );
     }
 }

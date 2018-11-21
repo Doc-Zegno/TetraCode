@@ -3,102 +3,115 @@
 #include <queue>
 
 #include "TetraTree.h"
+#include "IteratorExceptionsMacros.h"
 
 
-namespace TetraCode {
-    Decoder::Decoder(const Palette* palette) : _palette(palette)
+namespace Handmada::TetraCode::Code {
+    using Visual::Color;
+    using Matrix::MatrixView;
+    using Sequence::Iterator;
+
+
+    
+    // H e l p e r    c l a s s
+    class DecodingIterator : public Iterator<byte_t> {
+    private:
+        TetraTree _root;
+        std::queue<TetraTree*> _worklist;
+        byte_t _current;
+        bool _isValid;
+
+    public:
+        DecodingIterator(TetraTree&& root);
+
+        virtual byte_t current() override;
+        virtual bool moveNext() override;
+    };
+
+
+    DecodingIterator::DecodingIterator(TetraTree&& root)
+        : _root(std::move(root))
     {
+        _worklist.push(&_root);
+        _isValid = false;
     }
 
 
-    std::pair<std::unique_ptr<byte_t[]>, size_t> Decoder::image2sequence(const Pixel* image, coord_t side, coord_t pivotSide) const
+    byte_t DecodingIterator::current()
     {
-        const size_t BUFFER_SIZE = 4096;
-        auto buffer = new byte_t[BUFFER_SIZE];
+        if (!_isValid) {
+            throw Sequence::InvalidIteratorException(Sequence::TraceableExceptionPtr());
+        }
+        return _current;
+    }
 
-        auto root = TetraTree(0, 0, side, 0, 0, 0);
-        buildDecodingTree(&root, image, side, pivotSide);
-        auto worklist = std::queue<TetraTree*>();
-        worklist.push(&root);
 
-        auto p = buffer;
-        while (!worklist.empty()) {
-            auto tree = worklist.front();
-            worklist.pop();
+    bool DecodingIterator::moveNext()
+    {
+        if (_worklist.empty()) {
+            _isValid = false;
+        } else {
+            _isValid = true;
+
+            auto tree = _worklist.front();
+            _worklist.pop();
 
             auto bits = tree->calculateChildrenCode();
-            *p = bits.toByte();
-            p++;
+            _current = bits.toByte();
 
             for (auto& child : tree->children()) {
                 if (child->color().isActive() && !child->children().empty()) {
-                    worklist.push(child.get());
+                    _worklist.push(child.get());
                 }
             }
         }
-
-        return std::make_pair(std::unique_ptr<byte_t[]>(buffer), size_t(p - buffer));
+        return _isValid;
     }
 
 
-    void Decoder::buildDecodingTree(TetraTree* tree, const Pixel* image, coord_t imageSide, coord_t pivotSide) const
+
+    // F u n c t i o n s
+    void buildDecodingTree(TetraTree* tree, const MatrixView<Visual::Color>& image)
     {
         auto stopped = false;
-        if (tree->side() == 2 * pivotSide) {
+        if (tree->side() == 2) {
             stopped = true;
         }
 
         tree->spawnChildren();
         auto hasChildren = false;
         for (auto& child : tree->children()) {
+            auto x = child->xMin();
+            auto y = child->yMin();
             auto side = child->side();
-            auto xMin = child->xMin();
-            auto yMin = child->yMin();
-            auto xPivot = child->xPivot();
-            auto yPivot = child->yPivot();
 
-            auto xMax = xMin + side;
-            auto yMax = yMin + side;
-
-            if (xPivot == 0) {
-                xMax = xMin + pivotSide;
-            } else {
-                xMin = xMax - pivotSide;
+            if (child->xPivot() == 1) {
+                x += side - 1;
             }
 
-            if (yPivot == 0) {
-                yMax = yMin + pivotSide;
-            } else {
-                yMin = yMax - pivotSide;
+            if (child->yPivot() == 1) {
+                y += side - 1;
             }
 
-            auto r = 0U;
-            auto g = 0U;
-            auto b = 0U;
-            auto numSamples = 0U;
-            for (auto x = xMin; x < xMax; x++) {
-                for (auto y = yMin; y < yMax; y++) {
-                    auto pixel = image[y * imageSide + x];
-                    r += pixel.r;
-                    g += pixel.g;
-                    b += pixel.b;
-                    numSamples++;
-                }
-            }
-            r /= numSamples;
-            g /= numSamples;
-            b /= numSamples;
-
-            auto color = _palette->pixel2color(Pixel(r, g, b));
+            auto color = image.get(x, y);
             child->setColor(color);
             if (!stopped && child->oddity() == color.huePair()) {
                 hasChildren = true;
-                buildDecodingTree(child.get(), image, imageSide, pivotSide);
+                buildDecodingTree(child.get(), image);
             }
         }
 
         if (!hasChildren) {
             tree->removeChildren();
         }
+    }
+
+
+    std::unique_ptr<Iterator<byte_t>> image2sequence(const MatrixView<Visual::Color>& image)
+    {
+        auto side = image.height();
+        auto root = TetraTree(0, 0, side, 0, 0, 0);
+        buildDecodingTree(&root, image);
+        return std::unique_ptr<Iterator<byte_t>>(new DecodingIterator(std::move(root)));
     }
 }

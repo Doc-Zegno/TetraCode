@@ -3,7 +3,7 @@
 #include "Palette.h"
 
 
-namespace TetraCode {
+namespace Handmada::TetraCode::Visual {
     class HsvPalette : public Palette
     {
     private:

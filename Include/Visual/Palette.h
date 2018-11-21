@@ -7,7 +7,7 @@
 #include "Color.h"
 
 
-namespace TetraCode {
+namespace Handmada::TetraCode::Visual {
     class Palette {
     public:
         virtual Pixel color2pixel(Color color) const = 0;

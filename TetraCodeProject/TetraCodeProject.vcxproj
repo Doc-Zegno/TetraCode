@@ -76,7 +76,8 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\Include\Visual;..\Include\Scrambler;..\Include\Iterator;..\Include\Image;..\Include\Common;..\Include\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Include\IO;..\Include\Matrix;..\Include\Visual;..\Include\Sequence;..\Include\Image;..\Include\Common;..\Include\Code;..\Include\Exception;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -85,7 +86,8 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\Include\Visual;..\Include\Scrambler;..\Include\Iterator;..\Include\Image;..\Include\Common;..\Include\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Include\IO;..\Include\Matrix;..\Include\Visual;..\Include\Sequence;..\Include\Image;..\Include\Common;..\Include\Code;..\Include\Exception;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -96,7 +98,9 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\Include\Visual;..\Include\Scrambler;..\Include\Iterator;..\Include\Image;..\Include\Common;..\Include\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Include\IO;..\Include\Matrix;..\Include\Visual;..\Include\Sequence;..\Include\Image;..\Include\Common;..\Include\Code;..\Include\Exception;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -111,7 +115,9 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\Include\Visual;..\Include\Scrambler;..\Include\Iterator;..\Include\Image;..\Include\Common;..\Include\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Include\IO;..\Include\Matrix;..\Include\Visual;..\Include\Sequence;..\Include\Image;..\Include\Common;..\Include\Code;..\Include\Exception;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -120,16 +126,46 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\Include\Code\CodeBits.h" />
+    <ClInclude Include="..\Include\Code\CodeBitsExceptions.h" />
+    <ClInclude Include="..\Include\Code\CodeBitsExceptionsMacros.h" />
     <ClInclude Include="..\Include\Code\Decoder.h" />
     <ClInclude Include="..\Include\Code\Encoder.h" />
+    <ClInclude Include="..\Include\Code\EncoderExceptions.h" />
+    <ClInclude Include="..\Include\Code\EncoderExceptionsMacros.h" />
     <ClInclude Include="..\Include\Code\TetraTree.h" />
+    <ClInclude Include="..\Include\Common\Format.h" />
     <ClInclude Include="..\Include\Common\Types.h" />
+    <ClInclude Include="..\Include\Common\UtilFunctions.h" />
+    <ClInclude Include="..\Include\Common\Version.h" />
+    <ClInclude Include="..\Include\Exception\BasicTraceableException.h" />
+    <ClInclude Include="..\Include\Exception\BasicTraceableExceptionMacros.h" />
+    <ClInclude Include="..\Include\Exception\ExceptionCause.h" />
+    <ClInclude Include="..\Include\Exception\TraceableException.h" />
     <ClInclude Include="..\Include\Image\Image.h" />
-    <ClInclude Include="..\Include\Iterator\BasicIterator.h" />
-    <ClInclude Include="..\Include\Iterator\IteratorExceptions.h" />
-    <ClInclude Include="..\Include\Iterator\Iterator.h" />
-    <ClInclude Include="..\Include\Scrambler\HighDensityScrambler.h" />
-    <ClInclude Include="..\Include\Scrambler\Scrambler.h" />
+    <ClInclude Include="..\Include\IO\InputFileStream.h" />
+    <ClInclude Include="..\Include\IO\InputStream.h" />
+    <ClInclude Include="..\Include\IO\InputStringStream.h" />
+    <ClInclude Include="..\Include\IO\OutputFileStream.h" />
+    <ClInclude Include="..\Include\IO\OutputStream.h" />
+    <ClInclude Include="..\Include\IO\OutputStringStream.h" />
+    <ClInclude Include="..\Include\Matrix\BasicView.h" />
+    <ClInclude Include="..\Include\Matrix\ColorToPixelConverter.h" />
+    <ClInclude Include="..\Include\Matrix\Converter.h" />
+    <ClInclude Include="..\Include\Matrix\IntegerScalingConverter.h" />
+    <ClInclude Include="..\Include\Matrix\MatrixView.h" />
+    <ClInclude Include="..\Include\Matrix\MatrixViewExceptions.h" />
+    <ClInclude Include="..\Include\Matrix\MatrixViewExceptionsMacros.h" />
+    <ClInclude Include="..\Include\Sequence\BasicIterator.h" />
+    <ClInclude Include="..\Include\Sequence\HighDensityScrambler.h" />
+    <ClInclude Include="..\Include\Sequence\Iterator.h" />
+    <ClInclude Include="..\Include\Sequence\IteratorExceptions.h" />
+    <ClInclude Include="..\Include\Sequence\IteratorExceptionsMacros.h" />
+    <ClInclude Include="..\Include\Sequence\ParityCheckScrambler.h" />
+    <ClInclude Include="..\Include\Sequence\PreambleScrambler.h" />
+    <ClInclude Include="..\Include\Sequence\Reader.h" />
+    <ClInclude Include="..\Include\Sequence\Scrambler.h" />
+    <ClInclude Include="..\Include\Sequence\ScramblingPipeline.h" />
+    <ClInclude Include="..\Include\Sequence\Writer.h" />
     <ClInclude Include="..\Include\Visual\Color.h" />
     <ClInclude Include="..\Include\Visual\HsvPalette.h" />
     <ClInclude Include="..\Include\Visual\Palette.h" />
@@ -137,15 +173,33 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\Code\CodeBits.cpp" />
+    <ClCompile Include="..\Source\Code\CodeBitsExceptions.cpp" />
     <ClCompile Include="..\Source\Code\Decoder.cpp" />
     <ClCompile Include="..\Source\Code\Encoder.cpp" />
+    <ClCompile Include="..\Source\Code\EncoderExceptions.cpp" />
     <ClCompile Include="..\Source\Code\TetraTree.cpp" />
+    <ClCompile Include="..\Source\Common\Version.cpp" />
+    <ClCompile Include="..\Source\Exception\BasicTraceableException.cpp" />
+    <ClCompile Include="..\Source\Exception\ExceptionCause.cpp" />
     <ClCompile Include="..\Source\Image\Image.cpp" />
-    <ClCompile Include="..\Source\Iterator\IteratorExceptions.cpp" />
+    <ClCompile Include="..\Source\IO\InputFileStream.cpp" />
+    <ClCompile Include="..\Source\IO\InputStringStream.cpp" />
+    <ClCompile Include="..\Source\IO\OutputFileStream.cpp" />
+    <ClCompile Include="..\Source\IO\OutputStringStream.cpp" />
     <ClCompile Include="..\Source\Main\Source.cpp" />
-    <ClCompile Include="..\Source\Scrambler\HighDensityScrambler.cpp" />
+    <ClCompile Include="..\Source\Matrix\ColorToPixelConverter.cpp" />
+    <ClCompile Include="..\Source\Matrix\IntegerScalingConverter.cpp" />
+    <ClCompile Include="..\Source\Matrix\MatrixViewExceptions.cpp" />
+    <ClCompile Include="..\Source\Sequence\HighDensityScrambler.cpp" />
+    <ClCompile Include="..\Source\Sequence\IteratorExceptions.cpp" />
+    <ClCompile Include="..\Source\Sequence\ParityCheckScrambler.cpp" />
+    <ClCompile Include="..\Source\Sequence\PreambleScrambler.cpp" />
+    <ClCompile Include="..\Source\Sequence\Reader.cpp" />
+    <ClCompile Include="..\Source\Sequence\ScramblingPipeline.cpp" />
+    <ClCompile Include="..\Source\Sequence\Writer.cpp" />
     <ClCompile Include="..\Source\Visual\Color.cpp" />
     <ClCompile Include="..\Source\Visual\HsvPalette.cpp" />
+    <ClCompile Include="..\Source\Visual\Pixel.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

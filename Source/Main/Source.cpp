@@ -1,105 +1,158 @@
 #include <iostream>
-#include <cstdio>
-#include <cstring>
-#include <stdexcept>
+#include <string>
+#include <memory>
+#include <vector>
+#include <tuple>
 
+#include <cstring>
+
+#include "Types.h"
+#include "Format.h"
+
+#include "Pixel.h"
 #include "HsvPalette.h"
+
+#include "ScramblingPipeline.h"
+#include "PreambleScrambler.h"
+#include "ParityCheckScrambler.h"
+#include "HighDensityScrambler.h"
+
+#include "ColorToPixelConverter.h"
+#include "IntegerScalingConverter.h"
+
 #include "Encoder.h"
 #include "Decoder.h"
+
+#include "Reader.h"
+#include "Writer.h"
+#include "InputFileStream.h"
+#include "OutputFileStream.h"
+
 #include "Image.h"
 
-using namespace TetraCode;
+#include "BasicTraceableException.h"
+#include "BasicTraceableExceptionMacros.h"
+
+using namespace Handmada::TetraCode;
 
 
-std::pair<std::unique_ptr<byte_t[]>, int> scrambleWithDummy(const byte_t* sequence, int length)
+static bool isTextFile(const char* fileName)
 {
-    const byte_t ZERO_BITS_DUMMY = 0b10101111;
-    const int PADDING = 5;
+    auto p = std::strchr(fileName, '.');
+    if (!p) {
+        throw Exception::BasicTraceableException(
+            Format::str("filename \"{}\" doesn't have an extension", fileName)
+        );
+    }
+    return std::strcmp(p + 1, "txt") == 0;
+}
 
-    auto scrambled = new byte_t[length * 2 + PADDING];
 
-    for (auto i = 0; i < PADDING; i++) {
-        scrambled[i] = ~0U;
+static std::tuple<bool, std::string, std::string> parseArgs(int argc, char* argv[])
+{
+    if (argc < 3) {
+        throw Exception::BasicTraceableException(
+            "too few arguments: expected paths to both input and output files"
+        );
     }
 
-    auto p = scrambled + PADDING;
-    auto q = sequence;
-    while (q < sequence + length) {
-        auto next = *q;
-        q++;
-        
-        auto activeMask = next & 0b00001111;
-        if (activeMask == 0 || (activeMask & (activeMask - 1)) == 0 || next == ZERO_BITS_DUMMY) {
-            *p = ZERO_BITS_DUMMY;
-            p++;
-            next = ~next;
+    auto fromFileName = argv[1];
+    auto toFileName = argv[2];
+
+    if (isTextFile(fromFileName)) {
+        // First file is a text => encoding
+        if (isTextFile(toFileName)) {
+            throw Exception::BasicTraceableException(
+                "at least one file should be an image one"
+            );
         }
-
-        *p = next;
-        p++;
-    }
-    return std::make_pair(std::unique_ptr<byte_t[]>(scrambled), int(p - scrambled));
-}
-
-
-std::pair<std::unique_ptr<byte_t[]>, int> unscrambleFromDummy(const byte_t* sequence, int length)
-{
-    const byte_t ZERO_BITS_DUMMY = 0b10101111;
-    const int PADDING = 5;
-
-    auto unscrambled = new byte_t[length + 1];
-    auto p = unscrambled;
-    auto q = sequence + PADDING;
-    while (q < sequence + length) {
-        auto next = *q;
-        q++;
-
-        if (next == ZERO_BITS_DUMMY) {
-            next = ~(*q);
-            q++;
+        return std::make_tuple(true, fromFileName, toFileName);
+    } else {
+        // First file is an image => decoding
+        if (!isTextFile(toFileName)) {
+            throw Exception::BasicTraceableException(
+                "at least one file should be a text one"
+            );
         }
-
-        *p = next;
-        p++;
+        return std::make_tuple(false, fromFileName, toFileName);
     }
-    *p = '\0';
-    p++;
-
-    std::cout << "before unscrambling: " << length << std::endl;
-    std::cout << "after unscrambling: " << int(p - unscrambled) << std::endl;
-
-    return std::make_pair(std::unique_ptr<byte_t[]>(unscrambled), int(p - unscrambled));
 }
 
 
-void encode(const char* filePath, coord_t maxSide, coord_t minSide, coord_t pivotSide, const Palette& palette)
+static void encode(
+    const std::string& fromFileName,
+    const std::string& toFileName,
+    Sequence::Scrambler& scrambler,
+    coord_t maxSide,
+    coord_t minSide,
+    coord_t scaleFactor,
+    const Visual::HsvPalette& palette
+)
 {
-    const size_t BUFFER_SIZE = 4096;
-    char buffer[BUFFER_SIZE] = { 0 };
-    std::cin.read(buffer, BUFFER_SIZE - 1);
-    auto length = std::strlen(buffer);
+    // Get byte sequence
+    std::cout << "Reading byte stream from input file...\n";
+    auto stream = IO::InputFileStream(fromFileName);
+    auto sequence = Sequence::readSequence(stream);
 
-    auto scrambled = scrambleWithDummy(reinterpret_cast<byte_t*>(buffer), length);
+    // Encode sequence
+    std::cout << "Encoding...\n";
+    sequence = scrambler.encodingIterator(std::move(sequence));
+    auto view = Code::sequence2image(*sequence, maxSide, minSide);
 
-    auto encoder = Encoder(maxSide, minSide, pivotSide, &palette);
-    auto image = encoder.sequence2image(scrambled.first.get(), scrambled.second);
-    ExportBufferAsImage(image.first.get(), image.second, image.second, filePath);
+    // Convert to image
+    auto paletteConverter = Matrix::ColorToPixelConverter(palette);
+    auto scaleConverter = Matrix::IntegerScalingConverter(scaleFactor);
+    auto image = scaleConverter.directView(
+        paletteConverter.directView(std::move(view))
+    );
 
-    std::cout << "original length = " << length << std::endl;
-    std::cout << "new length = " << scrambled.second << std::endl;
-    std::cout << "optimal side = " << image.second << std::endl;
-    std::cout << "done\n";
+    // Save image
+    std::cout << "Saving image to file...\n";
+    Image::exportImage(*image, toFileName);
 }
 
 
-void decode(const char* filePath, coord_t maxSide, coord_t minSide, coord_t pivotSide, const Palette& palette)
+static void decode(
+    const std::string& fromFileName,
+    const std::string& toFileName,
+    Sequence::Scrambler& scrambler,
+    Sequence::PreambleScrambler& preambleScrambler,
+    const Version& hostVersion,
+    coord_t scaleFactor,
+    const Visual::HsvPalette& palette
+)
 {
-    auto image = ImportImageFromFile(filePath, true);
-    auto decoder = Decoder(&palette);
-    auto sequence = decoder.image2sequence(image.first.get(), image.second, pivotSide);
-    auto unscrambled = unscrambleFromDummy(sequence.first.get(), sequence.second);
-    std::cout << "Text [" << unscrambled.second << " characters total]:\n\t";
-    std::cout.write(reinterpret_cast<const char*>(unscrambled.first.get()), unscrambled.second);
+    // Get image from file
+    std::cout << "Loading image from file...\n";
+    auto image = Image::importImage(fromFileName);
+
+    // Convert pixel image to color view
+    auto paletteConverter = Matrix::ColorToPixelConverter(palette);
+    auto scaleConverter = Matrix::IntegerScalingConverter(scaleFactor);
+    auto view = paletteConverter.inverseView(
+        scaleConverter.inverseView(std::move(image))
+    );
+
+    // Decode view to sequence
+    std::cout << "Decoding...\n";
+    auto sequence = Code::image2sequence(*view);
+    sequence = scrambler.decodingIterator(std::move(sequence));
+
+    // Check guest version
+    auto guestVersion = preambleScrambler.guestVersion();
+    if (hostVersion == guestVersion) {
+        std::cout << "OK, guest version (" << guestVersion.toString()
+            << ") is compatible with the host one\n";
+    } else {
+        std::cout << "<!> Warning: guest version (" << guestVersion.toString()
+            << ") is not compatible with the host one\n";
+        std::cout << "<!> Warning: decoded sequence can be different from the original one\n";
+    }
+
+    // Store into file
+    std::cout << "Saving byte stream to file...\n";
+    auto stream = IO::OutputFileStream(toFileName);
+    Sequence::writeSequence(*sequence, stream);
 }
 
 
@@ -107,35 +160,49 @@ int main(int argc, char* argv[])
 {
     try {
         const coord_t MAX_SIDE = 2048;
-        const coord_t MIN_SIDE = 256;
-        const coord_t PIVOT_SIDE = 4;
+        const coord_t MIN_SIDE = 64;
+        const coord_t SCALE_FACTOR = 4;
 
+        const auto GROUP_SIZE = 7;  // for parity check
+        const auto PADDING = 4;  // for high density
 
-        if (argc < 2) {
-            throw std::runtime_error("image export path was not specified");
-        }
+        // Parse args
+        auto [isEncoding, fromFileName, toFileName] = parseArgs(argc, argv);
 
-        bool isEncoding = true;
-        if (argc >= 3) {
-            if (!std::strcmp(argv[2], "-d")) {
-                isEncoding = false;
-            } else {
-                throw std::runtime_error("unknown option [only valid is -d]");
-            }
-        }
-
-        Pixel basePixels[2][2] = {
-            { Pixel(255, 64, 0), Pixel(255, 192, 0) },
-        { Pixel(192, 0, 64), Pixel(96, 0, 128) },
+        // Define palette
+        Visual::Pixel basePixels[2][2] = {
+            { "#ff4000", "#ffc000" },
+            { "#c00040", "#600080" },
         };
-        auto palette = HsvPalette(basePixels);
+        auto palette = Visual::HsvPalette(basePixels);
 
+        // Define host version
+        auto hostVersion = Version(0, 1, 0);
+        std::cout << "TetraCode v" << hostVersion.toString() << std::endl;
+
+        // Define scrambling pipeline
+        auto scramblers = std::vector<std::unique_ptr<Sequence::Scrambler>>();
+        scramblers.push_back(Sequence::PreambleScrambler::create(hostVersion));
+        scramblers.push_back(Sequence::ParityCheckScrambler::create(GROUP_SIZE));
+        scramblers.push_back(Sequence::HighDensityScrambler::create(PADDING));
+        auto pipeline = Sequence::ScramblingPipeline(scramblers);
+
+        // Dispatch
         if (isEncoding) {
-            encode(argv[1], MAX_SIDE, MIN_SIDE, PIVOT_SIDE, palette);
+            encode(fromFileName, toFileName, pipeline, MAX_SIDE, MIN_SIDE, SCALE_FACTOR, palette);
         } else {
-            decode(argv[1], MAX_SIDE, MIN_SIDE, PIVOT_SIDE, palette);
+            auto& preambleScrambler = dynamic_cast<Sequence::PreambleScrambler&>(*scramblers[0]);
+            decode(fromFileName, toFileName, pipeline, preambleScrambler, 
+                hostVersion, SCALE_FACTOR, palette);
         }
+
+        // OK
+        std::cout << "Done\n";
+
+    } catch (Exception::TraceableException& e) {
+        auto trace = e.buildTraceString();
+        std::cerr << "Aborted:\n" << trace << std::endl;
     } catch (std::exception& e) {
-        std::cerr << "Aborted with exception: " << e.what() << std::endl;
+        std::cerr << "Aborted with untraceable exception:\n" << e.what() << std::endl;
     }
 }

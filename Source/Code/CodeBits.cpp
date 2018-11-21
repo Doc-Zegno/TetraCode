@@ -1,7 +1,9 @@
 #include "CodeBits.h"
 
+#include "CodeBitsExceptionsMacros.h"
 
-namespace TetraCode {
+
+namespace Handmada::TetraCode::Code {
     CodeBits::CodeBits(byte_t raw)
     {
         _converter.raw = raw;
@@ -51,5 +53,23 @@ namespace TetraCode {
     int CodeBits::colorNumber() const
     {
         return _converter.bits.colorNumber;
+    }
+
+
+    byte_t CodeBits::packSmallInt(int value)
+    {
+        if (value > maxSmallInt()) {
+            throw BigValuePackingException(TraceableExceptionPtr(), maxSmallInt(), value);
+        }
+        return byte_t((value << 4) | 0x0F);
+    }
+
+
+    int CodeBits::unpackSmallInt(byte_t packed)
+    {
+        if ((packed & 0x0F) != 0x0F) {
+            throw CorruptedPackedByteException(TraceableExceptionPtr(), packed);
+        }
+        return packed >> 4;
     }
 }

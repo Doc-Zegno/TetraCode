@@ -4,22 +4,22 @@
 
 #include "Palette.h"
 #include "TetraTree.h"
-#include "Pixel.h"
+#include "Iterator.h"
+#include "MatrixView.h"
+#include "EncoderExceptions.h"
 
 
-namespace TetraCode {
-    class Encoder {
-    private:
-        coord_t _maxSide;
-        coord_t _minSide;
-        coord_t _pivotSide;
-        const Palette* _palette;
-
-        void fillImage(const TetraTree& tree, Pixel* image, coord_t optimalSide, coord_t compression) const;
-
-    public:
-        Encoder(coord_t maxSide, coord_t minSide, coord_t pivotSide, const Palette* palette);
-
-        std::pair<std::unique_ptr<Pixel[]>, int> sequence2image(const byte_t* sequence, size_t length) const;
-    };
+namespace Handmada::TetraCode::Code {
+    /// <summary>
+    /// Encode input byte sequence into image
+    /// </summary>
+    /// <param name="sequence">Input byte sequence to be encoded</param>
+    /// <param name="maxSide">Maximum side of an output image</param>
+    /// <param name="minSide">Minimum side of an output image</param>
+    /// <returns>View of image encoding</returns>
+    std::unique_ptr<Matrix::MatrixView<Visual::Color>> sequence2image(
+        Sequence::Iterator<byte_t>& sequence,
+        coord_t maxSide,
+        coord_t minSide
+    );
 }

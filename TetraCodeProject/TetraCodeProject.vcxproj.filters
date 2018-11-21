@@ -28,20 +28,35 @@
     <Filter Include="Source\Visual">
       <UniqueIdentifier>{659da140-d614-422f-944f-580c469e83dc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Scrambler">
-      <UniqueIdentifier>{746ee538-b586-4c45-b807-f84648391e2e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Include\Scrambler">
-      <UniqueIdentifier>{3fc2c9ce-b766-485c-afbf-899aee357e4e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Include\Iterator">
-      <UniqueIdentifier>{3e93fa6a-8032-46cb-8123-d289dd71e3d3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Main">
       <UniqueIdentifier>{7476b56d-dc79-4997-a23a-42c5a3e088e9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Iterator">
-      <UniqueIdentifier>{468c5213-c631-4031-b9ae-b4772324bd21}</UniqueIdentifier>
+    <Filter Include="Source\Common">
+      <UniqueIdentifier>{1ef12b2e-be49-4d90-bccd-2012ab600e9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Exception">
+      <UniqueIdentifier>{3a0207ae-2da0-46db-9ef1-21d2b2e7e174}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Exception">
+      <UniqueIdentifier>{cd20e89d-8926-4dd5-b329-86cb750b13be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Matrix">
+      <UniqueIdentifier>{46ba41e5-6669-4d35-aa74-d3849d86f5fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Matrix">
+      <UniqueIdentifier>{1c5415c9-2c3f-4ff1-a7eb-95145c5ef578}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Sequence">
+      <UniqueIdentifier>{d8e713f8-d769-40c5-b409-98f7165ee6d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Sequence">
+      <UniqueIdentifier>{bdee20c5-42ff-4cb6-af17-ac68b490252e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\IO">
+      <UniqueIdentifier>{82904939-4d35-4b81-ba08-bbc039591a9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\IO">
+      <UniqueIdentifier>{2ffc89d9-702c-43f9-b955-56cb3ef0ea8f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -75,20 +90,110 @@
     <ClInclude Include="..\Include\Visual\Pixel.h">
       <Filter>Include\Visual</Filter>
     </ClInclude>
-    <ClInclude Include="..\Include\Iterator\Iterator.h">
-      <Filter>Include\Iterator</Filter>
+    <ClInclude Include="..\Include\Common\Version.h">
+      <Filter>Include\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\Include\Scrambler\HighDensityScrambler.h">
-      <Filter>Include\Scrambler</Filter>
+    <ClInclude Include="..\Include\Exception\TraceableException.h">
+      <Filter>Include\Exception</Filter>
     </ClInclude>
-    <ClInclude Include="..\Include\Scrambler\Scrambler.h">
-      <Filter>Include\Scrambler</Filter>
+    <ClInclude Include="..\Include\Exception\BasicTraceableException.h">
+      <Filter>Include\Exception</Filter>
     </ClInclude>
-    <ClInclude Include="..\Include\Iterator\BasicIterator.h">
-      <Filter>Include\Iterator</Filter>
+    <ClInclude Include="..\Include\Exception\ExceptionCause.h">
+      <Filter>Include\Exception</Filter>
     </ClInclude>
-    <ClInclude Include="..\Include\Iterator\IteratorExceptions.h">
-      <Filter>Include\Iterator</Filter>
+    <ClInclude Include="..\Include\Matrix\MatrixView.h">
+      <Filter>Include\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Matrix\BasicView.h">
+      <Filter>Include\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Matrix\Converter.h">
+      <Filter>Include\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Matrix\ColorToPixelConverter.h">
+      <Filter>Include\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Matrix\MatrixViewExceptions.h">
+      <Filter>Include\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Matrix\MatrixViewExceptionsMacros.h">
+      <Filter>Include\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Common\UtilFunctions.h">
+      <Filter>Include\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Matrix\IntegerScalingConverter.h">
+      <Filter>Include\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Common\Format.h">
+      <Filter>Include\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Code\CodeBitsExceptions.h">
+      <Filter>Include\Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Sequence\BasicIterator.h">
+      <Filter>Include\Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Sequence\HighDensityScrambler.h">
+      <Filter>Include\Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Sequence\Iterator.h">
+      <Filter>Include\Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Sequence\IteratorExceptions.h">
+      <Filter>Include\Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Sequence\IteratorExceptionsMacros.h">
+      <Filter>Include\Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Sequence\PreambleScrambler.h">
+      <Filter>Include\Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Sequence\Scrambler.h">
+      <Filter>Include\Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Sequence\ParityCheckScrambler.h">
+      <Filter>Include\Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Code\CodeBitsExceptionsMacros.h">
+      <Filter>Include\Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Exception\BasicTraceableExceptionMacros.h">
+      <Filter>Include\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Code\EncoderExceptions.h">
+      <Filter>Include\Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Code\EncoderExceptionsMacros.h">
+      <Filter>Include\Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Sequence\Reader.h">
+      <Filter>Include\Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\IO\InputStream.h">
+      <Filter>Include\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\IO\InputStringStream.h">
+      <Filter>Include\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Sequence\Writer.h">
+      <Filter>Include\Sequence</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\IO\OutputStream.h">
+      <Filter>Include\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\IO\OutputStringStream.h">
+      <Filter>Include\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\IO\InputFileStream.h">
+      <Filter>Include\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\IO\OutputFileStream.h">
+      <Filter>Include\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Sequence\ScramblingPipeline.h">
+      <Filter>Include\Sequence</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -116,11 +221,65 @@
     <ClCompile Include="..\Source\Main\Source.cpp">
       <Filter>Source\Main</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\Scrambler\HighDensityScrambler.cpp">
-      <Filter>Source\Scrambler</Filter>
+    <ClCompile Include="..\Source\Common\Version.cpp">
+      <Filter>Source\Common</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\Iterator\IteratorExceptions.cpp">
-      <Filter>Source\Iterator</Filter>
+    <ClCompile Include="..\Source\Exception\BasicTraceableException.cpp">
+      <Filter>Source\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Exception\ExceptionCause.cpp">
+      <Filter>Source\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Matrix\ColorToPixelConverter.cpp">
+      <Filter>Source\Matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Matrix\MatrixViewExceptions.cpp">
+      <Filter>Source\Matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Matrix\IntegerScalingConverter.cpp">
+      <Filter>Source\Matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Visual\Pixel.cpp">
+      <Filter>Source\Visual</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Code\CodeBitsExceptions.cpp">
+      <Filter>Source\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Sequence\HighDensityScrambler.cpp">
+      <Filter>Source\Sequence</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Sequence\IteratorExceptions.cpp">
+      <Filter>Source\Sequence</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Sequence\PreambleScrambler.cpp">
+      <Filter>Source\Sequence</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Sequence\ParityCheckScrambler.cpp">
+      <Filter>Source\Sequence</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Code\EncoderExceptions.cpp">
+      <Filter>Source\Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Sequence\Reader.cpp">
+      <Filter>Source\Sequence</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\IO\InputStringStream.cpp">
+      <Filter>Source\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Sequence\Writer.cpp">
+      <Filter>Source\Sequence</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\IO\OutputStringStream.cpp">
+      <Filter>Source\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\IO\InputFileStream.cpp">
+      <Filter>Source\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\IO\OutputFileStream.cpp">
+      <Filter>Source\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Sequence\ScramblingPipeline.cpp">
+      <Filter>Source\Sequence</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -8,7 +8,7 @@ using namespace Handmada::TetraCode::Sequence;
 
 
 namespace UnitTest
-{		
+{        
     TEST_CLASS(IteratorTest)
     {
     public:

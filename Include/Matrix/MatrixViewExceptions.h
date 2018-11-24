@@ -5,26 +5,26 @@
 
 
 namespace Handmada::TetraCode::Matrix {
-	using TraceableExceptionPtr = std::unique_ptr<Exception::TraceableException>;
+    using TraceableExceptionPtr = std::unique_ptr<Exception::TraceableException>;
 
 
-	/// <summary>
-	/// Signalizes that instance of <see cref="MatrixView"/>
-	/// tried to call <see cref="get(coord_t, coord_t)"/>
-	/// with out of range coordinate
-	/// </summary>
-	class ViewOutOfRangeException : public Exception::BasicTraceableException {
-	public:
-		ViewOutOfRangeException(
-			const std::string& fileName,
-			const std::string& functionName,
-			int line,
-			TraceableExceptionPtr&& cause
-		);
+    /// <summary>
+    /// Signalizes that instance of <see cref="MatrixView"/>
+    /// tried to call <see cref="get(coord_t, coord_t)"/>
+    /// with out of range coordinate
+    /// </summary>
+    class ViewOutOfRangeException : public Exception::BasicTraceableException {
+    public:
+        ViewOutOfRangeException(
+            const std::string& fileName,
+            const std::string& functionName,
+            int line,
+            TraceableExceptionPtr&& cause
+        );
 
-		virtual TraceableExceptionPtr move() override;
-		virtual TraceableExceptionPtr clone() const override;
-	};
+        virtual TraceableExceptionPtr move() override;
+        virtual TraceableExceptionPtr clone() const override;
+    };
 
 
 

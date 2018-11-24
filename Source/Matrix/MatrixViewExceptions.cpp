@@ -3,34 +3,34 @@
 
 namespace Handmada::TetraCode::Matrix {
     // O u t    o f    r a n g e
-	ViewOutOfRangeException::ViewOutOfRangeException(
-		const std::string& fileName,
-		const std::string& functionName,
-		int line,
-		TraceableExceptionPtr&& cause
-	) : Exception::BasicTraceableException(
-		    "tried to access non-existing element",
-		    fileName,
-		    functionName,
-		    line,
-		    std::move(cause)
-	    )
-	{
-	}
+    ViewOutOfRangeException::ViewOutOfRangeException(
+        const std::string& fileName,
+        const std::string& functionName,
+        int line,
+        TraceableExceptionPtr&& cause
+    ) : Exception::BasicTraceableException(
+            "tried to access non-existing element",
+            fileName,
+            functionName,
+            line,
+            std::move(cause)
+        )
+    {
+    }
 
 
-	TraceableExceptionPtr ViewOutOfRangeException::move()
-	{
-		auto e = new ViewOutOfRangeException(std::move(*this));
-		return TraceableExceptionPtr(e);
-	}
+    TraceableExceptionPtr ViewOutOfRangeException::move()
+    {
+        auto e = new ViewOutOfRangeException(std::move(*this));
+        return TraceableExceptionPtr(e);
+    }
 
 
-	TraceableExceptionPtr ViewOutOfRangeException::clone() const
-	{
-		auto e = new ViewOutOfRangeException(*this);
-		return TraceableExceptionPtr(e);
-	}
+    TraceableExceptionPtr ViewOutOfRangeException::clone() const
+    {
+        auto e = new ViewOutOfRangeException(*this);
+        return TraceableExceptionPtr(e);
+    }
 
 
 

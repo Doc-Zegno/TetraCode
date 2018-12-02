@@ -38,6 +38,13 @@ namespace Handmada::TetraCode {
         /// <returns>String representation</returns>
         std::string toString() const;
 
+        /// <summary>
+        /// Check whether this version is compatible with a specified one
+        /// </summary>
+        /// <param name="version">Version to be compared to</param>
+        /// <returns>`true` if versions are compatible and `false` otherwise</returns>
+        bool isCompatible(const Version& version) const;
+
         bool operator==(const Version& version) const;
         bool operator!=(const Version& version) const;
     };

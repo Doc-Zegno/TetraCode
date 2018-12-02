@@ -58,6 +58,15 @@
     <Filter Include="Source\IO">
       <UniqueIdentifier>{2ffc89d9-702c-43f9-b955-56cb3ef0ea8f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="External">
+      <UniqueIdentifier>{ffa9a093-ebb4-419e-8ec9-973e81dcbe08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External\Include">
+      <UniqueIdentifier>{c7225db3-8a11-4cd4-b32c-3fd2a67c58b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External\Source">
+      <UniqueIdentifier>{7a6d9aa6-22d0-4a9f-b302-847f8e3c45a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Include\Code\CodeBits.h">
@@ -195,6 +204,9 @@
     <ClInclude Include="..\Include\Sequence\ScramblingPipeline.h">
       <Filter>Include\Sequence</Filter>
     </ClInclude>
+    <ClInclude Include="..\External\Include\lodepng.h">
+      <Filter>External\Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\Code\CodeBits.cpp">
@@ -280,6 +292,9 @@
     </ClCompile>
     <ClCompile Include="..\Source\Sequence\ScramblingPipeline.cpp">
       <Filter>Source\Sequence</Filter>
+    </ClCompile>
+    <ClCompile Include="..\External\Source\lodepng.cpp">
+      <Filter>External\Source</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

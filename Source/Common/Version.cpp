@@ -35,6 +35,12 @@ namespace Handmada::TetraCode {
     }
 
 
+    bool Version::isCompatible(const Version& version) const
+    {
+        return _major == version._major && _minor == version._minor;
+    }
+
+
     bool Version::operator==(const Version& version) const
     {
         return _major == version._major && _minor == version._minor && _micro == version._micro;

@@ -76,7 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\Include\IO;..\Include\Matrix;..\Include\Visual;..\Include\Sequence;..\Include\Image;..\Include\Common;..\Include\Code;..\Include\Exception;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\External\Include;..\Include\IO;..\Include\Matrix;..\Include\Visual;..\Include\Sequence;..\Include\Image;..\Include\Common;..\Include\Code;..\Include\Exception;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
@@ -86,7 +86,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\Include\IO;..\Include\Matrix;..\Include\Visual;..\Include\Sequence;..\Include\Image;..\Include\Common;..\Include\Code;..\Include\Exception;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\External\Include;..\Include\IO;..\Include\Matrix;..\Include\Visual;..\Include\Sequence;..\Include\Image;..\Include\Common;..\Include\Code;..\Include\Exception;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
@@ -98,7 +98,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\Include\IO;..\Include\Matrix;..\Include\Visual;..\Include\Sequence;..\Include\Image;..\Include\Common;..\Include\Code;..\Include\Exception;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\External\Include;..\Include\IO;..\Include\Matrix;..\Include\Visual;..\Include\Sequence;..\Include\Image;..\Include\Common;..\Include\Code;..\Include\Exception;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
@@ -115,7 +115,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\Include\IO;..\Include\Matrix;..\Include\Visual;..\Include\Sequence;..\Include\Image;..\Include\Common;..\Include\Code;..\Include\Exception;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\External\Include;..\Include\IO;..\Include\Matrix;..\Include\Visual;..\Include\Sequence;..\Include\Image;..\Include\Common;..\Include\Code;..\Include\Exception;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
@@ -125,6 +125,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\External\Include\lodepng.h" />
     <ClInclude Include="..\Include\Code\CodeBits.h" />
     <ClInclude Include="..\Include\Code\CodeBitsExceptions.h" />
     <ClInclude Include="..\Include\Code\CodeBitsExceptionsMacros.h" />
@@ -172,6 +173,7 @@
     <ClInclude Include="..\Include\Visual\Pixel.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\External\Source\lodepng.cpp" />
     <ClCompile Include="..\Source\Code\CodeBits.cpp" />
     <ClCompile Include="..\Source\Code\CodeBitsExceptions.cpp" />
     <ClCompile Include="..\Source\Code\Decoder.cpp" />

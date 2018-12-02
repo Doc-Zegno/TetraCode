@@ -140,7 +140,7 @@ static void decode(
 
     // Check guest version
     auto guestVersion = preambleScrambler.guestVersion();
-    if (hostVersion == guestVersion) {
+    if (hostVersion.isCompatible(guestVersion)) {
         std::cout << "OK, guest version (" << guestVersion.toString()
             << ") is compatible with the host one\n";
     } else {
@@ -177,7 +177,7 @@ int main(int argc, char* argv[])
         auto palette = Visual::HsvPalette(basePixels);
 
         // Define host version
-        auto hostVersion = Version(0, 1, 0);
+        auto hostVersion = Version(0, 2, 0);
         std::cout << "TetraCode v" << hostVersion.toString() << std::endl;
 
         // Define scrambling pipeline

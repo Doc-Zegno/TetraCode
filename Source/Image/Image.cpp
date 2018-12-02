@@ -1,8 +1,8 @@
 #include "Image.h"
 
-#include "atlimage.h"
-
 #include <vector>
+
+#include "lodepng.h"
 
 #include "Format.h"
 #include "BasicView.h"
@@ -20,67 +20,63 @@ namespace Handmada::TetraCode::Image {
         auto width = view.width();
         auto height = view.height();
 
-        CImage image;
-        image.Create(width, height, 24);
-        auto imageBuffer = (byte_t*) image.GetBits();
-
-        auto pitch = image.GetPitch();
-        if (pitch < 0) {
-            imageBuffer += pitch * (height - 1);
-            pitch = -pitch;
-        }
-
-        auto imageDisplacement = 0;
-        for (auto y = coord_t(0); y < height; y++) {
-            for (auto x = coord_t(0); x < width; x++) {
+        // Raw bytes
+        auto image = std::vector<byte_t>(width * height * 4, 0xFF);
+        for (auto x = coord_t(0); x < width; x++) {
+            for (auto y = coord_t(0); y < height; y++) {
+                auto base = (y * width + x) * 4;  // RGBA => 4 bytes
                 auto pixel = view.get(x, y);
-                auto index = imageDisplacement + x * 3;
-
-                imageBuffer[index] = pixel.b();
-                imageBuffer[index + 1] = pixel.g();
-                imageBuffer[index + 2] = pixel.r();
+                for (auto c = 0; c < 3; c++) {
+                    image[base + c] = pixel[c];
+                }
             }
-            imageDisplacement += pitch;
         }
 
-        image.Save(fileName.c_str());
-        image.Destroy();
+        // Encode the image
+        unsigned error = lodepng::encode(fileName.c_str(), image, width, height);
+
+        // If there's an error, throw it
+        if (error) {
+            throw Exception::BasicTraceableException(
+                Format::str("encoder error {}: {}", error, lodepng_error_text(error))
+            );
+        }
     }
 
 
     std::unique_ptr<MatrixView<Pixel>> importImage(const std::string& fileName)
     {
-        CImage image;
-        auto result = image.Load(fileName.c_str());
-        if (result != S_OK) {
+        std::vector<unsigned char> image;  // The raw pixels
+        unsigned width, height;
+
+        // Decode
+        unsigned error = lodepng::decode(image, width, height, fileName.c_str());
+
+        // If there's an error, throw it
+        if (error) {
             throw Exception::BasicTraceableException(
-                Format::str("unable to load image from file \"{}\"", fileName)
+                Format::str("decoder error {}: {}", error, lodepng_error_text(error))
             );
         }
 
-        auto side = image.GetHeight();
-        auto pixels = std::vector<Pixel>(side * side, Pixel());
+        auto pixels = std::vector<Pixel>(width * height, Pixel());
 
-        auto imageBuffer = (byte_t*) image.GetBits();
-        auto pitch = image.GetPitch();
-        if (pitch < 0) {
-            imageBuffer += pitch * (side - 1);
-            pitch = -pitch;
-        }
+        for (auto x = 0U; x < width; x++) {
+            for (auto y = 0U; y < height; y++) {
+                auto base = y * width + x;
+                auto imageBase = base * 4;  // RGBA => 4 bytes
 
-        auto imageDisplacement = 0;
-        for (auto i = 0; i < side; i++) {
-            for (auto j = 0; j < side; j++) {
-                auto index = imageDisplacement + j * 3;
-                auto& pixel = pixels[i * side + j];
-                pixel = Pixel(imageBuffer[index + 2], imageBuffer[index + 1], imageBuffer[index]);
+                byte_t channels[3];
+                for (auto c = 0; c < 3; c++) {
+                    channels[c] = image[imageBase + c];
+                }
+
+                pixels[base] = Pixel(channels[0], channels[1], channels[2]);
             }
-            imageDisplacement += pitch;
         }
 
-        image.Destroy();
         return std::unique_ptr<MatrixView<Pixel>>(
-            new Matrix::BasicView<Pixel>(std::move(pixels), side, side)
+            new Matrix::BasicView<Pixel>(std::move(pixels), width, height)
         );
     }
 }

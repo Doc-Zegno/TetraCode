@@ -3,7 +3,7 @@ INCLUDE_DIRS = $(wildcard Include/**) \
 INCLUDE = $(addprefix -I, $(INCLUDE_DIRS))
 
 CC = clang++
-FLAGS = -Wall -Werror -std=c++17 -stdlib=libstdc++ -O2
+FLAGS = -Wall -Werror -std=c++17 -stdlib=libc++ -O2
 DEPFLAGS = -MMD -MP
 
 SRC = $(wildcard Source/**/*.cpp)

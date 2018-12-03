@@ -32,7 +32,7 @@ namespace UnitTest
         {
             auto createCause = []() { 
                 return TraceableExceptionPtr(
-                    new BasicTraceableException("sample text", TraceableExceptionPtr())
+                    new BasicTraceableException("sample text")
                 ); 
             };
 
@@ -47,8 +47,6 @@ namespace UnitTest
                 TraceableExceptionPtr(new ViewOutOfRangeException(createCause())),
                 TraceableExceptionPtr(new ViewSizeMismatchException(createCause(), 6, 7)),
                 TraceableExceptionPtr(new ViewBadRatioException(createCause(), 6, 4, 3)),
-
-                TraceableExceptionPtr(new BasicTraceableException("sample text", createCause())),
 
                 TraceableExceptionPtr(new CorruptedPackedByteException(createCause(), 0x00)),
                 TraceableExceptionPtr(new BigValuePackingException(createCause(), 15, 16)),

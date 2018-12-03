@@ -2,9 +2,16 @@
 
 
 namespace Handmada::TetraCode::Visual {
+    Color::Color()
+        : _isActive(false), _huePair(0), _brightnessLevel(0), _number(0)
+    {
+    }
+
+
     Color::Color(bool isActive, int huePair, int brightnessLevel, int number)
         : _isActive(isActive), _huePair(huePair), _brightnessLevel(brightnessLevel), _number(number)
-    {}
+    {
+    }
 
 
     bool Color::isActive() const

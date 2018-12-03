@@ -22,7 +22,7 @@ namespace Handmada::TetraCode {
             } else {
                 if (!strcmp(options, ":x")) {
                     // Hex
-                    if constexpr (std::is_integral<T>::value) {
+                    if (std::is_integral<T>::value) {
                         out << std::hex;
                         out << value;
                         out << std::dec;

@@ -14,7 +14,7 @@ namespace Handmada::TetraCode::IO {
 
     void OutputStringStream::write(const byte_t* source, int len)
     {
-        auto numLeft = _end - _current;
+        auto numLeft = int(_end - _current);
         auto numWritten = std::min(numLeft, len);
         std::memcpy(_current, source, numWritten);
         _current += numWritten;

@@ -13,7 +13,7 @@ namespace Handmada::TetraCode::Visual {
         int _number;
 
     public:
-        Color() = default;
+        Color();
 
         /// <param name="isActive">Is <see cref="TetraTree"/>'s node with this color active?</param>
         /// <param name="huePair">Number of color pair</param>

@@ -2,8 +2,8 @@ INCLUDE_DIRS = $(wildcard Include/**) \
 	External/Include
 INCLUDE = $(addprefix -I, $(INCLUDE_DIRS))
 
-CC = g++
-FLAGS = -Wall -Werror -std=c++17
+CC = clang++
+FLAGS = -Wall -Werror -std=c++17 -stdlib=libstdc++ -O2
 DEPFLAGS = -MMD -MP
 
 SRC = $(wildcard Source/**/*.cpp)
@@ -17,7 +17,7 @@ SRC_EXTERNAL = $(wildcard External/Source/*.cpp)
 all: dirs compileall
 
 compileall: $(SRC:Source/%.cpp=Object/%.o) $(SRC_EXTERNAL:External/Source/%.cpp=Object/External/%.o)
-	$(CC) $(FLAGS) -o Build/TetraCode
+	$(CC) $(FLAGS) $^ -o Build/TetraCode
 	
 time:
 	touch $(SRC) $(SRC_EXTERNAL) $(wildcard Include/**/*.h) $(wildcard External/Include/*.h)
@@ -32,7 +32,7 @@ $(SRC_EXTERNAL:External/Source/%.cpp=Object/External/%.o) : Object/External/%.o 
 
 dirs:
 	mkdir -p Build
-    mkdir -p Object
+	mkdir -p Object
 	mkdir -p $(patsubst Source/%, Object/%, $(dir $(SRC)))
 	mkdir -p Object/External
 	

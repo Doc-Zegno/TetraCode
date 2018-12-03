@@ -29,8 +29,11 @@ namespace Handmada::TetraCode::Visual {
 
     Pixel HsvPalette::color2pixel(Color color) const
     {
-        int shift = color.isActive() ? 0 : 8;
-        return _pixels[color.huePair()][color.number()][color.brightnessLevel() + shift];
+        auto pair = color.huePair();
+        auto number = color.number();
+        auto shift = color.isActive() ? 0 : 8;
+        auto level = color.brightnessLevel() + shift;
+        return _pixels[pair][number][level];
     }
 
 

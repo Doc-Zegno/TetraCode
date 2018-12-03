@@ -3,7 +3,6 @@
 #include "UtilFunctions.h"
 #include "MatrixViewExceptions.h"
 #include "MatrixViewExceptionsMacros.h"
-#include "..\..\Include\Matrix\IntegerScalingConverter.h"
 
 
 namespace Handmada::TetraCode::Matrix {

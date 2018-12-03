@@ -3,7 +3,6 @@
 #include <string>
 #include <memory>
 #include <sstream>
-#include <optional>
 
 #include "TraceableException.h"
 #include "ExceptionCause.h"

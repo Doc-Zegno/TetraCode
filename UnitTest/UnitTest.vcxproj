@@ -130,12 +130,13 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
       <LanguageStandard>stdcpplatest</LanguageStandard>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>..\TetraCodeProject\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\TetraCodeProject\Release;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>OutputStringStream.obj;InputStringStream.obj;Writer.obj;Reader.obj;Pixel.obj;Color.obj;HsvPalette.obj;IntegerScalingConverter.obj;ColorToPixelConverter.obj;EncoderExceptions.obj;CodeBitsExceptions.obj;MatrixViewExceptions.obj;ExceptionCause.obj;BasicTraceableException.obj;IteratorExceptions.obj;CodeBits.obj;TetraTree.obj;Encoder.obj;Decoder.obj;ScramblingPipeline.obj;ParityCheckScrambler.obj;HighDensityScrambler.obj;PreambleScrambler.obj;Version.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -150,12 +151,13 @@
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
       <LanguageStandard>stdcpplatest</LanguageStandard>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>..\TetraCodeProject\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\TetraCodeProject\Release;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>OutputStringStream.obj;InputStringStream.obj;Writer.obj;Reader.obj;Pixel.obj;Color.obj;HsvPalette.obj;IntegerScalingConverter.obj;ColorToPixelConverter.obj;EncoderExceptions.obj;CodeBitsExceptions.obj;MatrixViewExceptions.obj;ExceptionCause.obj;BasicTraceableException.obj;IteratorExceptions.obj;CodeBits.obj;TetraTree.obj;Encoder.obj;Decoder.obj;ScramblingPipeline.obj;ParityCheckScrambler.obj;HighDensityScrambler.obj;PreambleScrambler.obj;Version.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

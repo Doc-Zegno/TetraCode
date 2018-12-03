@@ -14,7 +14,7 @@ namespace Handmada::TetraCode::IO {
 
     int InputStringStream::read(byte_t* destination, int maximumLen)
     {
-        auto numLeft = _end - _current;
+        auto numLeft = int(_end - _current);
         auto numRead = std::min(numLeft, maximumLen);
         std::memcpy(destination, _current, numRead);
         _current += numRead;

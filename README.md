@@ -19,6 +19,13 @@ Starting with version 0.1.0, it's fully OOP!
 - [x] Remove input text size limitations
 
 
+### Version 0.2.0 is finally released!
+Platform-specific image library was replaced with the crossplatform
+[lodepng](https://github.com/lvandeve/lodepng) one.
+Now it's possible to build and run TetraCode utility both on Windows
+and Unix systems
+
+
 ### Version 0.1.0 is finally released!
 Project specifications are rather unstable now though
 so compatibility with either future or previous versions is not guaranteed
@@ -86,5 +93,5 @@ In order to decode text from image use:
 
 
 ## License
-You can do what the fuck you want with this program
+This project uses the *GNU GPLv3*
   
